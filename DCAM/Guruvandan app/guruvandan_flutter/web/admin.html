@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="cinema-home public-page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#101714" />
+  <title>Guru Vandan Admin</title>
+  <link rel="icon" href="/assets/assets/images/chakra_logo.png" />
+  <link rel="stylesheet" href="/cinema/film.css" />
+  <link rel="stylesheet" href="/legal.css" />
+  <link rel="stylesheet" href="/support.css" />
+  <script type="module" src="/admin-support.mjs"></script>
+</head>
+<body>
+  <main class="admin-page">
+    <header class="admin-heading">
+      <div><p class="eyebrow">Guru Vandan</p><h1>Administration</h1></div>
+      <div class="admin-session"><span id="admin-identity"></span><button id="admin-signout" class="button secondary" type="button" hidden>Sign out</button><a href="/">Website ↗</a></div>
+    </header>
+    <div class="admin-layout">
+      <nav class="admin-nav" aria-label="Admin sections">
+        <button id="support-tab" type="button" aria-pressed="true" aria-controls="support-panel">Support messages <span id="new-count"></span></button>
+        <button id="app-tab" type="button" aria-pressed="false" aria-controls="app-panel">App administration</button>
+      </nav>
+      <div>
+        <section id="support-panel" class="section" aria-labelledby="inbox-title">
+          <p class="overline">SUPPORT INBOX</p><h2 id="inbox-title">A helping hand, in one place.</h2>
+          <p>Messages sent from the website appear here. Only authorized administrators can read them.</p>
+          <p id="admin-notice" class="form-status" role="status" aria-live="polite">Connecting securely…</p>
+          <div id="admin-auth" class="admin-auth" hidden>
+            <form id="admin-login" class="support-form">
+              <fieldset><legend>Sign in with your existing admin account</legend>
+                <div class="support-fields">
+                  <div class="support-field wide"><label for="admin-email">Admin email</label><input id="admin-email" name="email" type="email" value="guruvandan11@gmail.com" autocomplete="username" readonly required /></div>
+                  <div class="support-field wide"><label for="admin-password">Password</label><input id="admin-password" name="password" type="password" autocomplete="current-password" required /></div>
+                </div>
+                <div class="support-actions"><button type="submit" class="button">Sign in</button></div>
+              </fieldset>
+            </form>
+          </div>
+          <div id="support-inbox" hidden>
+            <div class="inbox-summary"><p id="inbox-count"></p><button id="refresh-inbox" type="button" class="button secondary">Refresh inbox</button></div>
+            <div class="inbox-tools"><input id="inbox-search" type="search" placeholder="Search messages, names, or email" aria-label="Search loaded messages" /><select id="inbox-filter" aria-label="Filter loaded messages"><option value="all">All statuses</option><option value="new">New</option><option value="read">Read</option><option value="resolved">Resolved</option></select></div>
+            <p class="form-note">Replies open in your email app; nothing is sent automatically. Search and filters cover loaded messages.</p>
+            <table class="inbox-table"><thead><tr><th scope="col">From / received</th><th scope="col">Topic</th><th scope="col">Message</th><th scope="col">Status / reply</th></tr></thead><tbody id="message-rows" data-no-translate></tbody></table>
+            <p id="inbox-empty" hidden>No support messages yet.</p>
+            <button id="load-older" type="button" class="button secondary" hidden>Load older messages</button>
+          </div>
+        </section>
+        <section id="app-panel" class="section" hidden>
+          <h2>App administration</h2><p>Your existing quote management and activity dashboard are unchanged.</p>
+          <a href="/app.html#/admin" target="_blank" rel="noopener">Open app administration in a new tab ↗</a>
+          <iframe id="app-admin-frame" class="admin-frame" title="Guru Vandan app administration"></iframe>
+        </section>
+      </div>
+    </div>
+    <noscript><p>Enable JavaScript to view support messages. <a href="/app.html#/admin">Open app administration</a></p></noscript>
+  </main>
+</body>
+</html>

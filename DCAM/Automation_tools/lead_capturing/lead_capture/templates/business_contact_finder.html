@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Business Contact Finder{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Business Contact Finder</p>
+    <h1>Collect contact details for potential client businesses.</h1>
+    <p class="page-copy">
+        Enter one or more business types and an area. The tool fetches every available result page returned for each type, removes duplicates, and enriches results from public business websites.
+    </p>
+</section>
+
+<section class="panel search-panel">
+    <form method="post" class="search-form contact-form">
+        <label>
+            <span>Business Types</span>
+            <textarea name="business_types" placeholder="Law firms, dentists, real estate agencies" required>{{ form_data.business_types }}</textarea>
+        </label>
+        <label>
+            <span>Area</span>
+            <input type="text" name="area" placeholder="Mumbai" value="{{ form_data.area }}" required>
+        </label>
+        <button type="submit">Find Contacts</button>
+    </form>
+
+    <p class="source-note">
+        Coverage uses Google Places listings plus public pages on listed business websites. No tool can guarantee every business on the internet, but this requests every API result page available for the search.
+    </p>
+
+    {% if error_message %}
+    <div class="message error">{{ error_message }}</div>
+    {% endif %}
+</section>
+
+{% if search_performed and not error_message %}
+<section class="summary-grid">
+    <article class="summary-card">
+        <span>Total Businesses</span>
+        <strong>{{ summary.total_results }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>Phones Found</span>
+        <strong>{{ summary.phone_found_count }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>Emails Found</span>
+        <strong>{{ summary.email_found_count }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>Websites Found</span>
+        <strong>{{ summary.website_found_count }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>No Website</span>
+        <strong>{{ summary.no_website_count }}</strong>
+    </article>
+</section>
+
+<section class="panel">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Prospect List</p>
+            <h2>All businesses found</h2>
+        </div>
+        {% if sheet_export_token %}
+        <form method="post" action="{{ url_for('main.send_business_contacts_to_sheet') }}">
+            <input type="hidden" name="export_token" value="{{ sheet_export_token }}">
+            <button type="submit">Send to Google Sheet</button>
+        </form>
+        {% elif contact_results %}
+        <span class="source-note">No email leads found to send.</span>
+        {% endif %}
+    </div>
+
+    {% if parsed_types %}
+    <div class="query-strip">
+        {% for business_type in parsed_types %}
+        <span>{{ business_type }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if contact_results %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Business</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Website</th>
+                    <th>Website Status</th>
+                    <th>Maps</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in contact_results %}
+                <tr>
+                    <td>{{ lead.business_type_display }}</td>
+                    <td>{{ lead.name }}</td>
+                    <td>{{ lead.address }}</td>
+                    <td>
+                        {% if lead.phone_number %}
+                        <a href="tel:{{ lead.phone_number }}">{{ lead.phone_number }}</a>
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if lead.email_addresses %}
+                        {% for email in lead.email_addresses %}
+                        <a href="mailto:{{ email }}">{{ email }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if lead.website %}
+                        <a href="{{ lead.website }}" target="_blank" rel="noreferrer">{{ lead.website }}</a>
+                        {% else %}
+                        Not listed
+                        {% endif %}
+                    </td>
+                    <td>{{ lead.website_status }}</td>
+                    <td>
+                        {% if lead.maps_url %}
+                        <a href="{{ lead.maps_url }}" target="_blank" rel="noreferrer">Open</a>
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="empty-state">No businesses were returned for this search.</p>
+    {% endif %}
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,1189 @@
+/**
+ * This Firestore Security Ruleset is designed for the DCAM Classes application.
+ *
+ * Core Philosophy:
+ * The security model is based on a clear separation between public, read-only educational
+ * content and private, user-specific data. It enforces a role-based access control (RBAC)
+ * system, granting elevated write permissions to 'teacher' and 'admin' users for managing shared
+ * learning materials and user roles. User data is strictly segregated and owned by the user.
+ *
+ * Data Structure:
+ * - /users/{userId}: Private user profile data.
+ * - /roles_admin/{userId}: A lookup collection to identify users with the 'admin' role.
+ * - /roles_teacher/{userId}: A lookup collection to identify users with the 'teacher' role.
+ * - Top-level collections (e.g., /content, /topics, /live_classes): Shared educational
+ *   materials accessible to all authenticated users.
+ *
+ * Key Security Decisions:
+ * - Default Deny: All paths are closed by default. Access is granted explicitly.
+ * - User Privacy: Users can only access their own data within their `/users/{userId}` document tree.
+ *   Admins and teachers have limited, role-specific read access to user profiles.
+ * - Role-Based Management: Only users marked as 'admin' can manage the curriculum and user roles.
+ *   Teachers can manage content, live classes, and practice questions.
+ * - Public Content Accessibility: All signed-in users (students and teachers) can read shared
+ *   educational content to facilitate learning.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --------------------------------------------------------------------
+    // Helper Functions
+    // --------------------------------------------------------------------
+
+    /**
+     * Checks if the user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the currently authenticated user's UID matches the provided userId.
+     * Used to verify ownership of a resource.
+     */
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    /**
+     * Checks for ownership on an existing document.
+     * Prevents modifying or deleting documents that do not exist.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * Checks if the authenticated user has a 'teacher' role.
+     * This is determined by the existence of a document in the /roles_teacher collection.
+     * This is a performant check that costs one read operation.
+     */
+    function isTeacherByProfile() {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return isSignedIn()
+             && userDoc != null
+             && 'roleId' in userDoc.data
+             && (userDoc.data.roleId == 'teacher' || userDoc.data.roleId == 'admin');
+    }
+
+    function isTeacher() {
+      return isSignedIn()
+             && (
+               exists(/databases/$(database)/documents/roles_teacher/$(request.auth.uid))
+               || isTeacherByProfile()
+             );
+    }
+
+    /**
+     * Checks if the authenticated user is an approved teacher.
+     * Reads the user's profile doc for teacherStatus.
+     */
+    function isApprovedTeacher() {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return isTeacher()
+             && userDoc != null
+             && (
+               (!('roleId' in userDoc.data)
+                 && (!('teacherStatus' in userDoc.data) || userDoc.data.teacherStatus == 'approved'))
+               || userDoc.data.roleId == 'admin'
+               || (
+                 userDoc.data.roleId == 'teacher'
+                 && (!('teacherStatus' in userDoc.data) || userDoc.data.teacherStatus == 'approved')
+               )
+             );
+    }
+
+    function isTeacherPubliclyVisible(teacherId) {
+      let teacherDoc = get(/databases/$(database)/documents/users/$(teacherId));
+      return teacherDoc != null
+             && (!('status' in teacherDoc.data) || teacherDoc.data.status != 'blocked')
+             && (
+               (('roleId' in teacherDoc.data) && teacherDoc.data.roleId == 'admin')
+               || (
+                 ('roleId' in teacherDoc.data)
+                 && teacherDoc.data.roleId == 'teacher'
+                 && (!('teacherStatus' in teacherDoc.data) || teacherDoc.data.teacherStatus == 'approved')
+               )
+             );
+    }
+
+    /**
+     * Checks if the authenticated user has an 'admin' role.
+     * This is determined by the existence of a document in the /roles_admin collection.
+     */
+    function isAdmin() {
+      return isSignedIn()
+             && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    function isQuestionUploaderByProfile() {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return isSignedIn()
+             && userDoc != null
+             && 'roleId' in userDoc.data
+             && userDoc.data.roleId == 'question_upload';
+    }
+
+    function isQuestionUploader() {
+      return isQuestionUploaderByProfile();
+    }
+
+    function isAllowedSelfUserRoleCreate() {
+      return (
+               !('roleId' in request.resource.data)
+               || request.resource.data.roleId == 'student'
+               || (
+                 request.resource.data.roleId == 'teacher'
+                 && (
+                   !('teacherStatus' in request.resource.data)
+                   || request.resource.data.teacherStatus == 'pending'
+                 )
+               )
+               || (
+                 isDesignatedAdmin()
+                 && request.resource.data.roleId == 'admin'
+                 && (
+                   !('teacherStatus' in request.resource.data)
+                   || request.resource.data.teacherStatus == 'approved'
+                 )
+               )
+             )
+             && !('subscriptionStatus' in request.resource.data)
+             && !('subscriptionPlanId' in request.resource.data);
+    }
+
+    function hasNoProtectedSelfUserProfileChanges() {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+        'roleId',
+        'teacherStatus',
+        'subscriptionStatus',
+        'subscriptionPlanId',
+        'status'
+      ]);
+    }
+
+    function hasServerVerifiedPayment(paymentId, userId) {
+      return paymentId is string
+             && exists(/databases/$(database)/documents/payments/$(paymentId))
+             && get(/databases/$(database)/documents/payments/$(paymentId)).data.userId == userId
+             && get(/databases/$(database)/documents/payments/$(paymentId)).data.status == 'paid'
+             && get(/databases/$(database)/documents/payments/$(paymentId)).data.serverVerified == true;
+    }
+
+    function isServerVerifiedPaymentBackedWrite(userId) {
+      return isOwner(userId)
+             && 'serverVerifiedPaymentId' in request.resource.data
+             && hasServerVerifiedPayment(request.resource.data.serverVerifiedPaymentId, userId);
+    }
+
+    function isExistingServerVerifiedPurchaseOwner(userId) {
+      return isOwner(userId)
+             && resource != null
+             && 'serverVerifiedPaymentId' in resource.data
+             && hasServerVerifiedPayment(resource.data.serverVerifiedPaymentId, userId);
+    }
+
+    function currentManualSessionUnlockHistorySize() {
+      return ('manualSessionUnlockHistory' in resource.data
+              && resource.data.manualSessionUnlockHistory is list)
+             ? resource.data.manualSessionUnlockHistory.size()
+             : 0;
+    }
+
+    function isSelfManualLiveBatchSessionUnlock(userId, batchId) {
+      return isOwner(userId)
+             && resource != null
+             && request.resource.data.batchId == batchId
+             && exists(/databases/$(database)/documents/live_batches/$(batchId))
+             && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+               'manualSessionUnlockHistory'
+             ])
+             && request.resource.data.manualSessionUnlockHistory is list
+             && request.resource.data.manualSessionUnlockHistory.size() == currentManualSessionUnlockHistorySize() + 1;
+    }
+
+    /**
+     * Checks if a teacher sender is messaging an admin in a 1:1 chat.
+     */
+    function isTeacherMessagingAdmin(chatId) {
+      let participants = chatId.split('_');
+      return participants.size() == 2
+             && request.auth.uid in participants
+             && (
+               (participants[0] == request.auth.uid
+                && exists(/databases/$(database)/documents/roles_admin/$(participants[1])))
+               || (participants[1] == request.auth.uid
+                   && exists(/databases/$(database)/documents/roles_admin/$(participants[0])))
+             );
+    }
+    
+    /**
+     * Checks if the authenticated user is the designated super admin.
+     * This provides a bootstrap mechanism for the first admin account.
+     */
+    function isDesignatedAdmin() {
+      return request.auth.token.email == 'ajaybhatnagar1712@gmail.com';
+    }
+
+    /**
+     * Limits website-based teacher authoring to the allowlisted account while
+     * keeping admin access available for operational recovery.
+     */
+    function canManageTeacherAuthoringContent() {
+      return isAdmin()
+             || isQuestionUploader()
+             || (
+               isApprovedTeacher()
+               && request.auth.token.email == 'dcamclassesiit@gmail.com'
+             );
+    }
+
+    function dcamQuestionBankOwnerId() {
+      return 'gqumFPxA8vh8MwMfmIhaG6FgOy92';
+    }
+
+    function canManageSharedDcamQuestionBank() {
+      return isQuestionUploader()
+             || (
+               isApprovedTeacher()
+               && request.auth.token.email == 'dcamclassesiit@gmail.com'
+             );
+    }
+
+    function canManageQuestionBankOwner(ownerTeacherId) {
+      return isAdmin()
+             || (
+               canManageTeacherAuthoringContent()
+               && ownerTeacherId == request.auth.uid
+             )
+             || (
+               canManageSharedDcamQuestionBank()
+               && ownerTeacherId == dcamQuestionBankOwnerId()
+             );
+    }
+
+    function canWriteDcamPracticeQuestionSummary(settingId) {
+      return settingId == 'dcam_practice_question_summary'
+             && canManageTeacherAuthoringContent()
+             && request.resource.data.keys().hasOnly([
+               'ownerTeacherId',
+               'freeQuestionCount',
+               'paidQuestionCount',
+               'totalQuestionCount',
+               'mockOnlyQuestionCount',
+               'updatedAt',
+               'source'
+             ])
+             && request.resource.data.ownerTeacherId == 'gqumFPxA8vh8MwMfmIhaG6FgOy92';
+    }
+    
+    /**
+     * Checks if the authenticated user has an active subscription.
+     * This relies on a denormalized 'subscriptionStatus' field on the user's profile document.
+     */
+    function isSubscribed() {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return userDoc != null 
+             && 'subscriptionStatus' in userDoc.data 
+             && (userDoc.data.subscriptionStatus == 'active' || userDoc.data.subscriptionStatus == 'trialing');
+    }
+
+    // --------------------------------------------------------------------
+    // User Data Rules
+    // --------------------------------------------------------------------
+
+    /**
+     * @description Manages user profile data. A user can create their own profile
+     *              and can read, update, or delete their own data subsequently.
+     *              Teachers and Admins have role-specific access.
+     * @path        /users/{userId}
+     * @principle   Enforces strict data ownership and privacy, with elevated privileges for admins.
+     */
+    match /users/{userId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isOwner(userId)
+                    && request.resource.data.id == userId
+                    && isAllowedSelfUserRoleCreate()
+                    && !exists(/databases/$(database)/documents/blocked_emails/$(request.resource.data.email));
+      
+      allow update: if
+        // Admins can update any user profile.
+        isAdmin() ||
+        // Designated admin can update their own profile, including their role.
+        (isDesignatedAdmin() && isOwner(userId)) ||
+        // A user can update their own profile, but cannot change protected access-control fields.
+        (isOwner(userId) && hasNoProtectedSelfUserProfileChanges());
+
+      allow delete: if isExistingOwner(userId) || isAdmin();
+      
+       /**
+       * @description Manages a user's subscription data. Only the user can read their
+       *              own subscription status. Teachers/Admins can manage subscriptions.
+       * @path        /users/{userId}/subscriptions/{subscriptionId}
+       */
+      match /subscriptions/{subscriptionId} {
+        allow read, write: if isOwner(userId) || isApprovedTeacher() || isAdmin();
+      }
+      
+      /**
+       * @description Stores results for mock tests taken by the user.
+       * @path        /users/{userId}/test_results/{resultId}
+       */
+      match /test_results/{resultId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId);
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Stores results for practice sessions taken by the user.
+       * @path        /users/{userId}/practice_results/{resultId}
+       */
+      match /practice_results/{resultId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId);
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Stores per-course learning progress for a user.
+       * @path        /users/{userId}/course_progress/{courseId}
+       */
+      match /course_progress/{courseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update: if isOwner(userId);
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Stores custom mock tests created by the user.
+       * @path        /users/{userId}/custom_tests/{testId}
+       */
+      match /custom_tests/{testId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isOwner(userId) || isAdmin();
+      }
+
+      /**
+       * @description Stores user enrollments for live batches.
+       * @path        /users/{userId}/enrolled_live_batches/{batchId}
+       */
+      match /enrolled_live_batches/{batchId} {
+        allow get, list: if isOwner(userId)
+                         || isAdmin()
+                         || (
+                           isApprovedTeacher()
+                           && exists(/databases/$(database)/documents/live_batches/$(batchId))
+                           && get(/databases/$(database)/documents/live_batches/$(batchId)).data.teacherId == request.auth.uid
+                         );
+        allow create: if (isOwner(userId) || isAdmin())
+                      && request.resource.data.batchId == batchId
+                      && exists(/databases/$(database)/documents/live_batches/$(batchId))
+                      && (
+                        !('publicationStatus' in get(/databases/$(database)/documents/live_batches/$(batchId)).data)
+                        || get(/databases/$(database)/documents/live_batches/$(batchId)).data.publicationStatus == 'published'
+                      )
+                      && (
+                        isAdmin()
+                        || !('accessLevel' in get(/databases/$(database)/documents/live_batches/$(batchId)).data)
+                        || get(/databases/$(database)/documents/live_batches/$(batchId)).data.accessLevel != 'paid'
+                      );
+        allow update: if (
+                        (isOwner(userId) || isAdmin())
+                        && request.resource.data.batchId == batchId
+                        && exists(/databases/$(database)/documents/live_batches/$(batchId))
+                        && (
+                          !('publicationStatus' in get(/databases/$(database)/documents/live_batches/$(batchId)).data)
+                          || get(/databases/$(database)/documents/live_batches/$(batchId)).data.publicationStatus == 'published'
+                        )
+                        && (
+                          isAdmin()
+                          || !('accessLevel' in get(/databases/$(database)/documents/live_batches/$(batchId)).data)
+                          || get(/databases/$(database)/documents/live_batches/$(batchId)).data.accessLevel != 'paid'
+                        )
+                      )
+                      || isSelfManualLiveBatchSessionUnlock(userId, batchId);
+        allow delete: if isOwner(userId) || isAdmin();
+      }
+
+      /**
+       * @description Attempt history for self-created custom mock tests.
+       * @path        /users/{userId}/custom_tests/{testId}/attempts/{attemptId}
+       */
+      match /custom_tests/{testId}/attempts/{attemptId} {
+        allow get, list, create: if isOwner(userId) || isAdmin();
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Per-user chat preferences (e.g., group chat clear timestamp).
+       * @path        /users/{userId}/chat_preferences/{prefId}
+       */
+      match /chat_preferences/{prefId} {
+        allow read, write: if isOwner(userId) || isApprovedTeacher() || isAdmin();
+      }
+
+      /**
+       * @description Teacher-facing sales ledger for purchases linked to their content.
+       * @path        /users/{userId}/sales/{saleId}
+       */
+      match /sales/{saleId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create: if isSignedIn()
+                      && request.resource.data.teacherId == userId
+                      && (
+                        request.resource.data.studentId == request.auth.uid
+                        || isAdmin()
+                      );
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Student-owned purchased courses ledger.
+       * @path        /users/{userId}/purchased_courses/{courseId}
+       */
+      match /purchased_courses/{courseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+
+      /**
+       * @description Student-owned purchased mock tests ledger.
+       * @path        /users/{userId}/purchased_mock_tests/{testId}
+       */
+      match /purchased_mock_tests/{testId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+
+      /**
+       * @description Student-owned purchased live batches ledger.
+       * @path        /users/{userId}/purchased_live_batches/{batchId}
+       */
+      match /purchased_live_batches/{batchId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+
+      /**
+       * @description Premium mock feature purchases by exam/curriculum combination per teacher.
+       * @path        /users/{userId}/premium_mock_feature_purchases/{purchaseId}
+       */
+      match /premium_mock_feature_purchases/{purchaseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update: if isAdmin()
+                              || isServerVerifiedPaymentBackedWrite(userId)
+                              || isExistingServerVerifiedPurchaseOwner(userId);
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Premium practice session purchases per student.
+       * @path        /users/{userId}/premium_practice_session_purchases/{purchaseId}
+       */
+      match /premium_practice_session_purchases/{purchaseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create: if isAdmin();
+        allow update: if isAdmin() || isExistingServerVerifiedPurchaseOwner(userId);
+        allow delete: if isAdmin();
+      }
+
+      /**
+       * @description Teacher-owned premium DCAM question purchase ledger.
+       * @path        /users/{userId}/teacher_question_purchases/{purchaseId}
+       */
+      match /teacher_question_purchases/{purchaseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+
+      /**
+       * @description Student-owned purchased teacher offer ledger.
+       * @path        /users/{userId}/purchased_teacher_offers/{purchaseId}
+       */
+      match /purchased_teacher_offers/{purchaseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+
+      /**
+       * @description Alternate student-owned teacher offer purchase ledger.
+       * @path        /users/{userId}/teacher_offer_purchases/{purchaseId}
+       */
+      match /teacher_offer_purchases/{purchaseId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+    }
+
+    // Explicit fallback removed: handled within /users/{userId} scope above.
+    
+    // --------------------------------------------------------------------
+    // Role & System Configuration Rules
+    // --------------------------------------------------------------------
+
+    /**
+     * @description System-defined roles (e.g., student, teacher).
+     *              These are read-only for all clients and managed server-side.
+     * @path        /roles/{roleId}
+     */
+    match /roles/{roleId} {
+      allow get, list: if isSignedIn();
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description A lookup collection to identify admins. Existence of a document
+     *              confers admin privileges. Admins can manage this collection.
+     * @path        /roles_admin/{userId}
+     */
+     match /roles_admin/{userId} {
+        allow get: if isSignedIn();
+        allow list: if false;
+        allow write: if isAdmin() || (isDesignatedAdmin() && isOwner(userId));
+    }
+
+    /**
+     * @description A lookup collection to identify teachers. Existence of a document
+     *              confers teacher privileges. Admins can manage this.
+     * @path        /roles_teacher/{userId}
+     */
+    match /roles_teacher/{userId} {
+        allow get: if isSignedIn();
+        allow list: if false;
+        allow create: if isAdmin() || (isDesignatedAdmin() && isOwner(userId));
+        allow update, delete: if isAdmin() || (isDesignatedAdmin() && isOwner(userId));
+    }
+
+    /**
+     * @description A lookup collection to identify limited question-upload staff.
+     *              Admins can manage this role from User Management.
+     * @path        /roles_question_upload/{userId}
+     */
+    match /roles_question_upload/{userId} {
+        allow get: if isSignedIn();
+        allow list: if isAdmin();
+        allow create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Stores emails of users who are blocked from creating new accounts.
+     *              Only manageable by admins.
+     * @path        /blocked_emails/{email}
+     */
+    match /blocked_emails/{email} {
+      allow read, write: if isAdmin();
+    }
+
+    /**
+     * @description Global platform settings such as revenue percentages.
+     * @path        /platform_settings/{settingId}
+     */
+    match /platform_settings/{settingId} {
+      allow get: if isSignedIn();
+      allow list: if false;
+      allow create, update: if isAdmin() || canWriteDcamPracticeQuestionSummary(settingId);
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * @description Public website enquiries submitted through the landing pages.
+     *              Admins can review and resolve them from the admin workspace.
+     * @path        /enquiries/{enquiryId}
+     */
+    match /enquiries/{enquiryId} {
+      allow get, list: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Teacher-specific commission overrides.
+     * @path        /teacher_commission_overrides/{teacherId}
+     */
+    match /teacher_commission_overrides/{teacherId} {
+      allow get: if isSignedIn();
+      allow list: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // --------------------------------------------------------------------
+    // Public Content Rules (Managed by Roles)
+    // --------------------------------------------------------------------
+    
+    /**
+     * @description Exam Type definitions. Publicly readable for marketing and onboarding pages.
+     *              Manageable only by admins.
+     * @path        /exam_types/{examTypeId}
+     */
+    match /exam_types/{examTypeId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    
+    /**
+     * @description Class definitions. Readable by anyone signed in, manageable by admins.
+     * @path        /classes/{classId}
+     */
+    match /classes/{classId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Learning content. Readable by any signed-in user, manageable by teachers or admins.
+     * @path        /content/{contentId}
+     */
+    match /content/{contentId} {
+      allow get, list: if isSignedIn()
+                        && (!isTeacher()
+                            || isAdmin()
+                            || (isApprovedTeacher() && resource != null && resource.data.teacherId == request.auth.uid));
+      allow create: if (isApprovedTeacher() || isAdmin()) && request.resource.data.teacherId == request.auth.uid;
+      allow update, delete: if isAdmin()
+                            || (isApprovedTeacher()
+                                && resource != null
+                                && ((('teacherId' in resource.data)
+                                      && resource.data.teacherId == request.auth.uid
+                                      && request.resource.data.teacherId == resource.data.teacherId)
+                                    || (!('teacherId' in resource.data)
+                                        && request.resource.data.teacherId == request.auth.uid)));
+    }
+
+    /**
+     * @description Paid courses. Readable by any signed-in user.
+     *              Teachers can manage only their own courses. Admins can manage all courses.
+     * @path        /courses/{courseId}
+     */
+    match /courses/{courseId} {
+      allow get, list: if isSignedIn()
+                        && (
+                          isAdmin()
+                          || (isApprovedTeacher()
+                              && resource != null
+                              && resource.data.teacherId == request.auth.uid)
+                          || (resource != null
+                              && (!('teacherId' in resource.data) || isTeacherPubliclyVisible(resource.data.teacherId))
+                              && (resource.data.accessLevel != 'paid'
+                                  || (('subscriptionAttached' in resource.data)
+                                      && resource.data.subscriptionAttached == true)))
+                        );
+      allow create: if (isApprovedTeacher() || isAdmin()) && request.resource.data.teacherId == request.auth.uid;
+      allow update: if isAdmin()
+                    || (isApprovedTeacher()
+                        && resource != null
+                        && ((('teacherId' in resource.data)
+                              && resource.data.teacherId == request.auth.uid
+                              && request.resource.data.teacherId == resource.data.teacherId)
+                            || (!('teacherId' in resource.data)
+                                && request.resource.data.teacherId == request.auth.uid)));
+      allow delete: if isAdmin()
+                    || (isApprovedTeacher()
+                        && resource != null
+                        && (('teacherId' in resource.data)
+                            && resource.data.teacherId == request.auth.uid));
+    }
+
+    /**
+     * @description Curriculum topics. Readable by anyone signed in.
+     *              Teachers/Admins can create topics from question-bank flows.
+     *              Updates/deletes remain admin-only to prevent accidental global edits.
+     * @path        /topics/{topicId}
+     */
+    match /topics/{topicId} {
+      allow get, list: if isSignedIn();
+      allow create: if (
+                      isAdmin()
+                      || (
+                        canManageTeacherAuthoringContent()
+                        && (!('teacherId' in request.resource.data)
+                            || canManageQuestionBankOwner(request.resource.data.teacherId))
+                      )
+                    )
+                    && request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.subjectId is string
+                    && request.resource.data.subjectId.size() > 0;
+      allow update: if isAdmin();
+      allow delete: if isAdmin()
+                    || (
+                      isApprovedTeacher()
+                      && resource != null
+                      && (
+                        (('teacherId' in resource.data) && resource.data.teacherId == request.auth.uid)
+                        || !('teacherId' in resource.data)
+                      )
+                    );
+    }
+    
+    /**
+     * @description Subject definitions. Readable by anyone signed in, manageable by admins.
+     * @path        /subjects/{subjectId}
+     */
+    match /subjects/{subjectId} {
+        allow get, list: if true;
+        allow create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Teacher requests for missing exam/curriculum/subject combinations.
+     *              Teachers can submit their own requests; admins can review and manage status.
+     * @path        /curriculum_requests/{requestId}
+     */
+    match /curriculum_requests/{requestId} {
+      allow get: if isSignedIn()
+                 && (
+                   isAdmin()
+                   || (resource != null && resource.data.teacherId == request.auth.uid)
+                 );
+      allow list: if isAdmin()
+                  || (
+                    isSignedIn()
+                    && resource != null
+                    && resource.data.teacherId == request.auth.uid
+                  );
+      allow create: if isSignedIn()
+                    && isApprovedTeacher()
+                    && request.resource.data.teacherId == request.auth.uid
+                    && request.resource.data.requestedExamType is string
+                    && request.resource.data.requestedExamType.size() > 0
+                    && request.resource.data.requestedCurriculum is string
+                    && request.resource.data.requestedCurriculum.size() > 0
+                    && request.resource.data.requestedSubjects is string
+                    && request.resource.data.requestedSubjects.size() > 0
+                    && request.resource.data.status == 'pending';
+      allow update: if isAdmin()
+                    && request.resource.data.status in ['pending', 'approved', 'rejected']
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'reviewedAt', 'reviewedBy', 'adminNote']);
+      allow delete: if (
+                      isAdmin()
+                      && resource != null
+                      && resource.data.status in ['approved', 'rejected']
+                    )
+                    || (
+                      isApprovedTeacher()
+                      && resource != null
+                      && resource.data.teacherId == request.auth.uid
+                    );
+    }
+
+    /**
+     * @description Practice questions. Readable by any signed-in user, manageable by teachers.
+     * @path        /practice_questions/{practiceQuestionId}
+     */
+    match /practice_questions/{practiceQuestionId} {
+      allow get, list: if isSignedIn();
+      allow create: if ('teacherId' in request.resource.data)
+                    && canManageQuestionBankOwner(request.resource.data.teacherId);
+      allow update: if isAdmin()
+                    || (resource != null
+                        && ('teacherId' in resource.data)
+                        && canManageQuestionBankOwner(resource.data.teacherId)
+                        && request.resource.data.teacherId == resource.data.teacherId);
+      allow delete: if isAdmin()
+                    || (resource != null
+                        && ('teacherId' in resource.data)
+                        && canManageQuestionBankOwner(resource.data.teacherId));
+    }
+
+    /**
+     * @description Mock tests. Readable by anyone signed in, manageable by teachers or admins.
+     * @path        /mock_tests/{mockTestId}
+     */
+    match /mock_tests/{mockTestId} {
+      allow get, list: if isSignedIn()
+                        && (
+                          isAdmin()
+                          || (isApprovedTeacher()
+                              && resource != null
+                              && resource.data.teacherId == request.auth.uid)
+                          || (resource != null
+                              && (!('teacherId' in resource.data) || isTeacherPubliclyVisible(resource.data.teacherId))
+                              && (!('publicationStatus' in resource.data)
+                                  || resource.data.publicationStatus != 'draft'))
+                        );
+      allow create: if (isApprovedTeacher() || isAdmin())
+                    && request.resource.data.teacherId == request.auth.uid;
+      allow update: if isAdmin()
+                    || ((isApprovedTeacher() || isAdmin())
+                        && resource != null
+                        && resource.data.teacherId == request.auth.uid
+                        && request.resource.data.teacherId == resource.data.teacherId);
+      allow delete: if isAdmin()
+                    || ((isApprovedTeacher() || isAdmin())
+                        && resource != null
+                        && resource.data.teacherId == request.auth.uid);
+    }
+
+    /**
+     * @description Teacher-owned question banks. Each teacher can organize questions
+     *              by exam/curriculum/subjects and reuse them while creating tests.
+     * @path        /teacher_question_banks/{bankId}
+     */
+    match /teacher_question_banks/{bankId} {
+      allow get, list: if isSignedIn();
+      allow create: if ('teacherId' in request.resource.data)
+                    && canManageQuestionBankOwner(request.resource.data.teacherId);
+      allow update: if isAdmin()
+                    || (resource != null
+                        && ('teacherId' in resource.data)
+                        && canManageQuestionBankOwner(resource.data.teacherId)
+                        && request.resource.data.teacherId == resource.data.teacherId);
+      allow delete: if isAdmin()
+                    || (resource != null
+                        && ('teacherId' in resource.data)
+                        && canManageQuestionBankOwner(resource.data.teacherId));
+    }
+
+    /**
+     * @description Teacher-created bundled offers that can include courses,
+     *              tests, live batches, premium practice packs, and premium custom mocks.
+     *              Teachers can manage only their own offers; admins can manage all offers.
+     *              Signed-in users can read active offers.
+     * @path        /teacher_offers/{offerId}
+     */
+    match /teacher_offers/{offerId} {
+      allow get, list: if isSignedIn()
+                        && (
+                          isAdmin()
+                          || (isApprovedTeacher()
+                              && resource != null
+                              && resource.data.createdByTeacherId == request.auth.uid)
+                          || (resource != null
+                              && (!('createdByTeacherId' in resource.data) || isTeacherPubliclyVisible(resource.data.createdByTeacherId))
+                              && (!('status' in resource.data) || resource.data.status == 'active'))
+                        );
+      allow create: if (isApprovedTeacher() || isAdmin())
+                    && request.resource.data.createdByTeacherId == request.auth.uid;
+      allow update: if isAdmin()
+                    || (isApprovedTeacher()
+                        && resource != null
+                        && resource.data.createdByTeacherId == request.auth.uid
+                        && request.resource.data.createdByTeacherId == resource.data.createdByTeacherId);
+      allow delete: if isAdmin()
+                    || (isApprovedTeacher()
+                        && resource != null
+                        && resource.data.createdByTeacherId == request.auth.uid);
+    }
+
+    // --------------------------------------------------------------------
+    // Interactive Content Rules (Mixed Ownership)
+    // --------------------------------------------------------------------
+
+    /**
+     * @description Live classes scheduled by teachers. Anyone can view the schedule.
+     *              Only the teacher who created the class can manage it.
+     * @path        /live_classes/{liveClassId}
+     */
+    match /live_classes/{liveClassId} {
+      allow get, list: if isSignedIn();
+      allow create: if isApprovedTeacher() && request.resource.data.teacherId == request.auth.uid;
+      allow update: if resource != null && isApprovedTeacher() && isOwner(resource.data.teacherId) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['recordingUrl', 'title', 'startTime', 'duration', 'meetingUrl', 'accessLevel']);
+      allow delete: if resource != null && isApprovedTeacher() && isOwner(resource.data.teacherId);
+    }
+
+    /**
+     * @description Teacher-created live batches grouped by exam/class/subject.
+     * @path        /live_batches/{batchId}
+     */
+    match /live_batches/{batchId} {
+      allow get, list: if isSignedIn()
+                        && (
+                          isAdmin()
+                          || (isApprovedTeacher()
+                              && resource != null
+                              && resource.data.teacherId == request.auth.uid)
+                          || (resource != null
+                              && (!('teacherId' in resource.data) || isTeacherPubliclyVisible(resource.data.teacherId)))
+                        );
+      allow create: if (isApprovedTeacher() || isAdmin())
+                    && request.resource.data.teacherId == request.auth.uid;
+      allow update, delete: if isAdmin()
+                            || (resource != null
+                                && isApprovedTeacher()
+                                && resource.data.teacherId == request.auth.uid
+                                && request.resource.data.teacherId == resource.data.teacherId);
+    }
+
+    /**
+     * @description Daily schedule entries for each live batch (Zoom details + previous recording link).
+     * @path        /live_batch_sessions/{sessionId}
+     */
+    match /live_batch_sessions/{sessionId} {
+      allow get, list: if isSignedIn();
+      allow create: if (isApprovedTeacher() || isAdmin())
+                    && request.resource.data.teacherId == request.auth.uid
+                    && exists(/databases/$(database)/documents/live_batches/$(request.resource.data.batchId))
+                    && get(/databases/$(database)/documents/live_batches/$(request.resource.data.batchId)).data.teacherId == request.auth.uid;
+      allow update, delete: if isAdmin()
+                            || (resource != null
+                                && isApprovedTeacher()
+                                && resource.data.teacherId == request.auth.uid
+                                && request.resource.data.teacherId == resource.data.teacherId);
+    }
+    
+    // --------------------------------------------------------------------
+    // Doubt Resolution Rules
+    // --------------------------------------------------------------------
+    /**
+     * @description Manages student doubts. Students create, teachers answer.
+     * @path        /doubts/{doubtId}
+     */
+    match /doubts/{doubtId} {
+      allow read, list: if isSignedIn();
+      allow create: if isSignedIn()
+                    && request.resource.data.studentId == request.auth.uid
+                    && ('teacherId' in request.resource.data)
+                    && (
+                      isTeacherPubliclyVisible(request.resource.data.teacherId)
+                      || exists(/databases/$(database)/documents/roles_admin/$(request.resource.data.teacherId))
+                    );
+      allow update: if resource != null
+                    && (
+                      isOwner(resource.data.studentId)
+                      || isAdmin()
+                      || (isApprovedTeacher() && resource.data.teacherId == request.auth.uid)
+                    );
+      allow delete: if resource != null && isOwner(resource.data.studentId);
+    }
+    
+    // --------------------------------------------------------------------
+    // Chat Rules
+    // --------------------------------------------------------------------
+    /**
+     * @description Public group chat messages.
+     * @path        /group_chat_messages/{messageId}
+     */
+    match /group_chat_messages/{messageId} {
+      allow read, list: if isSignedIn()
+                        && (!isTeacher() || isAdmin());
+      allow create: if isSignedIn()
+                    && (!isTeacher() || isAdmin())
+                    && request.resource.data.senderId == request.auth.uid;
+      allow update: if isOwner(resource.data.senderId)
+                    && (!isTeacher() || isAdmin())
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['imageUrl', 'isUploading', 'uploadError', 'fileUrl', 'fileName', 'fileType']);
+      allow delete: if false;
+    }
+
+    /**
+     * @description Community announcements for teachers. Admin posts, teachers/admins read.
+     * @path        /community_announcements/{messageId}
+     */
+    match /community_announcements/{messageId} {
+      allow get, list: if isSignedIn() && (isApprovedTeacher() || isAdmin());
+      allow create: if isAdmin()
+                    && request.resource.data.senderId == request.auth.uid;
+      allow update: if isAdmin()
+                    && isOwner(resource.data.senderId)
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['imageUrl', 'isUploading', 'uploadError', 'fileUrl', 'fileName', 'fileType']);
+      allow delete: if false;
+    }
+
+    /**
+     * @description Private 1-on-1 chat messages.
+     * @path        /direct_messages/{chatId}/messages/{messageId}
+     */
+    match /direct_messages/{chatId}/messages/{messageId} {
+      allow list, get: if isSignedIn() && request.auth.uid in chatId.split('_');
+      allow create: if isSignedIn()
+                    && request.auth.uid in chatId.split('_')
+                    && request.resource.data.senderId == request.auth.uid
+                    && (!isTeacher() || isAdmin() || (isApprovedTeacher() && isTeacherMessagingAdmin(chatId)));
+      allow update: if isOwner(resource.data.senderId) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['imageUrl', 'isUploading', 'uploadError', 'fileUrl', 'fileName', 'fileType']);
+      allow delete: if false;
+    }
+
+    /**
+     * @description Direct message thread metadata (last message + unread counts).
+     * @path        /direct_message_threads/{chatId}
+     */
+    match /direct_message_threads/{chatId} {
+      allow get, list: if (isSignedIn() && request.auth.uid in resource.data.participants) || isAdmin();
+      allow create: if isSignedIn()
+                    && request.auth.uid in request.resource.data.participants
+                    && request.resource.data.participants.size() == 2
+                    && (!isTeacher() || isAdmin() || (isApprovedTeacher() && isTeacherMessagingAdmin(chatId)));
+      allow update: if isSignedIn()
+                    && request.auth.uid in resource.data.participants
+                    && request.resource.data.participants == resource.data.participants
+                    && (!isTeacher() || isAdmin() || (isApprovedTeacher() && isTeacherMessagingAdmin(chatId)));
+      allow delete: if false;
+    }
+
+    // --------------------------------------------------------------------
+    // Subscription & Billing Rules
+    // --------------------------------------------------------------------
+    
+    /**
+     * @description Defines the available subscription plans. Readable by all, writable only by admins.
+     * @path        /subscription_plans/{planId}
+     */
+    match /subscription_plans/{planId} {
+        allow get, list: if isSignedIn();
+        allow create: if isAdmin()
+                      || (isApprovedTeacher()
+                          && request.resource.data.createdByTeacherId == request.auth.uid
+                          && (
+                            (request.resource.data.linkedContentType == 'course'
+                             && request.resource.data.linkedContentId is string
+                             && exists(/databases/$(database)/documents/courses/$(request.resource.data.linkedContentId))
+                             && get(/databases/$(database)/documents/courses/$(request.resource.data.linkedContentId)).data.teacherId == request.auth.uid
+                             && get(/databases/$(database)/documents/courses/$(request.resource.data.linkedContentId)).data.accessLevel == 'paid')
+                            ||
+                            (request.resource.data.linkedContentType == 'mock_test'
+                             && request.resource.data.linkedContentId is string
+                             && exists(/databases/$(database)/documents/mock_tests/$(request.resource.data.linkedContentId))
+                             && get(/databases/$(database)/documents/mock_tests/$(request.resource.data.linkedContentId)).data.teacherId == request.auth.uid
+                             && get(/databases/$(database)/documents/mock_tests/$(request.resource.data.linkedContentId)).data.accessLevel == 'paid')
+                            ||
+                            (request.resource.data.linkedContentType == 'live_batch'
+                             && request.resource.data.linkedContentId is string
+                             && exists(/databases/$(database)/documents/live_batches/$(request.resource.data.linkedContentId))
+                             && get(/databases/$(database)/documents/live_batches/$(request.resource.data.linkedContentId)).data.teacherId == request.auth.uid
+                             && get(/databases/$(database)/documents/live_batches/$(request.resource.data.linkedContentId)).data.accessLevel == 'paid')
+                          ));
+        allow update: if isAdmin()
+                      || (isApprovedTeacher()
+                          && resource != null
+                          && resource.data.createdByTeacherId == request.auth.uid
+                          && request.resource.data.createdByTeacherId == resource.data.createdByTeacherId);
+        allow delete: if isAdmin()
+                      || (isApprovedTeacher()
+                          && resource != null
+                          && resource.data.createdByTeacherId == request.auth.uid);
+    }
+
+    /**
+     * @description Payment ledger entries for completed purchases.
+     * @path        /payments/{paymentId}
+     */
+    match /payments/{paymentId} {
+      allow get: if isSignedIn()
+                 && (
+                   isAdmin()
+                   || (resource != null && resource.data.userId == request.auth.uid)
+                   || (resource != null && resource.data.teacherId == request.auth.uid)
+                 );
+      allow list: if isAdmin();
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Wallet balances for teacher/admin revenue.
+     * @path        /wallets/{walletId}
+     */
+    match /wallets/{walletId} {
+      allow get: if isSignedIn()
+                 && (
+                   isAdmin()
+                   || walletId == ('teacher_' + request.auth.uid)
+                   || (resource != null && resource.data.ownerId == request.auth.uid)
+                 );
+      allow list: if isAdmin();
+      allow create, update: if isAdmin();
+      allow delete: if false;
+    }
+
+    /**
+     * @description Revenue split transaction entries from successful payments.
+     * @path        /wallet_transactions/{txId}
+     */
+    match /wallet_transactions/{txId} {
+      allow get: if isSignedIn()
+                 && (
+                   isAdmin()
+                   || (resource != null && resource.data.teacherId == request.auth.uid)
+                   || (resource != null && resource.data.userId == request.auth.uid)
+                 );
+      allow list: if isSignedIn()
+                  && (
+                    isAdmin()
+                    || (resource != null && resource.data.teacherId == request.auth.uid)
+                    || (resource != null && resource.data.userId == request.auth.uid)
+                  );
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    /**
+     * @description Payout/withdrawal requests for teachers/admin.
+     * @path        /payout_requests/{requestId}
+     */
+    match /payout_requests/{requestId} {
+      allow get: if isSignedIn()
+                 && (
+                   isAdmin()
+                   || (resource != null && resource.data.requesterId == request.auth.uid)
+                 );
+      allow list: if isAdmin()
+                  || (
+                    isSignedIn()
+                    && resource != null
+                    && resource.data.requesterId == request.auth.uid
+                  );
+      allow create: if isSignedIn()
+                    && request.resource.data.requesterId == request.auth.uid
+                    && request.resource.data.status == 'pending'
+                    && (
+                      (request.resource.data.requesterType == 'teacher' && isApprovedTeacher())
+                      || (request.resource.data.requesterType == 'admin' && isAdmin())
+                    );
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+    
+    // --------------------------------------------------------------------
+    // Notification Rules
+    // --------------------------------------------------------------------
+    /**
+     * @description Global notifications. Readable by all, writable only by teachers/admins.
+     * @path        /notifications/{notificationId}
+     */
+    match /notifications/{notificationId} {
+      allow read, list: if isSignedIn();
+      allow create: if isApprovedTeacher() || isAdmin();
+      allow update: if isSignedIn()
+                    && resource != null
+                    && ('recipientId' in resource.data)
+                    && resource.data.recipientId == request.auth.uid
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead', 'readAt', 'updatedAt']);
+      allow delete: if isAdmin()
+                    || (
+                      isSignedIn()
+                      && resource != null
+                      && ('recipientId' in resource.data)
+                      && resource.data.recipientId == request.auth.uid
+                    );
+    }
+
+    // --------------------------------------------------------------------
+    // Analytics Rules
+    // --------------------------------------------------------------------
+    /**
+     * @description Aggregated analytics for mock tests.
+     * @path        /test_analytics/{testId}
+     */
+    match /test_analytics/{testId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    // --------------------------------------------------------------------
+    // Dashboard Configuration Rules
+    // --------------------------------------------------------------------
+    /**
+     * @description Stores dashboard quick links. Manageable by teachers/admins.
+     * @path        /dashboard_links/{linkId}
+     */
+    match /dashboard_links/{linkId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isApprovedTeacher() || isAdmin();
+    }
+  }
+}

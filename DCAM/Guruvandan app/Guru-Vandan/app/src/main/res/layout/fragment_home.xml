@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream"
+    android:fillViewport="true"
+    tools:context=".ui.dashboard.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="100dp"> <!-- Extra padding for bottom nav -->
+
+        <!-- 1. HEADER SECTION -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/primary_maroon"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/app_name_hindi"
+            android:textColor="@color/accent_gold"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/accent_gold" />
+
+        <!-- 2. PERSONALIZED GREETING BANNER -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:strokeColor="@color/border_taupe"
+            app:strokeWidth="1.5dp"
+            app:cardBackgroundColor="@color/bg_light_maroon"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:id="@+id/text_greeting_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="16dp"
+                android:textColor="@color/primary_maroon"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 3. GURU JI PORTRAIT -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:strokeColor="@color/accent_gold"
+            app:strokeWidth="3dp">
+
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_height="280dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/guru_image_square"
+                tools:ignore="ContentDescription" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/guru_ji_name_english"
+            android:textColor="@color/primary_maroon"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/guru_ji_name_hindi"
+            android:textColor="@color/text_taupe"
+            android:textSize="18sp" />
+
+        <!-- 4. SHARE BUTTON -->
+        <Button
+            android:id="@+id/button_share_app"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/share_this_app"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_maroon"
+            android:textSize="16sp"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/share"
+            app:iconTint="@color/primary_maroon"
+            app:iconGravity="textStart"
+            app:iconPadding="16dp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/border_taupe"
+            app:strokeWidth="1dp" />
+
+        <!-- 5. ABOUT GURU MAHARAJ CARD -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/border_taupe"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- The Left Ribbon Border -->
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/primary_maroon" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.05"
+                        android:text="@string/about_guru_maharaj_title"
+                        android:textColor="@color/primary_maroon"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="6dp"
+                        android:text="@string/about_guru_maharaj_desc"
+                        android:justificationMode="inter_character"
+                        android:textColor="@color/text_taupe"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 6. ABOUT GURU VANDAN CARD -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/border_taupe"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- The Left Ribbon Border -->
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/accent_gold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.05"
+                        android:text="@string/about_guru_vandan_title"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="6dp"
+                        android:text="@string/about_guru_vandan_desc"
+                        android:justificationMode="inter_character"
+                        android:textColor="@color/text_taupe"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 7. SADHANA STREAK CARD -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/border_taupe"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Streak Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/streakfire_solid"
+                    app:tint="@color/primary_maroon"
+                    tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Sadhana Streak"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary_variant"
+                        android:textSize="18sp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/bg_light_maroon"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:text="Milestones ⟶"
+                            android:textColor="@color/primary_maroon"
+                            android:textSize="12sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- Streak Stats Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <!-- Current -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/streakfire_outlined"
+                            app:tint="@color/primary_maroon"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/text_streak_current"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/primary_maroon"
+                            android:textSize="28sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Current"
+                            android:textColor="@color/text_taupe_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Best -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/trophy"
+                            app:tint="@color/primary_maroon"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/text_streak_best"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/primary_maroon"
+                            android:textSize="28sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Best"
+                            android:textColor="@color/text_taupe_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Total -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/calendar"
+                            app:tint="@color/primary_maroon"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/text_streak_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/primary_maroon"
+                            android:textSize="28sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Days"
+                            android:textColor="@color/text_taupe_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/border_taupe" />
+
+                <!-- Daily Tracker Toggles -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/sun"
+                            app:tint="@color/text_taupe_light"
+                            tools:ignore="ContentDescription" />
+                        
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/morning_satsang_indicator"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:cardElevation="0dp"
+                            android:layout_marginVertical="10dp"
+                            app:cardBackgroundColor="@color/text_muted"
+                            app:cardCornerRadius="100dp"/>
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Morning Satsang"
+                            android:textColor="@color/text_taupe_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/moon"
+                            app:tint="@color/text_taupe_light"
+                            tools:ignore="ContentDescription" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/evening_satsang_indicator"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:cardElevation="0dp"
+                            android:layout_marginVertical="10dp"
+                            app:cardBackgroundColor="@color/text_muted"
+                            app:cardCornerRadius="100dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Evening Satsang"
+                            android:textColor="@color/text_taupe_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/meditation_outlined"
+                            app:tint="@color/text_taupe_light"
+                            tools:ignore="ContentDescription" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/meditate_indicator"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:cardElevation="0dp"
+                            android:layout_marginVertical="10dp"
+                            app:cardBackgroundColor="@color/text_muted"
+                            app:cardCornerRadius="100dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Meditation"
+                            android:textColor="@color/text_taupe_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Milestone Next Banner -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/rounded_circle_border"
+                    android:backgroundTint="@color/bg_light_maroon"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/flag"
+                        app:tint="@color/primary_maroon"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Next milestone in"
+                        android:textColor="@color/text_primary_variant"
+                        android:layout_marginStart="10dp"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/text_next_milestone_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/primary_maroon"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

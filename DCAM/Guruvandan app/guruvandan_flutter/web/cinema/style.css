@@ -1,0 +1,91 @@
+:root { color-scheme: dark; font-family: "Segoe UI", Arial, sans-serif; background: #0c1415; color: #f5ecda; scroll-behavior: auto; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid #e7c790; outline-offset: 6px; }
+[hidden] { display: none !important; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip-link { position: fixed; top: -80px; left: 20px; z-index: 100; padding: 12px 20px; background: #f5ecda; color: #0c1415; }
+.skip-link:focus { top: 12px; }
+.cinema-header { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 22px 3.5%; gap: 25px; background: linear-gradient(#080e12d9, #080e1266 75%, transparent); text-shadow: 0 1px 5px #0009; }
+.brand { display: flex; align-items: center; gap: 13px; flex-shrink: 0; }
+.brand img { object-fit: contain; background: #f5ecda; padding: 4px; border-radius: 20px; width: 30px; height: 48px; }
+.brand span { font: 23px Georgia, serif; }
+.brand small { display: block; font: 8px "Segoe UI", sans-serif; letter-spacing: .24em; margin-top: 6px; }
+.cinema-header nav { display: flex; align-items: center; gap: 30px; font-size: 11px; }
+.cinema-header nav a { padding: 12px 0; white-space: nowrap; }
+.cinema-header nav a:last-child { border: 1px solid #f5ecda60; border-radius: 99px; padding: 11px 20px; }
+.cinema-header nav a span { margin-left: 8px; }
+.cinema-header a:hover, footer a:hover { color: #e6bc77; }
+#cinema-journey { position: relative; }
+.cinema-enabled #cinema-journey { height: 1700svh; }
+.cinema-stage { height: 100svh; min-height: 430px; position: sticky; top: 0; overflow: hidden; isolation: isolate; background: #090e10; }
+#cinema-canvas, .opening-poster, .cinema-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+#cinema-canvas { display: block; opacity: 0; }
+.cinema-painted #cinema-canvas { opacity: 1; }
+.cinema-painted .opening-poster { visibility: hidden; }
+.opening-poster { object-fit: cover; object-position: 47% 50%; }
+.cinema-shade { pointer-events: none; background: linear-gradient(0deg, #070e12d9, transparent 23%, transparent 90%, #070e1233); }
+.scroll-invitation { position: absolute; bottom: 153px; left: 3.5%; display: flex; align-items: center; gap: 14px; font-size: 9px; letter-spacing: .23em; text-shadow: 0 2px 6px #000; }
+.scroll-line { height: 1px; width: 40px; background: #e6c085; }
+.scroll-invitation > span:last-child { font-size: 18px; }
+.cinema-controls { position: absolute; bottom: 20px; left: 3.5%; width: min(580px, 52%); }
+.control-heading { display: flex; justify-content: space-between; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #f5ecda; }
+#cinema-scrubber { width: 100%; margin: 15px 0 0; height: 18px; accent-color: #e5bb79; cursor: ew-resize; }
+.chapter-nav { display: flex; justify-content: space-between; }
+.chapter-nav button { color: #d0c9b9; background: transparent; border: 0; padding: 11px; min-width: 44px; min-height: 44px; font-size: 9px; }
+.chapter-nav button:first-child { padding-left: 0; text-align: left; }
+.chapter-nav button:last-child { padding-right: 0; text-align: right; }
+.chapter-nav button[aria-current] { color: #eec587; font-weight: 700; }
+.skip-film { position: absolute; bottom: 55px; right: 3.5%; padding-block: 12px; font-size: 11px; border-bottom: 1px solid #eadabe70; }
+.skip-film span { margin-left: 22px; }
+#cinema-status { position: absolute; top: 110px; left: 3.5%; max-width: 420px; font-size: 13px; line-height: 1.6; }
+.cinema-media-error #cinema-status { background: #0c1415e8; border: 1px solid #e7c79066; padding: 20px; }
+.app-ending { text-align: center; padding: 110px 24px 95px; background: radial-gradient(ellipse at center top, #29312b, #0c1415 70%); scroll-margin-top: 80px; }
+.ending-logo { object-fit: contain; background: #f5ecda; padding: 9px; border-radius: 60px; }
+.eyebrow { font-size: 9px; letter-spacing: .27em; color: #cbb58c; margin-top: 38px; }
+h2 { font-family: Georgia, serif; font-size: clamp(44px, 5.8vw, 86px); font-weight: 400; line-height: 1.07; letter-spacing: -.035em; margin: 27px 0; }
+h2 em { color: #d8bc88; font-weight: 400; }
+.app-description { color: #cacbbf; font-size: 14px; line-height: 1.9; }
+.downloads { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 40px; }
+.downloads a { display: flex; align-items: center; gap: 16px; min-width: 220px; padding: 15px 20px; text-align: left; border: 1px solid #ddc99e70; border-radius: 5px; background: #ece2cd; color: #1b2422; font-size: 20px; }
+.downloads a + a { background: transparent; color: #ece2cd; }
+.downloads a:hover { border-color: #e6bc77; }
+.downloads small { display: block; font-size: 8px; letter-spacing: .12em; margin-bottom: 4px; }
+.downloads a > span:last-child { margin-left: auto; }
+.play-mark, .store-mark { font: 32px Georgia, serif; }
+.gurudev-name { font-size: 14px; color: #b7b8aa; margin-top: 40px; }
+#cinema-restart { background: none; border: none; color: #cfc8b7; border-bottom: 1px solid #cfc8b740; font-size: 11px; padding: 12px 0; margin-top: 20px; }
+#cinema-restart span { margin-left: 20px; }
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 25px; padding: 35px 4%; border-top: 1px solid #e6bc7726; color: #b7b8aa; font-size: 11px; }
+footer > a { font: 19px Georgia, serif; color: #ece2cd; }
+footer nav { display: flex; gap: 25px; }
+.no-script { padding: 30px; }
+@media (max-width: 640px) {
+  .cinema-header { align-items: flex-start; padding: 17px 20px 30px; gap: 12px; }
+  .brand { gap: 9px; }
+  .brand span { font-size: 18px; }
+  .brand img { width: 24px; height: 38px; }
+  .brand small { font-size: 6px; letter-spacing: .17em; }
+  .cinema-header nav { flex-wrap: wrap; justify-content: flex-end; gap: 6px 13px; max-width: 174px; font-size: 9px; }
+  .cinema-header nav a { padding: 7px 0; }
+  .cinema-header nav a span { margin-left: 2px; }
+  .cinema-header nav a:last-child { padding: 6px 12px; }
+  .cinema-controls { left: 6%; bottom: 12px; width: 88%; }
+  .skip-film { right: 6%; bottom: 145px; font-size: 10px; }
+  .skip-film span { margin-left: 10px; }
+  .scroll-invitation { left: 6%; bottom: 186px; font-size: 7px; gap: 10px; }
+  .scroll-line { width: 22px; }
+  .control-heading { font-size: 8px; }
+  .app-ending { padding: 85px 24px 70px; }
+  .app-description { font-size: 13px; }
+  .downloads { flex-direction: column; max-width: 290px; margin-inline: auto; }
+  footer { padding: 30px 24px; }
+  footer small { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinema-enabled #cinema-journey { height: 650svh; }
+}

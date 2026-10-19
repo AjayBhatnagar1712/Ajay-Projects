@@ -1,0 +1,51 @@
+{
+  "version": "v2",
+  "baseManifest": "web/cinema/media/v1/manifest.json",
+  "sources": {
+    "horizon": {
+      "source": "gemini_generated_video_fec440d7.mp4",
+      "sha256": "f0d19092e26bd42cf1108bd6671352677ff8cead46ec818c4aef6b2c63f9d666",
+      "sourceFrames": 240,
+      "sourceVideoDuration": 10.0,
+      "start": 0.25,
+      "end": 9.75,
+      "review": "Open silver hair; rear-facing mountain walk."
+    },
+    "blessing": {
+      "source": "gemini_generated_video_5b0a6c33.mp4",
+      "sha256": "c21f5af3dd26ba0c17ff316bfd061452ea7fc71e1fb1d7f4ba041da1a542d220",
+      "sourceFrames": 240,
+      "sourceVideoDuration": 10.0,
+      "start": 0.25,
+      "end": 9.75,
+      "review": "Black-clothed teacher; head cropped out and disciple remains bowed."
+    },
+    "inner-door": {
+      "source": "gemini_generated_video_dff222fa.mp4",
+      "sha256": "1bd7b696b1e52d10a863fd33aa13a493111fafb2bcdad62245a3f6b28b01e6c9",
+      "sourceFrames": 240,
+      "sourceVideoDuration": 10.0,
+      "start": 0.25,
+      "end": 9.75,
+      "review": "Both figures rear-facing; same black-clothed teacher."
+    },
+    "satsang": {
+      "source": "gemini_generated_video_42d0604b.mp4",
+      "sha256": "e141168162b9cc5979cc4a513658101c7ec7cc0fa95deafbe58fa861315b01d9",
+      "sourceFrames": 240,
+      "sourceVideoDuration": 10.0,
+      "start": 0.25,
+      "end": 4.5,
+      "review": "Audience faces the teacher. End before the generated dusk-to-daylight dissolve near five seconds."
+    },
+    "disciple": {
+      "source": "gemini_generated_video_d9d29b42.mp4",
+      "sha256": "a84b203887be7cb55fb852da1a396b4e827ed31dafde32f8f3d7b532d370649f",
+      "sourceFrames": 240,
+      "sourceVideoDuration": 10.0,
+      "start": 0.25,
+      "end": 9.75,
+      "review": "Framed Gurudev photograph; removed diya stand and shelf idols; phone stays blank."
+    }
+  }
+}

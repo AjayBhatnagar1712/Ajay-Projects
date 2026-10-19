@@ -1,0 +1,22 @@
+(node:5716) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///D:/DCAM/studio/next.config.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to D:\DCAM\studio\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2696) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///D:/DCAM/studio/next.config.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to D:\DCAM\studio\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2026-06-15T18:35:33.565Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:36:19.050Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:36:48.254Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:37:11.647Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:37:17.547Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:37:24.225Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:37:31.726Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:37:36.212Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+[2026-06-15T18:38:35.809Z]  @firebase/auth: Auth (11.9.0): INTERNAL ASSERTION FAILED: Expected a class definition
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+(node:4260) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///D:/DCAM/studio/next.config.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to D:\DCAM\studio\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)

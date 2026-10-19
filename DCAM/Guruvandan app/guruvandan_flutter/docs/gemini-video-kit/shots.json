@@ -1,0 +1,194 @@
+[
+  {
+    "id": "01",
+    "title": "The first prayer",
+    "act": "I · The restless seeker",
+    "image": "01-child-prayer.png",
+    "output": "GV_01_child_prayer_v01.mp4",
+    "prompt": "Animate the supplied image into one continuous, approximately 8-second cinematic shot. The boy carefully finishes pouring a small stream of water from the brass vessel onto the earth around the iron nail. He sets the vessel beside him and slowly brings his palms together in prayer. Keep his back toward the camera throughout. A light breeze moves the banyan leaves and a little of his hair; distant mist drifts slowly. The camera makes a very gentle downward and forward move from the supplied viewpoint, staying behind him. Preserve the existing natural light, clothing and photographic realism. Movement has believable weight and gravity. Leave a brief calm beginning and ending. No camera orbit, jump cut, zoom burst, scene change, face reveal, titles, captions, speech or music. Quiet natural ambience only.",
+    "transition": "Finish on folded hands. An editorial leaf-to-paper dissolve introduces 02; do not ask Gemini to invent the examination hall inside this clip.",
+    "note": "The supplied plate starts during the offering, with the nail already planted. For the exact earlier nail-planting action, add an optional detail pickup later rather than crowding this short shot."
+  },
+  {
+    "id": "02",
+    "title": "The pen falls silent",
+    "act": "I · The restless seeker",
+    "image": "02-examination.png",
+    "output": "GV_02_examination_v01.mp4",
+    "prompt": "Animate this image as one continuous, approximately 8-second live-action shot. The seated young man writes a few small pen strokes, pauses thoughtfully and places the pen gently on the desk. His shoulders relax. Other students continue small, natural writing movements in the background. The camera slides slowly a short distance from right to left behind his shoulders; his face remains completely concealed. Keep the room, desks, clothing, age, hair and warm window light consistent with the image. Hands, pen and paper retain stable anatomy and shape. End on the resting pen and still shoulders. No standing up yet, no new location, no rapid camera movement, no orbit into his face, no readable generated lettering, no captions, speech or music. Only subdued room ambience.",
+    "transition": "Cut on the decision to leave, from seated 02 to standing 03. This is an intentional matched edit, not an AI morph between poses.",
+    "note": "Keep the off-white clothes and dark hair. Do not replace this young student with the white-haired elder."
+  },
+  {
+    "id": "03",
+    "title": "Leaving the examination hall",
+    "act": "I · The restless seeker",
+    "image": "03-leaving-the-hall.png",
+    "output": "GV_03_leaving_hall_v01.mp4",
+    "prompt": "Create one continuous, approximately 8-second cinematic motion shot from this image. The standing young man gives a small respectful bow toward the distant invigilator, then walks slowly along the aisle toward the bright doorway. The camera follows smoothly from behind at walking height. Keep his back facing the lens, hair concealing his face, and preserve his exact clothes and the room layout. His feet contact the floor naturally, with realistic weight shifts and cloth movement. The doorway grows gently brighter as he approaches it, without a sudden white flash. Keep the last moment suitable for a soft editorial transition. No turn toward camera, new location, time jump, multiple cuts, captions, spoken dialogue or music. Quiet footsteps and room ambience only.",
+    "transition": "Match the warm door light to the sky of 04. Keep an intentional time transition rather than physically morphing the hall into a road.",
+    "note": "Narration line 1 belongs in the separate final soundtrack, not in this generation."
+  },
+  {
+    "id": "04",
+    "title": "The long search",
+    "act": "II · The inner door",
+    "image": "04-search-road.png",
+    "output": "GV_04_search_road_v01.mp4",
+    "prompt": "Animate the supplied image into a single approximately 8-second continuous shot. The young seeker walks slowly away along the dusty road, taking several grounded, unhurried steps. His wooden staff lifts and plants once per appropriate stride; the staff stays in the same hand. Loose hair and saffron cloth respond gently to the breeze. The camera tracks smoothly from left to right while staying behind him, keeping his body near the center. The landscape shows subtle real parallax rather than a flat sliding background. Preserve his age, proportions, clothing and hidden face. Keep the weather and exposure stable in this take. No foot sliding, floating, frontal view, orbit, cuts, scene changes, captions, speech or music. Only wind and soft footsteps.",
+    "transition": "A foreground shadow or warm dusk dissolve leads into 05. The whole website still scrolls vertically even though this camera move is lateral.",
+    "note": "This is the base journey shot. Rain and dry-leaf variations are optional pickups listed in README, not compulsory to generate before the pilot passes."
+  },
+  {
+    "id": "05",
+    "title": "The blessing",
+    "act": "II · The inner door",
+    "image": "05-blessing.png",
+    "output": "GV_05_blessing_v01.mp4",
+    "prompt": "Animate this supplied image into one continuous approximately 8-second contemplative shot. The kneeling seeker bows a little more deeply; the elder's existing hand settles gently on his head, then both become still. Preserve the precise positions of hands, bodies and lamp. Hair and shadow keep both faces concealed throughout. The camera makes a very slow forward dolly from the supplied rear three-quarter position, without moving around either person. The oil flame flickers lightly and then becomes almost steady. Natural breathing and tiny robe movements only; no exaggerated gestures. Maintain the warm lamp light and cool dusk beyond the door. No face reveal, extra hands, change of room, cuts, dialogue, subtitles or music. Quiet interior ambience only.",
+    "transition": "Save the original MP4. Ideally use a clean final frame from this approved clip as the start image for 06 so the lamp and camera position match.",
+    "note": "The provided plate starts during the blessing. It does not depict the earlier arrival or initial touching of the Guru's feet."
+  },
+  {
+    "id": "06",
+    "title": "Through the inner door",
+    "act": "II · The inner door",
+    "image": "06-inner-door.png",
+    "output": "GV_06_inner_door_v01.mp4",
+    "prompt": "Create one continuous approximately 8-second shot from this supplied image. Both figures remain still, their faces hidden. The camera slowly travels toward the existing oil lamp, keeping below the faces and without orbiting around the figures. As the lamp fills more of the image, gently change focus from the room to the flame. Let the room disappear into a soft indigo shadow around a small steady warm point of light. Use a restrained optical, meditative transition, never an explosive flash. Preserve believable lamp geometry until it falls out of focus. No new people or locations, floating body, fast zoom, neon graphics, readable symbols, captions, speech or music. Very quiet ambience only.",
+    "transition": "Prefer the last frame of 05 as input. The included image is a fallback. Fade the final light into the moonlit opening of 07 during assembly.",
+    "note": "Use the lamp rather than a close-up of the seeker's eyes: the user's requirement is to keep the face hidden. We can add the brief Guru-silhouette inner motif in post instead of risking an exposed generated face."
+  },
+  {
+    "id": "07",
+    "title": "Entering the cave",
+    "act": "III · Darkness, light, sound",
+    "image": "07-cave-entry.png",
+    "output": "GV_07_cave_entry_v01.mp4",
+    "prompt": "Animate the reference into one approximately 8-second continuous live-action shot. The mature ascetic takes two or three careful steps into the cave, with natural foot contact and a gently planted staff. The camera follows from behind with a very slow right-to-left drift into the entrance. His back remains visible, his hair never parts to reveal his face. Vines stir slightly, moonlight shimmers softly on the river, and the interior gradually becomes darker as he enters. Preserve the cave opening, body proportions, saffron garment and quiet blue night exposure. No sitting action yet, no sudden time-of-day change, face reveal, floating feet, new tunnel architecture, jump cuts, captions, speech or music. Quiet river and night ambience only.",
+    "transition": "End in the cave's shadow. A deliberate dark transition leads to the interior seated viewpoint in 08.",
+    "note": "The cave images are illustrative story environments, not a surveyed reconstruction of Kuppaghat's cave. This is a production note, not a website overlay."
+  },
+  {
+    "id": "08",
+    "title": "Stillness while time passes",
+    "act": "III · Darkness, light, sound",
+    "image": "08-cave-stillness.png",
+    "output": "GV_08_cave_stillness_v01.mp4",
+    "prompt": "Create one approximately 8-second contemplative shot from the supplied frame. Keep the seated monk absolutely still in the same meditation posture, back toward camera. Outside the cave, mist travels slowly over the river, water ripples naturally and vines move gently. A soft cloud shadow passes across the entrance and clears; the rocks and riverbanks do not change shape. The camera makes a very small downward approach behind his shoulders, never revealing his face. Maintain a stable physical cave and restrained dawn exposure, realistic cloth texture and natural depth. No body morphing, time-lapse rushing, cuts, glowing skin, new objects, typography, speech or music. Subtle river ambience only.",
+    "transition": "Gently dissolve the cave shadow into the indigo space of 09. The same seated composition can support optional seasonal pickups without moving the monk.",
+    "note": "This core shot keeps environment continuity. Full seasons are better made as separate matched variants than four abrupt seasons inside one short generation."
+  },
+  {
+    "id": "09",
+    "title": "Darkness, light and inner resonance",
+    "act": "III · Darkness, light, sound",
+    "image": "09-inner-light.png",
+    "output": "GV_09_inner_light_v01.mp4",
+    "prompt": "Animate this image into one approximately 8-second continuous abstract cinematic passage. The small central point of light brightens gently. A few faint surrounding sparks become visible, then a restrained warm-white radiance spreads through the indigo space. Two or three very soft translucent concentric ripples expand slowly from the point. The camera seems to rise gently upward through the delicate light while the luminous point remains near the center. Finish in quiet luminous stillness, retaining soft detail instead of clipping to pure white. Motion is slow, coherent and meditative. No explosion, strobe, rapid pulse, spinning vortex, neon tunnel, readable symbols, words, human faces, cuts, voice or music.",
+    "transition": "Match the last warm glow to the dawn beyond the cave in 10. Narration line 2 enters only in the final separate sound mix.",
+    "note": "Review for flicker and overly bright flashes; reject rather than hide them with a filter."
+  },
+  {
+    "id": "10",
+    "title": "Returning into dawn",
+    "act": "III · Darkness, light, sound",
+    "image": "10-dawn-return.png",
+    "output": "GV_10_dawn_return_v01.mp4",
+    "prompt": "Animate the supplied seated monk into one continuous approximately 8-second shot. He slowly unfolds his legs, uses one hand naturally against the ground for support, rises with believable human weight and takes one careful step toward the cave opening. The camera stays behind him and eases backward just enough to keep his full head and body in frame. His face remains unseen, covered by his back view and hair. Preserve the actual rocky floor and stop his step safely inside the cave entrance, not in the river. Morning light remains soft and steady; the water and vines move only subtly. No floating, instant standing, extra limbs, turn toward camera, cuts, captions, speech or music. Quiet natural ambience only.",
+    "transition": "Warm dawn light leads into the writing-room window in 11. This is a passage in time, not a physical scene morph.",
+    "note": "Standing anatomy is a difficult generation. If it fails, keep a simpler rise and one step; do not accept an impossible leg transformation."
+  },
+  {
+    "id": "11",
+    "title": "Wisdom takes written form",
+    "act": "IV · The science of the spirit",
+    "image": "11-writing.png",
+    "output": "GV_11_writing_v01.mp4",
+    "prompt": "Create one approximately 8-second cinematic shot by animating this image. The elder writes a few short, careful strokes with the existing pen while his other hand holds the page steady. He pauses and lightly lifts one page corner without turning the whole stack. The camera slides very slowly from right to left behind his shoulder, keeping hair across his face and preserving the desk layout. Realistic hand joints, pen contact and slight paper movement are essential. Keep the window light and flat river landscape consistent. Dust motes drift subtly, with no magical particles yet. No readable generated titles, extra fingers, face reveal, cuts, large camera moves, captions, dialogue or music. Quiet room ambience only.",
+    "transition": "Save a clean final frame for the preferred start image of 12; match the pen, hand, page and window light.",
+    "note": "This updated reference uses flat river plains rather than the mountains in the earlier concept image."
+  },
+  {
+    "id": "12",
+    "title": "The inward path rises",
+    "act": "IV · The science of the spirit",
+    "image": "12-inner-path.png",
+    "output": "GV_12_inner_path_v01.mp4",
+    "prompt": "Animate this supplied frame as one approximately 8-second cinematic shot. The elder and his writing hand gradually become still. A few tiny warm light particles lift from the page and form one delicate rising trail. The camera gently tilts upward following the trail; the desk recedes below the frame and no face is revealed. Above the trail, a soft indigo shadow gives way to restrained gold light and faint translucent sound-like ripples. A small point rises along the path toward quiet illumination; several very faint light streams join it from the sides. Keep the effect subtle and coherent, with the physical room remaining stable until out of view. No floating books, giant neon diagram, labels, symbols, letters, strobe, cuts, speech or music.",
+    "transition": "Prefer the last approved frame of 11 instead of the fallback image. Light settles toward the books in 13 through an editorial dissolve.",
+    "note": "Precise body/darkness/light/sound/soundless stages and scripture streams may need controlled compositing. Do not accept random religious symbols or pretend generated gibberish is scripture."
+  },
+  {
+    "id": "13",
+    "title": "Teachings that remain",
+    "act": "IV · The science of the spirit",
+    "image": "13-books.png",
+    "output": "GV_13_books_v01.mp4",
+    "prompt": "Animate this supplied book image into one approximately 8-second close-detail cinematic shot. Keep both books resting naturally on the shelf, with their blank cloth spines stable and unobstructed. The camera makes a very gentle slow downward and forward move, revealing the texture of cotton, old paper and wood. A few dust motes drift in the existing warm light. Let a narrow natural highlight travel softly over the cloth as the camera moves; the books themselves remain still. Preserve the exact shapes and number of books. No floating or opening books, generated writing, added titles, symbols, glowing runes, cuts, voice or music. Very quiet interior ambience only.",
+    "transition": "Match the saffron cloth warmth into the monk's garment in 14. This restrained detail shot provides a breathing space between larger actions.",
+    "note": "We will add the exact Satsang Yog and Mokshadarshan book titles with tracked typography, not ask video AI to spell them."
+  },
+  {
+    "id": "14",
+    "title": "Walking and teaching in the village",
+    "act": "V · A river of seekers",
+    "image": "14-village-teaching.png",
+    "output": "GV_14_village_teaching_v01.mp4",
+    "pilot": true,
+    "prompt": "Animate the supplied image as one continuous, approximately 8-second cinematic shot. The elderly monk takes three slow, grounded steps away along the path. His wooden staff stays in his left hand and plants naturally beside each appropriate stride. His raised right hand makes one small, gentle teaching gesture, then relaxes. The nearby villagers respond with subtle attentive head movements; the farmer begins to rise while the others remain calm. The camera glides gently forward behind the monk, with a slight left-to-right track, keeping him near center. Hair and saffron cotton move softly in the breeze. Preserve the hidden face, lean physique, clothing, scene and warm light. Real human weight, planted feet and natural parallax; no sliding cutout or frozen statue. No orbit into his face, rapid motion, cuts, new objects, captions, dialogue or music. Quiet village ambience only.",
+    "transition": "FIRST PILOT: return this original MP4 before generating the full batch. After approval, use the same appearance for 15. A warm dusk dissolve connects village movement to the seated gathering.",
+    "note": "Accept only if feet, staff, hand and cloth actually animate. A camera pan over a frozen still is not the requested result. A larger joining procession is an optional pickup, not hidden inside this short shot."
+  },
+  {
+    "id": "15",
+    "title": "A gathering becomes a river of light",
+    "act": "V · A river of seekers",
+    "image": "15-satsang.png",
+    "output": "GV_15_satsang_v01.mp4",
+    "prompt": "Animate this image into one approximately 8-second continuous cinematic shot. The seated elder and nearby disciples remain peacefully meditating. The camera slowly cranes upward and backward, rising over their backs to reveal more seated rows and warm oil lamps extending into the field. Keep the central elder's face unseen; never orbit to the front. The crowd is already present beyond the initial frame and is revealed by the rising view, not spawned or multiplied visibly. Small individual breathing and fabric movements remain natural; lamps flicker gently and tree leaves move lightly. Preserve the river, banyan, blue-hour exposure and warm lamp colors. No repeated identical people, morphing heads, sudden scale jump, fast drone move, cuts, captions, speech or music.",
+    "transition": "Match the downward settling pace into the dawn descent of 16. Use a composed crossfade across the historical time change, not an invented temple appearing out of the crowd.",
+    "note": "Do not claim a generated crowd gives an exact historical attendance number. For the script's vast scale, expand the wide view only after a believable small crowd passes review."
+  },
+  {
+    "id": "16",
+    "title": "Kuppaghat at dawn",
+    "act": "V · A river of seekers",
+    "image": "16-kuppaghat-dawn.png",
+    "output": "GV_16_kuppaghat_dawn_v01.mp4",
+    "prompt": "Animate the supplied Kuppaghat reference into one approximately 8-second respectful cinematic shot. Preserve the exact visible temple silhouette, tapered pink tower, pale ribs, crown, roof, base, attached walkway and garden arrangement. The camera makes a very small smooth downward and forward move while staying on the same viewing side. Palm fronds sway softly; a little dawn mist drifts over the lawn, and a few marigold petals move gently along the foreground path in a light breeze. Keep the temple completely rigid and unchanged, with steady dawn exposure. No added monk, people, domes, stairs, buildings, altered architecture, changing signs, magical glow, fast orbit, cuts, captions, voice or music. Soft garden ambience only.",
+    "transition": "Warm morning light and a gentle descending camera lead into the present-day room in 17.",
+    "note": "AI-relit adaptation of a 2007 real photograph, not a current survey. Compare with the original in references. The credit and CC BY-SA 3.0 terms in SOURCES.md must travel with this adapted image and any adapted public clip."
+  },
+  {
+    "id": "17",
+    "title": "The teaching enters everyday life",
+    "act": "V · A river of seekers",
+    "image": "17-modern-disciple.png",
+    "output": "GV_17_modern_disciple_v01.mp4",
+    "prompt": "Animate this image into one approximately 8-second continuous live-action shot. The disciple quietly looks at the phone held near his lap for a moment, then slowly places it face-up on the low wooden block and returns both hands to his knees in a comfortable meditation posture. The phone remains a stable rigid object. Keep its screen blank and neutral charcoal gray, with all visible corners well-defined for later screen replacement; do not invent an app interface. The camera makes a very gentle move forward and slightly downward from behind his shoulder, never exposing his face. Preserve natural finger contact, real weight and the existing warm morning light. His body becomes still at the end. No extra fingers, phone bending, logos, text, scene cuts, speech or music. Quiet room ambience only.",
+    "transition": "We will insert the real Guru Vandan app screen, then match the room lamp's warm light into 18 and the final HTML download section.",
+    "note": "The app interface, logo, Hindi name मेँहीँ and store buttons belong in accurate post-production/web layers. This does not require any mobile app code change."
+  },
+  {
+    "id": "18",
+    "title": "The same light remains",
+    "act": "Closing · Guru Vandan",
+    "image": "18-lamp.png",
+    "output": "GV_18_lamp_v01.mp4",
+    "prompt": "Animate this reference into one approximately 8-second cinematic shot with a completely locked camera. The single oil flame moves almost imperceptibly with natural combustion, then settles into a near-steady upright shape. Keep the same brass lamp, wick, dark stone surface and deep indigo-black background. Preserve gentle warm reflections and all physical details, without camera drift or a change of exposure. The final frame holds the lamp clearly against generous dark negative space for a later website transition. No added objects, text, logo, symbols, smoke burst, large flame, flashing, zoom, cut, voice or music. Quiet stillness only.",
+    "transition": "Continue into real HTML explaining Guru Vandan with working store links. Hold the last approved frame when the visitor stops; do not auto-loop this clip.",
+    "note": "The full closing narration is longer than a short clip. It can play over a held lamp only if we agree that audio may finish while the visual is stationary. Do not cram it into this generation."
+  },
+  {
+    "id": "O1",
+    "title": "Optional mountain passage",
+    "act": "Optional · Atmosphere",
+    "image": "O1-mountain-passage.png",
+    "output": "GV_O1_mountain_passage_v01.mp4",
+    "optional": true,
+    "prompt": "Animate the supplied image into one continuous approximately 8-second cinematic walking shot. The elderly monk takes three slow careful steps away down the rocky path. Exactly one walking staff stays in his left hand, lifting and grounding naturally; his right hand remains empty. Feet grip uneven stone realistically and the body shifts weight gently. A light breeze moves the hair and loose saffron cloth. The camera tracks slowly forward from directly behind him and descends very slightly with the path, revealing real depth in the valley. Keep the monk centered with head and feet in frame, his face completely hidden. Distant mist drifts subtly. No fast motion, extra staff, face reveal, orbit, floating feet, sliding body, huge wind-blown cape, cuts, captions, voice or music. Only soft mountain wind.",
+    "transition": "Optional atmospheric prologue or connective interlude. Do not put this white-haired elder between young-seeker shots as if they happen at the same age.",
+    "note": "This responds to the user's mountain visual reference. It is not evidence that a particular Himalayan journey happened; the supplied main narrative begins in Bihar."
+  }
+]

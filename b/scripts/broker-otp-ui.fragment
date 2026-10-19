@@ -1,0 +1,5 @@
+      {otpStage && (
+        <>
+          <PLACEHOLDER_OTP_SECTION />
+        </>
+      )}

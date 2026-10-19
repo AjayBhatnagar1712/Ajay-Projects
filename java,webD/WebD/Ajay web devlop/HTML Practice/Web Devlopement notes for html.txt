@@ -1,0 +1,38 @@
+1. elements example :- <p>,<b> etc.
+2. to create a linkAnchor tag <a></a> to write it <a href="https://www.google.com">I am a link </a>.
+3. To add a image use- <img src="name of the image">.
+4. <!--This is used for commenting--> .
+5. <span></span>this is use to group elements in line.
+6. <div></div> This is used to group elements in a group.
+7. <hr> is to create a horizontal line.
+8. <br> this element is used to break the line for example writting a poem 
+9. <sup></sup> this element is used for superscript we can also nest elements in it
+10.<sub></sub> this is used for subscript the data.
+11.Entity codes are symbols which we want to add in the webpage by HTML. They start with (&) and ends with (;). 
+12.Semantic Markups:- instead of divs we can use more specific elements like <section>,<article>,<nav>,<main>,<header>,<footer>,<aside>,<summary>,<details>
+13.Emmet is a very powerfull tool which we can use to short our code process. to know about it search about it on google.
+14.Elements that are used in a table:-<table>,<td>,<tr>,<th>,<thead>,<tbody>,<tfoot>,<colgroup>,<caption>.
+15.<td> stands for columns and <tr> stands for rows , <th> stands for the heading , <thead>this is the header in the table , <tbody> this is the body of the table ,
+   <tfoot> this is the footer of the table.
+16.Use MDN website to know about all "types" which go inside of the <input> element.
+17.Place holder goes inside of the input as it contains the pre written words or numbers to basically the know the format or what is to be written inside it. 
+18.<label> this ellement is used to link the <input> to create a form where the user knows where to put the details.
+19.To link a label with the input use For attribute in <label> element and id attribut inside the <input attribute. See the example of it in html webpage naming 
+   creating forms.html
+20.<button>Hi i am a button</button> this is how to create a button. When a button is inside a form is always a submitable button means when we click on the button
+   it always submits the form but when the button is the form element or outside then  form it becomes only a button or it will not submit the form. To make a button 
+   just for clicking inside the form we can give a attribute to it which is <button type="button">Hi i am a button </button>or to make a button submitable we can give 
+   a attribute submit <button type="submit">Hi i am a button<button>.
+21.We should always pass a attribute called name inside the element <input> which give a name to the input in the server. To look for the example see creating forms.
+   html file.The name attribute inside the <input> element is used in forms.
+22.checkbox are box which are ticked by the user.To know how to create them see file:- creating forms.html
+23.Radiobuttons are multiple buttons which are created by the user to check only one of the box at a time remeber to give a particular unique value to every <input> 
+   element. To know how to create them see file:- creating forms.html  
+22.To create a dropdown menu in HTML use <select> element in nest it with options whose names are <option> element.To check a example see the file creating forms.html
+23.To create a range slider just pass the type="Range" in yhe form <element>. Value is the attribute which set's its starting value and step means the ap between the 
+   sliders To see the example see creating forms.html
+24.To create a text area use the element <text area>and pass the same attributes as we pass in <input> element like id,name,rows,cols,placeholder.
+25.Forms validations are used to make a field to be filled which is required which means the user can't leave it blank. The attribute minlenth and maxlenth are used 
+   to limit the amount of letters in the string. min and max attributes are used to set the minimum and maximum amount of numbers that can be filled in the field.for
+   furthure see the demo of form validation in the file creating forms.html  .
+26.

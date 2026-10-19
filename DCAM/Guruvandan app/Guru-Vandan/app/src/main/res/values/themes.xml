@@ -1,0 +1,89 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GuruVandan" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primary_maroon</item>
+        <item name="colorPrimaryVariant">@color/primary_maroon</item>
+        <item name="colorOnPrimary">@color/text_white</item>
+
+        <item name="colorSecondary">@color/accent_gold</item>
+        <item name="colorSecondaryVariant">@color/accent_gold</item>
+        <item name="colorOnSecondary">@color/text_white</item>
+
+        <item name="android:windowBackground">@color/bg_cream</item>
+        <item name="colorSurface">@color/surface_white</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <item name="android:statusBarColor">@color/bg_cream</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        <item name="android:fontFamily">@font/carlito_family</item>
+
+        <!-- These lines ensure Material 3 components (Buttons, Cards, Inputs) use the font -->
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Global</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Global</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Global</item>
+
+    </style>
+
+    <style name="Theme.GuruVandan" parent="Base.Theme.GuruVandan" />
+
+    <style name="Widget.GuruVandan.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary_maroon</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:outlineProvider">none</item>
+    </style>
+
+    <style name="Widget.GuruVandan.ButtonSecondary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/text_white</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textColor">@color/text_taupe_light</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:outlineProvider">none</item>
+    </style>
+
+    <style name="Widget.GuruVandan.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_input_field</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/primary_maroon</item>
+        <item name="android:textColorHint">@color/text_taupe</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">14dp</item>
+        <item name="android:minHeight">56dp</item>
+    </style>
+
+    <style name="Widget.GuruVandan.TextViewH4" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primary_maroon</item>
+        <item name="android:textColorHint">@color/text_taupe</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">10dp</item>
+    </style>
+
+    <style name="CircleFAB" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="BottomNavText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Global style helper -->
+    <style name="TextAppearance.Global" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/carlito_family</item>
+    </style>
+
+</resources>

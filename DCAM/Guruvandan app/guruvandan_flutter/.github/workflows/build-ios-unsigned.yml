@@ -1,0 +1,44 @@
+name: Build iOS (unsigned)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-ios:
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.6'
+          channel: stable
+          cache: true
+
+      - name: Install packages
+        run: flutter pub get
+
+      - name: Check source
+        run: |
+          flutter analyze
+          flutter test
+
+      - name: Compile iOS without signing
+        run: flutter build ios --release --no-codesign
+
+      - name: Package compiled app
+        run: ditto -c -k --sequesterRsrc --keepParent build/ios/iphoneos/Runner.app Guruvandan-iOS-unsigned.zip
+
+      - name: Upload compiled app
+        uses: actions/upload-artifact@v4
+        with:
+          name: Guruvandan-iOS-unsigned
+          path: Guruvandan-iOS-unsigned.zip
+          retention-days: 14

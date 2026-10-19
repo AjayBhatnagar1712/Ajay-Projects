@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream"
+    android:backgroundTint="@color/bg_cream"
+    tools:context=".ui.auth.CreateAccountActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/button_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45">
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/Widget.GuruVandan.TextViewH4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="4dp"
+            android:text="Join Guru Vandan"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/requesting_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="-15dp"
+            android:layout_marginBottom="24dp"
+            android:paddingHorizontal="30dp"
+            android:textStyle="italic"
+            android:text=""
+            android:textColor="@color/text_taupe"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/Widget.GuruVandan.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:hint="Create Password"
+            android:inputType="textPassword"
+            tools:ignore="Autofill,HardcodedText" />
+
+        <EditText
+            android:id="@+id/confirm_password"
+            style="@style/Widget.GuruVandan.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            tools:ignore="Autofill,HardcodedText" />
+
+    </LinearLayout>
+
+    <!-- Action Button -->
+    <Button
+        android:id="@+id/button_login"
+        style="@style/Widget.GuruVandan.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Begin Journey"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

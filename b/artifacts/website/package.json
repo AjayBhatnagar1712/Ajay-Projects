@@ -1,0 +1,35 @@
+{
+  "name": "@workspace/website",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.ts --host 0.0.0.0",
+    "build": "vite build --config vite.config.ts",
+    "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.106.2",
+    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/vite": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "clsx": "catalog:",
+    "framer-motion": "catalog:",
+    "lightningcss-win32-x64-msvc": "^1.32.0",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwindcss": "catalog:",
+    "vite": "catalog:",
+    "vitest": "^3.2.4",
+    "playwright": "^1.52.0",
+    "wouter": "catalog:"
+  }
+}

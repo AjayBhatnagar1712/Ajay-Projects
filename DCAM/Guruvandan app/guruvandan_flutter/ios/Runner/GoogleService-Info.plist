@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>540841544767-qt1h14f37kh1vrv3cm0oko6gli8a158r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.540841544767-qt1h14f37kh1vrv3cm0oko6gli8a158r</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>540841544767-3j14dso0veq0iqalsma4muuo8cl3andn.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBp2KIcoIKAw1EJCbDF8SaK0KOjE49uQHk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>540841544767</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ivar.guruvandan</string>
+	<key>PROJECT_ID</key>
+	<string>guru-vandan</string>
+	<key>STORAGE_BUCKET</key>
+	<string>guru-vandan.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:540841544767:ios:a622bd4baf314086cebc8a</string>
+	<key>DATABASE_URL</key>
+	<string>https://guru-vandan-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>

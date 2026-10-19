@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajay Bhatnagar | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+    nav { background: #111; }
+    nav a { color: #fff !important; }
+    .hero { text-align: center; padding: 100px 20px; }
+    .hero img {
+      width: 180px; height: 180px; object-fit: cover;
+      border-radius: 50%; border: 3px solid #00aaff; margin-bottom: 20px;
+    }
+    h1, h2, h3, h4 { color: #00aaff; }
+    .btn-custom {
+      background-color: #00aaff; color: #fff; border: none; transition: 0.3s;
+    }
+    .btn-custom:hover { background-color: #0088cc; }
+    section { padding: 60px 20px; }
+    .fade-in { opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    footer { background: #111; padding: 20px; text-align: center; }
+    a { text-decoration: none; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-white" href="#">Ajay Bhatnagar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <img src="assets/img/me.jpg" alt="Ajay Bhatnagar">
+    <h1 class="fw-bold">Ajay Bhatnagar</h1>
+    <h3>Data Scientist & ML Engineer</h3>
+    <a href="assets/resume/Ajay_Bhatnagar_Resume.pdf" class="btn btn-custom mt-3" download>📄 Download Resume</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="fade-in">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        Data Scientist and ML Engineer with strong proficiency in Python, SQL, and modern ML/DL techniques.
+        Adept at building predictive models, NLP applications, and computer vision solutions.
+        Experienced in using tools like OpenCV, Streamlit, and TensorFlow to create real-world AI systems.
+        Hands-on with Docker (containerization, images, networks, running multi-container apps) and AWS EC2 (deploying applications).
+        Passionate about solving complex data problems and contributing to data-driven product innovation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="fade-in">
+    <div class="container">
+      <h2>Skills</h2>
+      <h4>Technical Skills</h4>
+      <ul>
+        <li>Python, Java, SQL, Data Science</li>
+        <li>Machine Learning, Deep Learning, NLP (CNN, RNN)</li>
+        <li>Computer Vision – OpenCV, TensorFlow, Streamlit</li>
+        <li>Docker – Containerization, custom images, networks, CI/CD basics</li>
+        <li>AWS – EC2, Cloud Deployment</li>
+      </ul>
+      <h4>Soft Skills</h4>
+      <ul>
+        <li>Problem Solving</li>
+        <li>Team Collaboration</li>
+        <li>Quick Learning</li>
+        <li>Communication</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="fade-in">
+    <div class="container">
+      <h2>Projects</h2>
+      <ul>
+        <li><b>Gesture Recognition System:</b> Virtual mouse & eye-tracking control system using Python, OpenCV & MediaPipe. 85% accuracy.</li>
+        <li><b>Resume Screening Tool:</b> Streamlit-based resume parser with similarity scoring; reduced manual screening time by 60%.</li>
+        <li><b>Document Summarizer (NLP):</b> Real-time summarizer using extractive NLP; processes 500+ words in under 2 seconds.</li>
+        <li><b>Contour Detection (CV):</b> Detected tampered image areas using edge analysis in OpenCV (~90% accuracy).</li>
+        <li><b>Housing Price Prediction:</b> ML models (Random Forest, Linear Regression) with R² score of 0.87.</li>
+        <li><b>Card Fraud Detection:</b> Real-time anomaly detection for fraudulent transactions using unsupervised learning.</li>
+        <li><b>Sentiment Analysis:</b> Classified movie reviews using TF-IDF + Naive Bayes (85% accuracy).</li>
+        <li><b>Simple WebApp Deployment with Docker & AWS EC2:</b> Containerized a Flask + MySQL app, created custom Docker networks, deployed on AWS EC2. Experience with Docker images, containers, and security groups.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section id="education" class="fade-in">
+    <div class="container">
+      <h2>Education & Certifications</h2>
+      <p><b>B.Tech in Computer Science and Engineering</b><br>Noida Institute of Engineering and Technology, Greater Noida, India (Nov 2021 – Jun 2025)</p>
+      <h4>Certifications</h4>
+      <ul>
+        <li>IBM (Coursera) – Data Analysis, Machine Learning, Deep Learning with Keras</li>
+        <li>Infosys Springboard – Deep Learning for Developers</li>
+        <li>Coursera – Java Programming, OOP, Data Structures</li>
+        <li>DSA Toolbox – Linked Lists, Trees, Problem Solving</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" class="fade-in">
+    <div class="container">
+      <h2>Leadership & Achievements</h2>
+      <ul>
+        <li>Vice-President & Founder, Ekume Club – Organized tech events and hackathons</li>
+        <li>Head Coordinator, JettSetters Club – Managed tours and photo walks</li>
+        <li>Karate Medalist – National & State-level awards (Fight & Kata)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="fade-in">
+    <div class="container text-center">
+      <h2>Contact</h2>
+      <p><i class="fa-solid fa-envelope"></i> ajaybhatnagar1712@gmail.com</p>
+      <p><i class="fa-solid fa-phone"></i> +91-8860692661</p>
+      <p>
+        <a href="https://www.linkedin.com/in/ajay-bhatnagar-a17058257" target="_blank" class="btn btn-custom m-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/AjayBhatnagar1712" target="_blank" class="btn btn-custom m-2"><i class="fab fa-github"></i> GitHub</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Ajay Bhatnagar | Built with ❤️ using GitHub Pages</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Fade-in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2 };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => { appearOnScroll.observe(fader); });
+  </script>
+
+</body>
+</html>

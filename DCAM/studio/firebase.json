@@ -1,0 +1,47 @@
+{
+  "apphosting": [
+    {
+      "backendId": "studio",
+      "rootDir": ".",
+      "ignore": [
+        "node_modules",
+        ".git",
+        ".firebase",
+        ".idx",
+        ".next",
+        ".tmp_apk",
+        ".vscode",
+        "dist",
+        "docs",
+        ".next-dev.log",
+        ".modified",
+        "deploy-*.log",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "tmp*.log",
+        "tmp*.html",
+        "tmp*.js",
+        "tmp*.err",
+        "tsconfig.tsbuildinfo"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "hosting": {
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "asia-east1",
+      "memory": "512MiB"
+    }
+  }
+}

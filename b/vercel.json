@@ -1,0 +1,165 @@
+{
+  "buildCommand": "pnpm run build:deploy",
+  "outputDirectory": "artifacts/trustkeyper/dist",
+  "installCommand": "pnpm install",
+  "functions": {
+    "api/sync.ts": {
+      "maxDuration": 30
+    },
+    "api/feedback.ts": {
+      "maxDuration": 30
+    },
+    "api/contact.ts": {
+      "maxDuration": 30
+    },
+    "api/sentry-test-error.ts": {
+      "maxDuration": 30
+    },
+    "api/broker-tenant-onboard.ts": {
+      "maxDuration": 30
+    },
+    "api/tenant-document-upload.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-onboard.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-onboard-complete.ts": {
+      "maxDuration": 30
+    },
+    "api/razorpay-webhook.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-create-order.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-create-rent-order-tenant.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-tenant-history.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-owner-history.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-broker-history.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-create-escrow-order.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-release-escrow.ts": {
+      "maxDuration": 30
+    },
+    "api/tenant-workflow.ts": {
+      "maxDuration": 30
+    },
+    "api/upload-property-image.ts": {
+      "maxDuration": 30
+    },
+    "api/v1-broker-profile.ts": {
+      "maxDuration": 30
+    },
+    "api/v1-location-autocomplete.ts": {
+      "maxDuration": 15
+    },
+    "api/v1-location-details.ts": {
+      "maxDuration": 15
+    },
+    "api/v1-lease-agreements.ts": {
+      "maxDuration": 30
+    },
+    "api/admin-lease-agreements.ts": {
+      "maxDuration": 30
+    },
+    "api/v1-parties.ts": {
+      "maxDuration": 30
+    },
+    "api/v1-review.ts": {
+      "maxDuration": 30
+    },
+    "api/v1-portal.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-create-lease-rent-order.ts": {
+      "maxDuration": 30
+    },
+    "api/payments-create-lease-brokerage-order.ts": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/v1/broker/profile",
+      "destination": "/api/v1-broker-profile"
+    },
+    {
+      "source": "/api/v1/location-autocomplete",
+      "destination": "/api/v1-location-autocomplete"
+    },
+    {
+      "source": "/api/v1/location-details",
+      "destination": "/api/v1-location-details"
+    },
+    {
+      "source": "/api/v1/lease-agreements",
+      "destination": "/api/v1-lease-agreements"
+    },
+    {
+      "source": "/api/v1/lease-agreements/(.*)",
+      "destination": "/api/v1-lease-agreements?leasePath=$1"
+    },
+    {
+      "source": "/api/v1/portal",
+      "destination": "/api/v1-portal"
+    },
+    {
+      "source": "/api/v1/portal/(.*)",
+      "destination": "/api/v1-portal?portalPath=$1"
+    },
+    {
+      "source": "/api/v1/parties",
+      "destination": "/api/v1-parties"
+    },
+    {
+      "source": "/api/v1/review/(.*)",
+      "destination": "/api/v1-review?reviewPath=$1"
+    },
+    {
+      "source": "/api/admin/lease-agreements",
+      "destination": "/api/admin-lease-agreements"
+    },
+    {
+      "source": "/api/admin/lease-agreements/(.*)",
+      "destination": "/api/admin-lease-agreements?leasePath=$1"
+    },
+    {
+      "source": "/api/sync/(.*)",
+      "destination": "/api/sync?syncPath=$1"
+    },
+    {
+      "source": "/api/invitations/(.*)",
+      "destination": "/api/invitations?invitePath=$1"
+    },
+    {
+      "source": "/api/share/property/(.*)",
+      "destination": "/api/share-property?sharePath=property/$1"
+    },
+    {
+      "source": "/api/broker-tenant-onboard/(.*)",
+      "destination": "/api/broker-tenant-onboard?onboardPath=$1"
+    },
+    {
+      "source": "/api/tenant-document-upload/(.*)",
+      "destination": "/api/tenant-document-upload?uploadPath=$1"
+    },
+    {
+      "source": "/api/tenant-workflow/(.*)",
+      "destination": "/api/tenant-workflow?workflowPath=$1"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

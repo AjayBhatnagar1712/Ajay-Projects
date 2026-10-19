@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="cinema-home public-page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101714" />
+  <meta name="description" content="Send a private support message to the Guru Vandan team." />
+  <title>Support | Guru Vandan</title>
+  <link rel="icon" href="/assets/assets/images/chakra_logo.png" />
+  <link rel="stylesheet" href="/cinema/film.css" />
+  <link rel="stylesheet" href="/legal.css" />
+  <link rel="stylesheet" href="/support.css" />
+    <link rel="stylesheet" href="/website-language.css" />
+    <link rel="stylesheet" href="/website-theme.css" />
+  <script type="module" src="/website-language.mjs"></script>
+  <script type="module" src="/support.mjs"></script>
+</head>
+<body>
+    <header class="cinema-header">
+      <a class="cinema-brand" href="/" aria-label="Guru Vandan home"><img src="/assets/assets/images/chakra_logo.png" width="27" height="47" alt="" /><span>Guru Vandan<small>A JOURNEY INWARD</small></span></a>
+      <nav aria-label="Main navigation"><a href="/">The journey <span aria-hidden="true">↗</span></a><button class="language-switch" type="button" data-language-switch lang="hi" aria-label="पूरी वेबसाइट हिन्दी में पढ़ें">हिन्दी</button><a href="/shop.html">Shop <span aria-hidden="true">↗</span></a><a class="header-app" href="/#download">Get the app <span aria-hidden="true">↗</span></a></nav>
+    </header>
+  <main class="page">
+    <header class="hero">
+      <p class="overline">WE ARE HERE TO HELP</p>
+      <h1>A little guidance.<br /><em>A listening ear.</em></h1>
+      <p class="lead">Need help with sign-in, satsang audio, meditation, wisdom quotes, or account data? Contact the Guru Vandan support team.</p>
+      <nav class="nav" aria-label="Legal pages"><a href="/support.html" aria-current="page">Support</a><a href="/privacy-policy.html">Privacy</a><a href="/account-deletion.html">Delete account</a></nav>
+    </header>
+    <section class="section" aria-labelledby="support-title">
+      <p class="overline">YOUR SPACE TO REACH OUT</p>
+      <h2 id="support-title">Send us a message</h2>
+      <p>No sign-in needed. Your message goes directly to the Guru Vandan admin team, not to a public page.</p>
+      <form id="support-form" class="support-form" method="post" novalidate>
+        <fieldset disabled>
+          <legend class="form-note">All fields are required unless marked optional.</legend>
+          <div class="support-fields">
+            <div class="support-field"><label for="support-name">Your name</label><input id="support-name" name="name" autocomplete="name" required minlength="2" maxlength="80" aria-describedby="support-status" /></div>
+            <div class="support-field"><label for="support-email">Email for our reply</label><input id="support-email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="support-status" /></div>
+            <div class="support-field wide"><label for="support-topic">What do you need help with?</label><select id="support-topic" name="topic" required aria-describedby="support-status"><option value="">Choose a topic</option><option value="sign-in">Sign-in or account access</option><option value="audio">Satsang or aarti audio</option><option value="meditation">Meditation</option><option value="quotes">Wisdom quotes</option><option value="account">Account data or privacy</option><option value="other">Something else</option></select></div>
+            <div class="support-field wide"><label for="support-message">Your message</label><textarea id="support-message" name="message" rows="7" required minlength="10" maxlength="4000" aria-describedby="message-help message-count support-status" placeholder="Tell us what happened and how we can help."></textarea><div class="message-helper"><small id="message-help">Please do not include passwords, OTPs, or payment details.</small><small id="message-count" data-no-translate>0 / 4,000</small></div></div>
+            <div class="support-field"><label for="support-device">Device model (optional)</label><input id="support-device" name="device" maxlength="160" aria-describedby="support-status" /></div>
+            <div class="support-field"><label for="support-version">App version (optional)</label><input id="support-version" name="appVersion" maxlength="40" aria-describedby="support-status" /></div>
+          </div>
+          <div class="support-trap" aria-hidden="true"><label for="support-website">Leave this blank</label><input id="support-website" name="website" tabindex="-1" autocomplete="off" /></div>
+          <label class="support-consent" for="support-consent"><input id="support-consent" type="checkbox" name="consent" required aria-describedby="support-status" /><span>I agree that the Guru Vandan support team may use these details to respond to my request.</span></label>
+          <div class="support-actions"><button class="button" type="submit">Send message</button><a href="/privacy-policy.html#support-data">How we handle your support message</a></div>
+        </fieldset>
+        <p id="support-status" class="form-status" role="status" aria-live="polite" tabindex="-1" data-no-translate></p>
+        <span id="support-reference" aria-label="Message reference"></span>
+      </form>
+      <noscript><p>Enable JavaScript to send your message through this form.</p></noscript>
+    </section>
+    <div class="grid">
+      <section class="section"><p class="overline">A LITTLE CONTEXT HELPS</p><h2>Helpful details</h2><p>Tell us what happened, any error shown, and approximately when it happened. Device and app version details help us investigate.</p></section>
+      <section class="section"><p class="overline">IN YOUR HANDS</p><h2>Your privacy matters</h2><p>Only authorized administrators can read your message. For account removal, visit the account deletion page.</p><a class="text-link" href="/account-deletion.html">Account deletion <span aria-hidden="true">↗</span></a></section>
+    </div>
+  </main>
+    <footer class="cinema-footer"><a class="cinema-brand" href="/">Guru Vandan</a><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/shop.html">Shop</a><a href="/privacy-policy.html">Privacy</a><a href="/support.html">Support</a><a href="/account-deletion.html">Delete account</a></nav><small>© 2026 Guru Vandan</small></footer>
+</body>
+</html>

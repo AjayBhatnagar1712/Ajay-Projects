@@ -1,0 +1,30 @@
+.shop-page { color-scheme:dark; }
+.shop-sanctuary { position:relative; isolation:isolate; overflow:hidden; background:#101714; }
+.shop-landscape { position:absolute; inset:0 0 auto; height:1050px; z-index:-1; background:linear-gradient(#1017149c,#101714ad 38%,#101714 95%),url('/cinema/media/v1/horizon.jpg') center top/cover no-repeat; opacity:.62; }
+.shop-intro { min-height:850px; min-height:100svh; padding:160px 24px 60px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.shop-intro .overline { margin-bottom:18px; }
+.shop-emblem { position:relative; width:190px; height:190px; display:grid; place-items:center; margin-bottom:22px; }
+.shop-emblem span { position:absolute; width:100%; height:100%; border:1px solid #d5b48229; border-radius:50%; }
+.shop-emblem span + span { width:82%; height:82%; border-style:dashed; }
+.shop-emblem img { position:relative; object-fit:contain; background:#f3eddd; padding:9px; border-radius:60px; box-sizing:content-box; }
+.shop-label { font-size:10px; letter-spacing:.25em; color:var(--gold); margin:0 0 12px; }
+.shop-intro h1 { font:normal clamp(64px,8vw,124px)/1.1 Georgia,serif; letter-spacing:-.05em; margin:0 0 28px; color:var(--paper); }
+.shop-description { max-width:540px; color:#cbd0bf; font-size:16px; line-height:1.9; margin:0 0 30px; }
+.shop-return { display:flex; gap:50px; align-items:center; border-bottom:1px solid #d5b48288; padding:12px 0; font-size:12px; }
+.shop-return:hover { color:var(--gold); }
+.shop-promise { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:18px; border-top:1px solid #d5b48226; padding-top:28px; margin-top:55px; color:#b5beae; font:italic 16px Georgia,serif; }
+.shop-promise i { color:var(--gold); }
+.shop-continuation { text-align:center; padding:80px 24px 100px; background:radial-gradient(ellipse at center,#22382b55,transparent 70%); border-top:1px solid #d5b48222; }
+.shop-continuation h2 { max-width:640px; margin:0 auto 35px; font:normal clamp(32px,4vw,52px)/1.2 Georgia,serif; color:var(--paper); }
+.shop-continuation .store-links { justify-content:center; }
+.shop-page .cinema-header a[aria-current] { color:var(--gold); }
+@media(max-width:560px) {
+  .shop-intro { padding:190px 24px 50px; min-height:850px; }
+  .shop-intro h1 { font-size:58px; }
+  .shop-emblem { width:155px; height:155px; }
+  .shop-emblem img { height:92px; width:53px; }
+  .shop-description { font-size:14px; }
+  .shop-promise { gap:12px; font-size:13px; }
+  .shop-continuation { padding:60px 24px; }
+  html[lang=hi] .shop-intro h1 { font-size:45px; }
+}

@@ -1,0 +1,236 @@
+# TrustKeyper — Cursor Rules
+
+You are working on TrustKeyper, a property management platform for NRI and remote owners of Indian residential property. Read these rules before every task. Follow them exactly.
+
+---
+
+## Project Context
+
+- **Live app:** app.trustkeyper.com
+- **Stack:** React 19 + Vite 7 + TypeScript + Tailwind 4, Vercel serverless, Supabase PostgreSQL, Drizzle ORM, pnpm monorepo
+- **Team:** Sumit (product + engineering), Meena (developer)
+- **Repo:** desicode-blip/TrustKeyper
+
+Read ARCHITECTURE.md, CONTRIBUTING.md, and TESTING.md before starting any task. They are the source of truth.
+
+---
+
+## Non-Negotiable Rules
+
+### Never do these — ever
+
+- Never push directly to `main` or `staging`
+- Never use `any` in TypeScript
+- Never use `// @ts-ignore`
+- Never commit secrets, API keys, or credentials
+- Never leave `console.log` in committed code
+- Never write commented-out code — delete it
+- Never use `<form>` HTML elements in React components — use event handlers
+- Never ship a feature without loading, success, and error states
+- Never add a new API endpoint without Zod input validation
+- Never write a bug fix without a regression test
+- Never use `as` casting to escape type errors
+
+### Always do these
+
+- Always branch from `staging` (not `main`) for new work
+- Always run `pnpm run typecheck` before committing — it must pass
+- Always run `pnpm run test:run` before opening a PR — it must pass
+- Always write tests for new logic (see TESTING.md)
+- Always validate environment variables with Zod at startup
+- Always handle all three async states: loading, success, error
+- Always use the logger (`artifacts/api-server/src/lib/logger.ts`) not `console.log`
+- Always follow Conventional Commits: `feat:`, `fix:`, `chore:`, `refactor:`, `test:`, `docs:`
+
+---
+
+## TypeScript Rules
+
+```typescript
+// ✅ Correct
+const getUserRole = (user: User): Role => user.role
+
+// ❌ Never
+const getUserRole = (user: any) => user.role
+const getUserRole = (user: User) => user.role as Role  // escape hatch
+```
+
+Use Zod for all runtime validation:
+
+```typescript
+// ✅ API input validation
+const CreateInvitationSchema = z.object({
+  ownerPhone: z.string().length(10),
+  propertyId: z.string().uuid(),
+  tenantName: z.string().min(1),
+  tenantPhone: z.string().length(10),
+})
+
+// At the top of every protected handler
+const body = CreateInvitationSchema.parse(req.body)
+```
+
+---
+
+## React Rules
+
+```typescript
+// ✅ Always handle all three async states
+function PropertyCard({ propertyId }: { propertyId: string }) {
+  const { data, isLoading, error } = useProperty(propertyId)
+
+  if (isLoading) return <PropertyCardSkeleton />
+  if (error) return <ErrorState message={error.message} />
+  return <PropertyCardContent property={data} />
+}
+
+// ❌ Never
+function PropertyCard({ propertyId }: { propertyId: string }) {
+  const { data } = useProperty(propertyId)
+  return <PropertyCardContent property={data} />  // no loading, no error
+}
+```
+
+No `useEffect` for data fetching. Use the established sync patterns in `lib/cloudSync.ts`.
+
+No inline styles. No hardcoded colours. Everything through Tailwind classes.
+
+---
+
+## API Rules
+
+```typescript
+// ✅ Every protected handler pattern
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // 1. Auth first
+  const auth = await assertSyncAccountAuth(req, res)
+  if (!auth) return  // assertSyncAccountAuth handles the 401 response
+
+  // 2. Validate input
+  const body = CreateInvitationSchema.safeParse(req.body)
+  if (!body.success) {
+    return res.status(400).json({ error: body.error.issues })
+  }
+
+  // 3. Business logic
+  try {
+    const result = await createInvitation(body.data)
+    return res.status(201).json(result)
+  } catch (error) {
+    logger.error({ error }, 'Failed to create invitation')
+    return res.status(500).json({ error: 'Internal server error' })
+  }
+}
+```
+
+---
+
+## File and Folder Conventions
+
+- One component per file — filename matches the exported component name
+- Colocate tests: `Button.tsx` → `Button.test.tsx` in the same folder
+- No barrel files (`index.ts` re-exporting everything)
+- Shared types used in 3+ places go in `types/` — not inlined
+
+---
+
+## Commit Message Convention
+
+```
+type: short description in lowercase
+
+Optional body explaining WHY.
+```
+
+Types: `feat`, `fix`, `chore`, `refactor`, `test`, `docs`, `style`, `perf`
+
+Examples:
+```
+feat: tenant invitation accept flow with OTP verification
+fix: session persistence lost on iOS Safari private mode
+test: add unit tests for invitation expiry logic
+chore: configure Vitest with Testing Library
+```
+
+---
+
+## Branch Naming
+
+```
+feature/tenant-dashboard
+fix/otp-session-persistence
+chore/add-vitest-setup
+refactor/normalise-property-schema
+```
+
+Always branch from `staging`.
+
+---
+
+## Testing Rules
+
+Every feature = tests. Every bug fix = regression test.
+
+```typescript
+// Unit test pattern (Vitest)
+import { describe, it, expect } from 'vitest'
+import { isInvitationExpired } from './expiry'
+
+describe('isInvitationExpired', () => {
+  it('returns true for past expiry date', () => {
+    const past = new Date(Date.now() - 1000)
+    expect(isInvitationExpired(past)).toBe(true)
+  })
+})
+
+// Component test pattern (Vitest + Testing Library)
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
+import { ErrorBanner } from './ErrorBanner'
+
+describe('ErrorBanner', () => {
+  it('displays the error message', () => {
+    render(<ErrorBanner message="Something went wrong" />)
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument()
+  })
+})
+```
+
+Test behaviour, not implementation. Test what users experience.
+
+---
+
+## Known Issues to Be Aware Of
+
+These are documented in ARCHITECTURE.md. Don't make them worse:
+
+1. **`user_data` is a blob store** — new features should use proper relational tables, not add more JSON blobs
+2. **`owner_tenant_invites` in localStorage** — this is a local cache only. The source of truth is `tenant_invitations` in Postgres. Don't confuse the two.
+3. **`tenant_invitations` API not wired to frontend** — backend exists, frontend still uses localStorage + WhatsApp. This is being fixed.
+4. **Public share link reads viewer's localStorage** — broken for real sharing. Don't use it as reference for new sharing features.
+5. **No Zod env validation** — add it when touching env var handling
+
+---
+
+## When You're Unsure
+
+1. Read ARCHITECTURE.md — the answer is usually there
+2. Read CONTRIBUTING.md — for process questions
+3. Read TESTING.md — for testing questions
+4. Ask before making architectural decisions — don't silently change data models or API contracts
+
+---
+
+## Environment Variables
+
+Never hardcode these. Always read from `process.env` (server) or `import.meta.env` (frontend).
+
+Key variables:
+- `SUPABASE_URL`, `SUPABASE_ANON_KEY` — Supabase project
+- `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — Frontend Supabase
+- `DATABASE_URL` — Postgres connection
+- `ADMIN_PHONES`, `VITE_ADMIN_PHONES` — Admin allowlist
+- `RESEND_API_KEY` — Email
+- `GEMINI_API_KEY` — AI feedback analysis
+
+Full list in README.md.

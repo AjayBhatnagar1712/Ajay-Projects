@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream"
+    android:backgroundTint="@color/bg_cream"
+    tools:context=".ui.auth.OtpVerificationActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/bottom_action_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45">
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/Widget.GuruVandan.TextViewH4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="4dp"
+            android:text="Secure Your Journey"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_display_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="-15dp"
+            android:layout_marginBottom="24dp"
+            android:paddingHorizontal="30dp"
+            android:text="We sent a 6-digit code to +911234567890"
+            android:textColor="@color/text_taupe"
+            android:textSize="14sp" />
+
+        <com.chaos.view.PinView
+            android:id="@+id/otp_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:inputType="number"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_maroon"
+            android:itemBackground="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            app:lineColor="@color/primary_maroon"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="6"
+            app:itemHeight="48dp"
+            app:itemRadius="5dp"
+            app:itemSpacing="5dp"
+            app:itemWidth="48dp"
+            app:lineWidth="1dp"
+            app:viewType="rectangle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="24dp"
+                android:text="Didn't receive a code? "
+                android:textColor="@color/text_taupe"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/button_resend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_maroon"
+                android:background="@android:color/transparent"
+                app:backgroundTint="@null"
+                android:stateListAnimator="@null"
+                android:padding="0dp"
+                android:layout_margin="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Resend"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_action_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_verify_otp"
+            style="@style/Widget.GuruVandan.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Walking a different path?"
+                android:textColor="@color/text_taupe"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <!-- The actual clickable textual button -->
+            <TextView
+                android:id="@+id/button_return_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:text="Return to start"
+                android:textColor="@color/primary_maroon"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

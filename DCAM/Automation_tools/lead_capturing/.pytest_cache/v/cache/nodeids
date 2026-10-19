@@ -1,0 +1,23 @@
+[
+  "tests/test_app.py::test_business_contact_finder_page_loads",
+  "tests/test_app.py::test_contact_exports_create_separate_csv_files",
+  "tests/test_app.py::test_decode_csv_payload_returns_headers_and_sheet_rows",
+  "tests/test_app.py::test_home_page_loads",
+  "tests/test_app.py::test_index_page_loads",
+  "tests/test_app.py::test_mailing_csv_keeps_phone_only_leads_with_blank_email",
+  "tests/test_app.py::test_mailing_csv_places_email_rows_before_blank_email_rows",
+  "tests/test_app.py::test_mailing_csv_skips_blank_email_rows",
+  "tests/test_app.py::test_mailing_csv_skips_phone_only_leads_without_email",
+  "tests/test_app.py::test_mailing_csv_uses_requested_columns",
+  "tests/test_app.py::test_parse_business_types_accepts_commas_semicolons_and_newlines",
+  "tests/test_app.py::test_store_sheet_export_keeps_rows_server_side",
+  "tests/test_app.py::test_website_gap_page_loads",
+  "tests/test_google_places.py::test_search_businesses_fetches_all_pages",
+  "tests/test_google_sheets.py::test_first_available_row_ignores_leftover_source_status_only_rows",
+  "tests/test_google_sheets.py::test_google_sheets_exporter_appends_after_existing_rows",
+  "tests/test_google_sheets.py::test_google_sheets_exporter_writes_to_first_empty_row_after_header",
+  "tests/test_website_analyzer.py::test_candidate_pages_include_common_contact_paths",
+  "tests/test_website_analyzer.py::test_extracts_mailto_and_visible_emails",
+  "tests/test_website_analyzer.py::test_extracts_obfuscated_emails",
+  "tests/test_website_analyzer.py::test_marks_missing_website_without_fetch"
+]

@@ -1,0 +1,36 @@
+{
+  "name": "jg-camps",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@vercel/speed-insights": "^1.2.0",
+    "axios": "^1.16.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "follow-redirects": "^1.16.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.540.0",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-markdown": "^10.1.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.7",
+    "typescript": "^5"
+  }
+}

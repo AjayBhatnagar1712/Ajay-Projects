@@ -1,0 +1,24 @@
+/** Bundled demo accounts for Vercel / mock DB trials. */
+export const PROTOTYPE_SEED: Record<string, Record<string, string>> = {
+  "9876543210:owner": {
+    profile:
+      '{"name":"Demo Owner","firm":"","phone":"9876543210","email":"owner.demo@trustkeyper.test","bankHolderName":"","bankName":"","bankAccountNumber":"","bankIFSC":"","upiId":"","upiQrFileName":""}',
+    properties:
+      '[{"id":"prop_demo_1","nickname":"Sunrise Apartments","address":"12 MG Road","area":"Banjara Hills","city":"Hyderabad","pincode":"500034","country":"India","ownerName":"Demo Owner","ownerContact":"9876543210","propertyType":"Apartment","propertyTypeOther":"","unitSize":"2 BHK","unitSizeOther":"","furnishing":"Semi-Furnished","builtUpArea":"1200","builtUpUnits":"sq ft","totalFloors":"10","bedrooms":"2","bathrooms":"2","balconies":"1","floorLevel":"5","mainDoorDirection":"East","amenities":["Parking","Lift"],"tenantsPreferred":["Family"],"monthlyRent":"28000","rentNegotiable":false,"maintenanceIncluded":true,"monthlyMaintenance":"0","securityDeposit":"56000","availableFrom":"2026-06-01","images":[],"imageCount":0,"status":"Active","createdAt":1735689600000,"uploadedBy":"owner"}]',
+    tenants: "[]",
+    agreements: "[]",
+    agreement_draft: "",
+    onboarding_data: "",
+    add_property_data: "",
+  },
+  "9876543211:broker": {
+    profile:
+      '{"name":"Demo Broker","firm":"Trust Realty","phone":"9876543211","email":"broker.demo@trustkeyper.test","bankHolderName":"","bankName":"","bankAccountNumber":"","bankIFSC":"","upiId":"","upiQrFileName":""}',
+    properties: "[]",
+    tenants: "[]",
+    agreements: "[]",
+    agreement_draft: "",
+    onboarding_data: "",
+    add_property_data: "",
+  },
+};

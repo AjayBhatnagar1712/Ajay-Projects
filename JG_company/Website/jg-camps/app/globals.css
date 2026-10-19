@@ -1,0 +1,638 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.02 248);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.02 248);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.02 248);
+  --primary: oklch(0.39 0.105 163.4);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.01 180);
+  --secondary-foreground: oklch(0.23 0.06 162);
+  --muted: oklch(0.97 0.004 248);
+  --muted-foreground: oklch(0.48 0.02 248);
+  --accent: oklch(0.94 0.04 92);
+  --accent-foreground: oklch(0.22 0.04 82);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.91 0.01 248);
+  --input: oklch(0.91 0.01 248);
+  --ring: oklch(0.55 0.12 163);
+  --theme-sky: #0ea5e9;
+  --theme-sea: #0891b2;
+  --theme-deep: #075985;
+  --theme-soft: #e0f7ff;
+  --theme-sand: #fde68a;
+  --theme-ink: #082f49;
+  --theme-card: rgba(255, 255, 255, 0.88);
+  --theme-line: rgba(14, 165, 233, 0.28);
+  --theme-glow: rgba(14, 165, 233, 0.14);
+  --theme-aura:
+    radial-gradient(circle at 12% 0%, rgba(14, 165, 233, 0.16), transparent 34rem),
+    radial-gradient(circle at 88% 8%, rgba(45, 212, 191, 0.12), transparent 28rem),
+    linear-gradient(180deg, #f0faff 0%, #ffffff 42%, #f8fafc 100%);
+}
+
+body[data-travel-theme="north"] {
+  --theme-sky: #38bdf8;
+  --theme-sea: #2563eb;
+  --theme-deep: #1e3a8a;
+  --theme-soft: #eef6ff;
+  --theme-sand: #dbeafe;
+  --theme-ink: #172554;
+  --theme-line: rgba(37, 99, 235, 0.28);
+  --theme-glow: rgba(147, 197, 253, 0.20);
+  --theme-aura:
+    radial-gradient(circle at 12% 0%, rgba(191, 219, 254, 0.42), transparent 34rem),
+    radial-gradient(circle at 86% 8%, rgba(125, 211, 252, 0.20), transparent 28rem),
+    linear-gradient(180deg, #f6fbff 0%, #ffffff 45%, #f8fafc 100%);
+}
+
+body[data-travel-theme="central"] {
+  --theme-sky: #84cc16;
+  --theme-sea: #a16207;
+  --theme-deep: #3f6212;
+  --theme-soft: #f7fee7;
+  --theme-sand: #fef3c7;
+  --theme-ink: #365314;
+  --theme-line: rgba(101, 163, 13, 0.30);
+  --theme-glow: rgba(190, 242, 100, 0.16);
+  --theme-aura:
+    radial-gradient(circle at 12% 0%, rgba(132, 204, 22, 0.18), transparent 32rem),
+    radial-gradient(circle at 86% 8%, rgba(180, 83, 9, 0.12), transparent 28rem),
+    linear-gradient(180deg, #f7fee7 0%, #ffffff 46%, #f8fafc 100%);
+}
+
+body[data-travel-theme="spiritual"] {
+  --theme-sky: #f97316;
+  --theme-sea: #b45309;
+  --theme-deep: #7c2d12;
+  --theme-soft: #fff7ed;
+  --theme-sand: #fed7aa;
+  --theme-ink: #431407;
+  --theme-line: rgba(249, 115, 22, 0.34);
+  --theme-glow: rgba(251, 146, 60, 0.18);
+  --theme-aura:
+    radial-gradient(circle at 12% 0%, rgba(251, 146, 60, 0.24), transparent 32rem),
+    radial-gradient(circle at 88% 8%, rgba(253, 224, 71, 0.18), transparent 28rem),
+    linear-gradient(180deg, #fff7ed 0%, #ffffff 48%, #fffbeb 100%);
+}
+
+body[data-travel-theme="groups"] {
+  --theme-sky: #6366f1;
+  --theme-sea: #0ea5e9;
+  --theme-deep: #3730a3;
+  --theme-soft: #eef2ff;
+  --theme-sand: #fde68a;
+  --theme-ink: #312e81;
+  --theme-line: rgba(99, 102, 241, 0.30);
+  --theme-glow: rgba(129, 140, 248, 0.16);
+  --theme-aura:
+    radial-gradient(circle at 12% 0%, rgba(99, 102, 241, 0.16), transparent 34rem),
+    radial-gradient(circle at 88% 8%, rgba(14, 165, 233, 0.14), transparent 28rem),
+    linear-gradient(180deg, #eef2ff 0%, #ffffff 46%, #f8fafc 100%);
+}
+
+body[data-travel-theme="international"] {
+  --theme-sky: #38bdf8;
+  --theme-sea: #2563eb;
+  --theme-deep: #1d4ed8;
+  --theme-soft: #eff6ff;
+  --theme-sand: #fef3c7;
+  --theme-ink: #172554;
+  --theme-line: rgba(37, 99, 235, 0.28);
+  --theme-glow: rgba(56, 189, 248, 0.16);
+  --theme-aura:
+    radial-gradient(circle at 12% 0%, rgba(56, 189, 248, 0.18), transparent 34rem),
+    radial-gradient(circle at 88% 8%, rgba(59, 130, 246, 0.16), transparent 28rem),
+    linear-gradient(180deg, #eff6ff 0%, #ffffff 45%, #f8fafc 100%);
+}
+
+.dark {
+  --background: oklch(0.13 0.02 248);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.18 0.02 248);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.18 0.02 248);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.75 0.13 163);
+  --primary-foreground: oklch(0.15 0.02 248);
+  --secondary: oklch(0.24 0.02 248);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.24 0.02 248);
+  --muted-foreground: oklch(0.72 0.02 248);
+  --accent: oklch(0.28 0.04 92);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.68 0.18 24);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.75 0.13 163);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--theme-aura);
+  }
+
+  ::selection {
+    @apply bg-amber-200 text-sky-950;
+  }
+}
+
+@layer components {
+  main {
+    overflow-x: clip;
+  }
+
+  main :where(a, button) {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow, filter;
+    transition-duration: 180ms;
+    transition-timing-function: ease;
+  }
+
+  main :where(button:not(:disabled), a[href]):hover {
+    transform: translateY(-1px);
+  }
+
+  main :where(input, textarea, select) {
+    @apply border-slate-200 bg-white shadow-sm;
+  }
+
+  main :where(input, textarea, select):focus {
+    @apply border-cyan-500 ring-2 ring-cyan-500/20;
+  }
+
+  main :where(.shadow-lg, .shadow-xl, .shadow-2xl) {
+    box-shadow: 0 18px 55px rgba(15, 23, 42, 0.10);
+  }
+
+  main :where(img, video) {
+    background: #e2e8f0;
+  }
+
+  body[data-travel-theme] header {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--theme-ink) 88%, transparent), color-mix(in srgb, var(--theme-deep) 78%, transparent));
+    box-shadow: 0 16px 45px color-mix(in srgb, var(--theme-ink) 20%, transparent);
+  }
+
+  body[data-travel-theme] footer {
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--theme-sky) 18%, transparent), transparent 30rem),
+      linear-gradient(135deg, var(--theme-ink), color-mix(in srgb, var(--theme-deep) 85%, #020617));
+    border-color: color-mix(in srgb, var(--theme-sky) 30%, transparent);
+  }
+
+  body[data-travel-theme] main > main,
+  body[data-travel-theme] main > div,
+  body[data-travel-theme] main > section {
+    background-color: transparent;
+  }
+
+  body[data-travel-theme] main > main {
+    position: relative;
+  }
+
+  body[data-travel-theme] main > main::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--theme-aura);
+  }
+
+  body[data-travel-theme] main main > section:first-child {
+    border-bottom: 1px solid color-mix(in srgb, var(--theme-sky) 30%, transparent);
+  }
+
+  body[data-travel-theme] main main > section:first-child :where(h1) {
+    text-shadow: 0 14px 38px rgba(2, 6, 23, 0.32);
+  }
+
+  body[data-travel-theme] main main > section:first-child :where(p, div) {
+    text-wrap: pretty;
+  }
+
+  body[data-travel-theme] main :where(.text-emerald-900, .text-emerald-800, .text-emerald-700, .text-indigo-800, .text-primary) {
+    color: var(--theme-deep) !important;
+  }
+
+  body[data-travel-theme] main :where(.text-emerald-100, .text-emerald-50) {
+    color: color-mix(in srgb, white 86%, var(--theme-soft)) !important;
+  }
+
+  body[data-travel-theme] main :where(.bg-emerald-950, .bg-emerald-900, .bg-emerald-800, .bg-emerald-700, .bg-primary, .bg-indigo-700) {
+    background: linear-gradient(135deg, var(--theme-deep), var(--theme-sea)) !important;
+  }
+
+  body[data-travel-theme] main :where(.bg-emerald-100, .bg-emerald-50, .bg-indigo-50, .bg-blue-50) {
+    background-color: var(--theme-soft) !important;
+  }
+
+  body[data-travel-theme] main :where(.border-emerald-200, .border-emerald-100, .border-indigo-300, .border-blue-100) {
+    border-color: color-mix(in srgb, var(--theme-sky) 28%, white) !important;
+  }
+
+  body[data-travel-theme] main :where(.bg-amber-400, .bg-yellow-400, .bg-yellow-500) {
+    background: linear-gradient(135deg, var(--theme-sand), #fbbf24) !important;
+    color: var(--theme-ink) !important;
+  }
+
+  body[data-travel-theme] main :where(article, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl):not(.fixed):not([class*="bg-black"]) {
+    border-color: color-mix(in srgb, var(--theme-sky) 22%, white);
+  }
+
+  body[data-travel-theme] main :where(article.bg-white, div.bg-white, .bg-card) {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, white 94%, var(--theme-soft)), white) !important;
+  }
+
+  body[data-travel-theme] main :where(.shadow-lg, .shadow-xl, .shadow-2xl) {
+    box-shadow: 0 24px 70px color-mix(in srgb, var(--theme-ink) 13%, transparent);
+  }
+
+  body[data-travel-theme] main :where(section.bg-slate-50, section.bg-gray-50, div.bg-gray-50) {
+    background:
+      radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--theme-sky) 13%, transparent), transparent 30rem),
+      linear-gradient(180deg, var(--theme-soft) 0%, #ffffff 100%) !important;
+  }
+
+  body[data-travel-theme] main :where(.container, .max-w-6xl, .max-w-7xl) > :where(h2, h3):first-child {
+    color: var(--theme-ink);
+  }
+
+  body[data-travel-theme] main :where(.grid.sm\:grid-cols-2, .grid.lg\:grid-cols-3, .grid.md\:grid-cols-2) > :where(div, article) {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  body[data-travel-theme] main :where(.grid.sm\:grid-cols-2, .grid.lg\:grid-cols-3, .grid.md\:grid-cols-2) > :where(div, article):hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--theme-sky) 48%, white);
+  }
+
+  body[data-travel-theme] main main {
+    background:
+      radial-gradient(circle at 8% 12rem, var(--theme-glow), transparent 24rem),
+      radial-gradient(circle at 94% 28rem, color-mix(in srgb, var(--theme-sand) 22%, transparent), transparent 24rem);
+  }
+
+  body[data-travel-theme] main main > section:not(:first-child) {
+    position: relative;
+  }
+
+  body[data-travel-theme] main main > section:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 1px;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, var(--theme-line), transparent);
+    opacity: 0.55;
+  }
+
+  body[data-travel-theme] main main.cinematic-home > section:not(:first-child)::before {
+    content: none;
+  }
+
+  body[data-travel-theme] main main.cinematic-home {
+    background: #020712;
+  }
+
+  .cinematic-home .cinematic-action {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .cinematic-home .cinematic-action::before {
+    content: "";
+    position: absolute;
+    inset: -45% auto -45% -70%;
+    z-index: 0;
+    width: 52%;
+    pointer-events: none;
+    transform: skewX(-18deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+    transition: left 520ms ease;
+  }
+
+  .cinematic-home .cinematic-action:hover::before {
+    left: 125%;
+  }
+
+  .cinematic-home .cinematic-action:active {
+    transform: translateY(1px) scale(0.98);
+  }
+
+  .cinematic-home :where(section) {
+    scroll-margin-top: 92px;
+  }
+
+  .cinematic-home > section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cinematic-home > section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: 760px;
+  }
+
+  .cinematic-home :where(.backdrop-blur, .backdrop-blur-xl) {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .cinematic-drift {
+    transform: scale(1.01);
+    transform-origin: center;
+  }
+
+  .ladakh-sticky-panel {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .ladakh-3d-stage {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  .home-3d-stage {
+    perspective: 1300px;
+    transform-style: preserve-3d;
+  }
+
+  .ladakh-3d-card {
+    transform: rotateX(2deg) rotateY(0.8deg) translateZ(0);
+    transform-origin: center top;
+    transition: transform 260ms ease, border-color 220ms ease, background-color 220ms ease;
+  }
+
+  .ladakh-3d-card:nth-child(even) {
+    transform: rotateX(2deg) rotateY(-0.8deg) translateZ(0);
+  }
+
+  .ladakh-3d-card:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateY(-6px) scale(1.01);
+  }
+
+  .home-3d-card {
+    transform: rotateX(2deg) translateZ(0);
+    transform-origin: center top;
+    transition: transform 280ms ease, border-color 220ms ease, filter 220ms ease;
+  }
+
+  .home-3d-card:nth-child(odd) {
+    transform: rotateX(2deg) rotateY(0.8deg) translateZ(0);
+  }
+
+  .home-3d-card:nth-child(even) {
+    transform: rotateX(2deg) rotateY(-0.8deg) translateZ(0);
+  }
+
+  .home-3d-card:hover {
+    filter: saturate(1.06);
+    transform: rotateX(0deg) rotateY(0deg) translateY(-8px) scale(1.012);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ladakh-3d-card,
+    .home-3d-card {
+      transform: none;
+      transition: none;
+    }
+
+    .cinematic-home .cinematic-action::before {
+      transition: none;
+    }
+  }
+
+  body[data-travel-theme] main main > section.max-w-4xl.mx-auto.p-6 {
+    margin-top: -1.75rem;
+    margin-bottom: 3rem;
+    border: 1px solid color-mix(in srgb, var(--theme-line) 75%, white);
+    border-radius: 1.5rem;
+    background:
+      radial-gradient(circle at 100% 0%, var(--theme-glow), transparent 18rem),
+      linear-gradient(180deg, color-mix(in srgb, white 94%, var(--theme-soft)), rgba(255, 255, 255, 0.96));
+    box-shadow:
+      0 24px 80px color-mix(in srgb, var(--theme-ink) 13%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+  }
+
+  body[data-travel-theme] main main > section.max-w-4xl.mx-auto.p-6::before {
+    inset: 0 1.5rem auto;
+    width: auto;
+    height: 4px;
+    background: linear-gradient(90deg, var(--theme-sky), var(--theme-sea), var(--theme-sand));
+    opacity: 0.9;
+  }
+
+  body[data-travel-theme] main :where(article.bg-white, div.bg-white.rounded-lg, div.bg-white.rounded-xl, div.bg-white.rounded-2xl, div.bg-white.rounded-3xl, div.bg-slate-50.rounded-2xl, div.bg-slate-50.rounded-3xl) {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-color: color-mix(in srgb, var(--theme-line) 75%, white) !important;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, white 95%, var(--theme-soft)), rgba(255, 255, 255, 0.96)) !important;
+    box-shadow:
+      0 22px 65px color-mix(in srgb, var(--theme-ink) 11%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  body[data-travel-theme] main :where(article.bg-white, div.bg-white.rounded-lg, div.bg-white.rounded-xl, div.bg-white.rounded-2xl, div.bg-white.rounded-3xl, div.bg-slate-50.rounded-2xl, div.bg-slate-50.rounded-3xl)::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 2;
+    height: 4px;
+    background: linear-gradient(90deg, var(--theme-sky), var(--theme-sea), var(--theme-sand));
+    opacity: 0.88;
+  }
+
+  body[data-travel-theme] main :where(article.bg-white, div.bg-white.rounded-lg, div.bg-white.rounded-xl, div.bg-white.rounded-2xl, div.bg-white.rounded-3xl, div.bg-slate-50.rounded-2xl, div.bg-slate-50.rounded-3xl)::after {
+    content: "";
+    position: absolute;
+    right: -6rem;
+    bottom: -7rem;
+    z-index: -1;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, var(--theme-glow), transparent 68%);
+  }
+
+  body[data-travel-theme] main :where(article.bg-white, div.bg-white.rounded-lg, div.bg-white.rounded-xl, div.bg-white.rounded-2xl, div.bg-white.rounded-3xl, div.bg-slate-50.rounded-2xl, div.bg-slate-50.rounded-3xl):hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 30px 82px color-mix(in srgb, var(--theme-ink) 16%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  }
+
+  body[data-travel-theme] main :where(.relative.h-48, .relative.h-56, .relative.h-72, .relative.h-80) {
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--theme-soft) 68%, white), color-mix(in srgb, var(--theme-sky) 16%, white));
+  }
+
+  body[data-travel-theme] main :where(.relative.h-48, .relative.h-56, .relative.h-72, .relative.h-80)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 48%, rgba(2, 6, 23, 0.18));
+  }
+
+  body[data-travel-theme] main :where(.list-disc li)::marker {
+    color: var(--theme-sea);
+  }
+
+  body[data-travel-theme] main :where(.rounded-full, .rounded-2xl):is(a, button) {
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--theme-ink) 9%, transparent);
+  }
+
+  body[data-travel-theme] main :where(.border):is(a, button) {
+    border-color: color-mix(in srgb, var(--theme-line) 75%, white) !important;
+  }
+
+  @media (max-width: 640px) {
+    body[data-travel-theme] main main > section:first-child {
+      min-height: 52vh;
+      border-bottom-left-radius: 1.25rem;
+      border-bottom-right-radius: 1.25rem;
+    }
+
+    body[data-travel-theme] main main > section:not(:first-child) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    body[data-travel-theme] main :where(article.bg-white, div.bg-white.rounded-lg, div.bg-white.rounded-xl, div.bg-white.rounded-2xl, div.bg-white.rounded-3xl, div.bg-slate-50.rounded-2xl, div.bg-slate-50.rounded-3xl) {
+      border-radius: 1.25rem;
+    }
+
+    body[data-travel-theme] main :where(a, button) {
+      min-height: 2.75rem;
+    }
+  }
+
+  .masonry {
+    column-gap: 1.5rem;
+    column-fill: auto;
+  }
+
+  @media (min-width: 768px) {
+    .masonry {
+      column-count: 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .masonry {
+      column-count: 3;
+    }
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .masonry-card {
+    @apply overflow-hidden rounded-2xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-2xl;
+  }
+
+  .page-band {
+    @apply bg-gradient-to-b from-white to-emerald-50/60;
+  }
+
+  .premium-card {
+    @apply rounded-3xl border border-emerald-100 bg-white shadow-xl shadow-emerald-950/5;
+  }
+
+  main > section:first-child:where(.relative) {
+    box-shadow: inset 0 -80px 120px rgba(7, 89, 133, 0.18);
+  }
+
+  main > section:first-child :where(h1) {
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  main :where(article, .rounded-xl, .rounded-2xl, .rounded-3xl):has(img) {
+    border-color: rgba(14, 165, 233, 0.16);
+  }
+
+  main :where(article, .rounded-xl, .rounded-2xl, .rounded-3xl):has(img):hover {
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14);
+  }
+
+  main :where(section.bg-slate-50, section.bg-gray-50, div.bg-gray-50) {
+    background:
+      radial-gradient(circle at 10% 0%, rgba(14, 165, 233, 0.10), transparent 28rem),
+      radial-gradient(circle at 90% 0%, rgba(45, 212, 191, 0.08), transparent 24rem),
+      linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  }
+
+  main :where(.container, .mx-auto.max-w-7xl, .mx-auto.max-w-6xl) > h2,
+  main :where(section) > h2 {
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  main :where(button, a).rounded-full,
+  main :where(button, a).rounded-2xl {
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "prod": "dcam-classes-c0715",
+    "default": "dcam-classes-c0715"
+  },
+  "targets": {},
+  "etags": {}
+}

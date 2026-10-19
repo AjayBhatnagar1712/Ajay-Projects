@@ -1,0 +1,22 @@
+# Local test database for TrustKeyper (signup / cloud sync API).
+# Start: pnpm run db:up
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: trustkeyper-postgres-dev
+    environment:
+      POSTGRES_USER: trustkeyper
+      POSTGRES_PASSWORD: trustkeyper
+      POSTGRES_DB: trustkeyper_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - trustkeyper_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trustkeyper -d trustkeyper_dev"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+
+volumes:
+  trustkeyper_pg_data:

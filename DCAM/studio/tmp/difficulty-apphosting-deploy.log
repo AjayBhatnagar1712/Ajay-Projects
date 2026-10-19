@@ -1,0 +1,12 @@
+
+=== Deploying to 'dcam-classes-c0715'...
+
+i  deploying apphosting
+i  apphosting: Found backend(s) studio
+i  apphosting: Zipped source for backend studio
+i  apphosting: Uploading source for backend studio...
+i  apphosting: Uploaded at gs://firebaseapphosting-sources-1059390458247-asia-east1/studio--16240-6mb93GPgFIoO-.zip
+i  apphosting: You may also track the rollout(s) at:
+	https://console.firebase.google.com/project/dcam-classes-c0715/apphosting
+- Starting rollout(s) for backend(s) studio; this may take a few minutes. It's safe to exit now.
+

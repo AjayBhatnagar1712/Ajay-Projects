@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Gesture-Controlled-Virtual-Mouse.iml" filepath="$PROJECT_DIR$/.idea/Gesture-Controlled-Virtual-Mouse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../work/Productize_Tech_intenrnship/.idea/Productize_Tech_intenrnship.iml" filepath="$PROJECT_DIR$/../../../work/Productize_Tech_intenrnship/.idea/Productize_Tech_intenrnship.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Study/Python_DSA/.idea/Python_DSA.iml" filepath="$PROJECT_DIR$/../../Study/Python_DSA/.idea/Python_DSA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Study/Study_ML/.idea/Study_ML.iml" filepath="$PROJECT_DIR$/../../Study/Study_ML/.idea/Study_ML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Python/ceasar_AI_solution/.idea/ceasar_AI_solution.iml" filepath="$PROJECT_DIR$/../../Python/ceasar_AI_solution/.idea/ceasar_AI_solution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../work/resume_agent_project/.idea/resume_agent_project.iml" filepath="$PROJECT_DIR$/../../../work/resume_agent_project/.idea/resume_agent_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Study/wasserstoff_aiintern_task/.idea/wasserstoff_aiintern_task.iml" filepath="$PROJECT_DIR$/../../Study/wasserstoff_aiintern_task/.idea/wasserstoff_aiintern_task.iml" />
+    </modules>
+  </component>
+</project>

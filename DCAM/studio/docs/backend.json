@@ -1,0 +1,1426 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user in the DCAM Classes system.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User entity."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the user.",
+          "format": "email"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "The user's phone number."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "URL or data URI for the user's profile picture."
+        },
+        "roleId": {
+          "type": "string",
+          "description": "Reference to Role. (Relationship: Role 1:N User)"
+        },
+        "teacherStatus": {
+          "type": "string",
+          "description": "The approval status of a teacher account.",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the user account.",
+          "enum": [
+            "active",
+            "blocked"
+          ]
+        },
+        "classLevel": {
+          "type": "string",
+          "description": "The class level of the student, if applicable.",
+          "enum": [
+            "Class 11",
+            "Class 12",
+            "Dropper"
+          ]
+        },
+        "subscriptionPlanId": {
+          "type": "string",
+          "description": "The ID of the user's active subscription plan. Reference to SubscriptionPlan."
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "description": "The current status of the user's subscription.",
+          "enum": [
+            "active",
+            "canceled",
+            "past_due",
+            "trialing"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "roleId",
+        "phoneNumber"
+      ]
+    },
+    "Role": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Role",
+      "type": "object",
+      "description": "Represents the role of a user in the system (e.g., student, teacher, admin).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Role entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the role (e.g., student, teacher, admin)."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the role and its permissions."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    "ExamType": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ExamType",
+      "type": "object",
+      "description": "Represents a type of exam, like 'IIT-JEE' or 'NEET'.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ExamType entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the exam type."
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Class": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Class",
+      "type": "object",
+      "description": "Represents a class, such as 'Class 11' or 'CBSE Class 10'.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Class entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the class (e.g., Class 11)."
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType this class belongs to."
+        }
+      },
+      "required": [
+        "name",
+        "examTypeId"
+      ]
+    },
+    "Subject": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Subject",
+      "type": "object",
+      "description": "Represents a subject like Physics, Chemistry, or Mathematics.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Subject entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the subject."
+        },
+        "classId": {
+          "type": "string",
+          "description": "Reference to the Class this subject belongs to."
+        }
+      },
+      "required": [
+        "name",
+        "classId"
+      ]
+    },
+    "Content": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Content",
+      "type": "object",
+      "description": "Represents a piece of learning content, such as a video lecture or study material.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Content entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the content."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description of the content."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of content, e.g., video or PDF.",
+          "enum": [
+            "video",
+            "pdf"
+          ]
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "The URL of the video. Required for 'video' type.",
+          "format": "uri"
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "The URL of the PDF file. Required for 'pdf' type.",
+          "format": "uri"
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType this content belongs to."
+        },
+        "classId": {
+          "type": "string",
+          "description": "Reference to the Class this content belongs to."
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Reference to Subject. (Relationship: Subject 1:N Content)"
+        },
+        "topicId": {
+          "type": "string",
+          "description": "Reference to Topic. (Relationship: Topic 1:N Content)"
+        },
+        "difficultyLevel": {
+          "type": "string",
+          "description": "The difficulty level of the content.",
+          "enum": [
+            "Easy",
+            "Medium",
+            "Hard"
+          ]
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Specifies if the content is free or requires a subscription.",
+          "enum": [
+            "free",
+            "paid"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "type",
+        "examTypeId",
+        "classId",
+        "subjectId",
+        "topicId",
+        "difficultyLevel",
+        "accessLevel"
+      ]
+    },
+    "Topic": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Topic",
+      "type": "object",
+      "description": "Represents a topic or chapter within a subject. Teachers can add and manage topics through the Curriculum page.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Topic entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the topic."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the topic."
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Reference to Subject. (Relationship: Subject 1:N Topic)"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "subjectId"
+      ]
+    },
+    "LiveClass": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "LiveClass",
+      "type": "object",
+      "description": "Represents a live interactive class.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the LiveClass entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the live class."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The date and time the live class starts.",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "number",
+          "description": "The duration of the live class in minutes."
+        },
+        "teacherId": {
+          "type": "string",
+          "description": "Reference to User (Teacher). (Relationship: User 1:N LiveClass)"
+        },
+        "teacherName": {
+          "type": "string",
+          "description": "The name of the teacher conducting the class (denormalized)."
+        },
+        "teacherPhotoUrl": {
+          "type": "string",
+          "description": "URL for the teacher's profile picture (denormalized).",
+          "format": "uri"
+        },
+        "meetingUrl": {
+          "type": "string",
+          "description": "The URL for the video conference meeting.",
+          "format": "uri"
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType this live class is for."
+        },
+        "classId": {
+            "type": "string",
+            "description": "Reference to the Class this live class is for."
+        },
+        "subjectId": {
+            "type": "string",
+            "description": "Reference to the Subject this live class is for."
+        },
+        "topicId": {
+            "type": "string",
+            "description": "Reference to the Topic this live class is for."
+        },
+        "accessLevel": {
+            "type": "string",
+            "description": "Specifies if the class is free or requires a subscription.",
+            "enum": ["free", "paid"]
+        },
+        "recordingUrl": {
+          "type": "string",
+          "description": "The URL for the class recording. Available after the class has ended.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "title",
+        "startTime",
+        "duration",
+        "teacherId",
+        "teacherName",
+        "meetingUrl",
+        "examTypeId",
+        "classId",
+        "subjectId",
+        "topicId",
+        "accessLevel"
+      ]
+    },
+    "PracticeQuestion": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PracticeQuestion",
+      "type": "object",
+      "description": "Represents a practice question, which can be a Multiple Choice Question (MCQ) or a Numerical Answer Type question.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the PracticeQuestion entity."
+        },
+        "questionType": {
+          "type": "string",
+          "description": "The type of question.",
+          "enum": [
+            "MCQ",
+            "Numerical"
+          ]
+        },
+        "questionText": {
+          "type": "string",
+          "description": "The text of the practice question."
+        },
+        "imageUrls": {
+          "type": "array",
+          "description": "Optional URLs for images associated with the question.",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "explanationImageUrls": {
+          "type": "array",
+          "description": "Optional URLs for images associated with the question's explanation.",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "options": {
+          "type": "array",
+          "description": "An array of 4 multiple choice options. Required for MCQ type.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "correctAnswer": {
+          "type": "string",
+          "description": "The correct option from the 'options' array. Required for MCQ type."
+        },
+        "numericalAnswer": {
+          "type": "number",
+          "description": "The correct numerical answer. Required for Numerical type."
+        },
+        "difficultyLevel": {
+          "type": "string",
+          "description": "The difficulty level of the practice question.",
+          "enum": [
+            "Easy",
+            "Medium",
+            "Hard"
+          ]
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Reference to Subject. (Relationship: Subject 1:N PracticeQuestion)"
+        },
+        "topicId": {
+          "type": "string",
+          "description": "Reference to Topic. (Relationship: Topic 1:N PracticeQuestion)"
+        },
+        "classId": {
+          "type": "string",
+          "description": "Reference to the Class this question belongs to."
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType this question belongs to."
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Specifies if the question is free or requires a subscription.",
+          "enum": [
+            "free",
+            "paid"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing questions (e.g., 'official-test', 'jee-main-2024').",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "questionType",
+        "questionText",
+        "difficultyLevel",
+        "subjectId",
+        "topicId",
+        "classId",
+        "examTypeId",
+        "accessLevel"
+      ]
+    },
+    "MockTest": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "MockTest",
+      "type": "object",
+      "description": "Represents a mock test created by a teacher.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the MockTest entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the mock test."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The date and time the mock test starts.",
+          "format": "date-time"
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType this mock test is for."
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Specifies if the test is free or requires a subscription.",
+          "enum": [
+            "free",
+            "paid"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "description": "The configuration of the test, specifying questions, limits, and duration.",
+          "properties": {
+            "questionIds": {
+              "type": "array",
+              "description": "An array of PracticeQuestion IDs to be included in the test.",
+              "items": { "type": "string" }
+            },
+            "duration": {
+              "type": "number",
+              "description": "The total duration of the test in minutes."
+            },
+            "totalQuestions": {
+              "type": "number",
+              "description": "The total number of questions in the test."
+            },
+            "marksPerQuestion": {
+              "type": "number",
+              "description": "Marks awarded for a correct answer."
+            },
+            "negativeMarksPerQuestion": {
+              "type": "number",
+              "description": "Marks deducted for an incorrect answer (should be a positive number)."
+            },
+            "subjectConfigs": {
+              "type": "array",
+              "description": "Configuration for each subject, including the number of questions.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "subjectId": { "type": "string" },
+                  "numQuestions": { "type": "number" }
+                },
+                "required": ["subjectId", "numQuestions"]
+              }
+            }
+          },
+          "required": ["questionIds", "duration", "totalQuestions", "subjectConfigs", "marksPerQuestion", "negativeMarksPerQuestion"]
+        }
+      },
+      "required": [
+        "title",
+        "startTime",
+        "config",
+        "examTypeId",
+        "accessLevel"
+      ]
+    },
+    "SubscriptionPlan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "SubscriptionPlan",
+      "type": "object",
+      "description": "Defines a subscription plan available for users, linked to a specific exam type, class, subject, or topic.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the SubscriptionPlan entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the subscription plan (e.g., 'Pro Plan')."
+        },
+        "price": {
+          "type": "number",
+          "description": "The cost of the plan."
+        },
+        "billingInterval": {
+          "type": "string",
+          "description": "The billing frequency.",
+          "enum": [
+            "monthly",
+            "yearly"
+          ]
+        },
+        "numberOfLiveClasses": {
+          "type": "number",
+          "description": "The number of live classes included in the plan."
+        },
+        "features": {
+          "type": "array",
+          "description": "A list of features included in this plan.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType this plan is for."
+        },
+        "classId": {
+          "type": "string",
+          "description": "Optional reference to a Class. Narrows the plan scope."
+        },
+        "subjectIds": {
+          "type": "array",
+          "description": "Optional references to one or more Subjects. Narrows the plan scope.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "topicId": {
+          "type": "string",
+          "description": "Optional reference to a Topic. Narrows the plan scope."
+        }
+      },
+      "required": [
+        "name",
+        "price",
+        "billingInterval",
+        "examTypeId"
+      ]
+    },
+    "UserSubscription": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserSubscription",
+      "type": "object",
+      "description": "Represents a user's subscription to a specific plan.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserSubscription entity."
+        },
+        "planId": {
+          "type": "string",
+          "description": "Reference to SubscriptionPlan. (Relationship: SubscriptionPlan 1:N UserSubscription)"
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the subscription.",
+          "enum": [
+            "active",
+            "canceled",
+            "past_due",
+            "trialing"
+          ]
+        },
+        "currentPeriodStart": {
+          "type": "string",
+          "description": "The start date of the current billing period.",
+          "format": "date-time"
+        },
+        "currentPeriodEnd": {
+          "type": "string",
+          "description": "The end date of the current billing period.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "planId",
+        "status",
+        "currentPeriodStart",
+        "currentPeriodEnd"
+      ]
+    },
+    "Doubt": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Doubt",
+      "type": "object",
+      "description": "Represents a student's doubt or question.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier." },
+        "studentId": { "type": "string", "description": "Reference to the student User." },
+        "teacherId": { "type": "string", "description": "Reference to the assigned teacher User." },
+        "topicId": { "type": "string", "description": "Reference to the relevant Topic." },
+        "question": { "type": "string", "description": "The student's question." },
+        "questionAttachments": {
+          "type": "array",
+          "description": "Files attached to the student's question.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "description": "A unique identifier for the attachment within the doubt document." },
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "isUploading": { "type": "boolean" },
+              "uploadError": { "type": "string" }
+            },
+            "required": ["id", "name", "type"]
+          }
+        },
+        "answer": { "type": "string", "description": "The teacher's answer." },
+        "answerAttachments": {
+          "type": "array",
+          "description": "Files attached to the teacher's answer.",
+          "items": {
+             "type": "object",
+            "properties": {
+              "id": { "type": "string", "description": "A unique identifier for the attachment within the doubt document." },
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "isUploading": { "type": "boolean" },
+              "uploadError": { "type": "string" }
+            },
+            "required": ["id", "name", "type"]
+          }
+        },
+        "status": { "type": "string", "enum": ["open", "answered", "closed"], "description": "The status of the doubt." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of when the doubt was created." }
+      },
+      "required": ["studentId", "topicId", "question", "status", "createdAt"]
+    },
+    "StudentTestResult": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "StudentTestResult",
+      "type": "object",
+      "description": "Stores the results of a student's attempt at a mock test.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier." },
+        "testId": { "type": "string", "description": "Reference to the MockTest." },
+        "score": { "type": "number", "description": "The final score." },
+        "timeTaken": { "type": "number", "description": "Time taken in minutes." },
+        "answers": {
+          "type": "object",
+          "description": "A map of question IDs to the student's answers."
+        },
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of when the test was submitted."
+        }
+      },
+      "required": ["testId", "score", "timeTaken", "submittedAt"]
+    },
+    "PracticeResult": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PracticeResult",
+      "type": "object",
+      "description": "Stores the results of a student's attempt at a practice session.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the practice result."
+        },
+        "topics": {
+          "type": "array",
+          "description": "An array of topic IDs covered in the session.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "questionsAttempted": {
+          "type": "number",
+          "description": "The number of questions the user provided an answer for."
+        },
+        "questionsCorrect": {
+          "type": "number",
+          "description": "The number of questions the user answered correctly."
+        },
+        "totalQuestions": {
+          "type": "number",
+          "description": "The total number of questions in the session."
+        },
+        "timeTaken": {
+          "type": "number",
+          "description": "Total time taken for the session in seconds."
+        },
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of when the practice session was submitted."
+        }
+      },
+      "required": [
+        "topics",
+        "totalQuestions",
+        "submittedAt"
+      ]
+    },
+    "CustomMockTest": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CustomMockTest",
+      "type": "object",
+      "description": "Represents a custom mock test created by a student.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier."
+        },
+        "studentId": {
+          "type": "string",
+          "description": "Reference to the student User."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the custom test."
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Specifies if the test uses free or paid questions.",
+          "enum": [
+            "free",
+            "paid"
+          ]
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "Reference to the ExamType for the questions."
+        },
+        "config": {
+          "type": "object",
+          "description": "The configuration of the test, specifying questions, duration, and scoring.",
+          "properties": {
+            "questionIds": {
+              "type": "array",
+              "description": "An array of PracticeQuestion IDs to be included in the test.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "duration": {
+              "type": "number",
+              "description": "The total duration of the test in minutes."
+            },
+            "marksPerQuestion": {
+              "type": "number",
+              "description": "Marks awarded for a correct answer."
+            },
+            "negativeMarksPerQuestion": {
+              "type": "number",
+              "description": "Marks deducted for an incorrect answer (should be a positive number)."
+            }
+          },
+          "required": [
+            "questionIds",
+            "duration",
+            "marksPerQuestion",
+            "negativeMarksPerQuestion"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of creation."
+        }
+      },
+      "required": [
+        "studentId",
+        "title",
+        "config",
+        "createdAt",
+        "accessLevel",
+        "examTypeId"
+      ]
+    },
+    "ChatMessage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ChatMessage",
+      "type": "object",
+      "description": "Represents a single message in a chat room, which can contain text and/or a file attachment.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the message." },
+        "senderId": { "type": "string", "description": "Reference to the User who sent the message." },
+        "senderName": { "type": "string", "description": "Denormalized name of the sender." },
+        "senderPhotoUrl": { "type": "string", "description": "Denormalized photo URL of the sender." },
+        "text": { "type": "string", "description": "The text content of the message. Optional if a file is attached." },
+        "imageUrl": { "type": "string", "format": "uri", "description": "URL for a preview of an attached image." },
+        "fileUrl": { "type": "string", "format": "uri", "description": "Download URL for any attached file." },
+        "fileName": { "type": "string", "description": "The name of the attached file." },
+        "fileType": { "type": "string", "description": "The MIME type of the attached file (e.g., 'image/png', 'application/pdf')." },
+        "isUploading": { "type": "boolean", "description": "Flag to indicate if a file is currently being uploaded." },
+        "uploadError": { "type": "string", "description": "An error message if the file upload failed." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of when the message was sent." }
+      },
+      "required": ["senderId", "senderName", "createdAt"]
+    },
+    "TestAnalytics": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "TestAnalytics",
+      "type": "object",
+      "description": "Stores aggregated analytics for a specific mock test.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier (matches MockTest id)."
+        },
+        "totalScore": {
+          "type": "number",
+          "description": "Sum of all scores for this test."
+        },
+        "totalTimeTaken": {
+          "type": "number",
+          "description": "Sum of all time taken in minutes for this test."
+        },
+        "numberOfAttempts": {
+          "type": "number",
+          "description": "Total number of times this test has been taken."
+        },
+        "averageScore": {
+          "type": "number",
+          "description": "Average score for this test."
+        },
+        "averageTimeTaken": {
+          "type": "number",
+          "description": "Average time taken in minutes for this test."
+        },
+        "topperScore": {
+          "type": "number",
+          "description": "Highest score achieved on this test."
+        },
+        "topperStudentName": {
+          "type": "string",
+          "description": "Name of the student with the highest score."
+        }
+      },
+      "required": [
+        "id",
+        "totalScore",
+        "numberOfAttempts",
+        "averageScore",
+        "topperScore"
+      ]
+    },
+    "DashboardLink": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "DashboardLink",
+      "type": "object",
+      "description": "Represents a quick-access link on the main dashboard.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the DashboardLink."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the link card."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description text for the link card."
+        },
+        "href": {
+          "type": "string",
+          "description": "The URL path the link points to."
+        },
+        "icon": {
+          "type": "string",
+          "description": "The name of the lucide-react icon to display."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "The URL for the card's background image.",
+          "format": "uri"
+        },
+        "order": {
+          "type": "number",
+          "description": "The display order of the link on the dashboard."
+        }
+      },
+      "required": [
+        "title",
+        "href",
+        "icon",
+        "imageUrl",
+        "order"
+      ]
+    },
+    "Notification": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Notification",
+      "type": "object",
+      "description": "Represents a global notification for an event, like a new live class.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the notification."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the notification."
+        },
+        "message": {
+          "type": "string",
+          "description": "The content of the notification message."
+        },
+        "href": {
+          "type": "string",
+          "description": "The URL path to navigate to when the notification is clicked."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of when the notification was created."
+        },
+        "examTypeId": {
+          "type": "string",
+          "description": "The ID of the exam type this notification is relevant for. Helps in filtering."
+        }
+      },
+      "required": [
+        "title",
+        "message",
+        "href",
+        "createdAt",
+        "examTypeId"
+      ]
+    },
+    "BlockedEmail": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlockedEmail",
+      "type": "object",
+      "description": "Represents an email address that is blocked from registering a new account.",
+      "properties": {
+        "blockedAt": {
+          "type": "string",
+          "description": "The timestamp when the email was blocked.",
+          "format": "date-time"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user associated with this blocked email."
+        }
+      },
+      "required": [
+        "blockedAt",
+        "userId"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous",
+      "phone",
+      "google.com"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. Path-based ownership ensures only the user or an admin can access this data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/subscriptions/{subscriptionId}",
+        "definition": {
+          "entityName": "UserSubscription",
+          "schema": {
+            "$ref": "#/backend/entities/UserSubscription"
+          },
+          "description": "Stores the user's active subscription details. Path-based ownership ensures privacy.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "subscriptionId",
+              "description": "The unique identifier for the subscription record."
+            }
+          ]
+        }
+      },
+       {
+        "path": "/users/{userId}/test_results/{resultId}",
+        "definition": {
+          "entityName": "StudentTestResult",
+          "schema": {
+            "$ref": "#/backend/entities/StudentTestResult"
+          },
+          "description": "Stores results for mock tests taken by the user. Path-based ownership.",
+          "params": [
+            { "name": "userId", "description": "The user's unique ID." },
+            { "name": "resultId", "description": "The unique ID for the test result." }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/practice_results/{resultId}",
+        "definition": {
+          "entityName": "PracticeResult",
+          "schema": {
+            "$ref": "#/backend/entities/PracticeResult"
+          },
+          "description": "Stores results for practice sessions taken by the user. Path-based ownership.",
+          "params": [
+            { "name": "userId", "description": "The user's unique ID." },
+            { "name": "resultId", "description": "The unique ID for the practice result." }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/custom_tests/{testId}",
+        "definition": {
+          "entityName": "CustomMockTest",
+          "schema": {
+            "$ref": "#/backend/entities/CustomMockTest"
+          },
+          "description": "Stores custom mock tests created by students. Path-based ownership.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The user's unique ID."
+            },
+            {
+              "name": "testId",
+              "description": "The unique ID for the custom test."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles/{roleId}",
+        "definition": {
+          "entityName": "Role",
+          "schema": {
+            "$ref": "#/backend/entities/Role"
+          },
+          "description": "Stores role definitions (e.g., student, teacher, admin).",
+          "params": [
+            {
+              "name": "roleId",
+              "description": "The unique identifier for the role."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_admin/{userId}",
+        "definition": {
+          "entityName": "admin",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Documents in this collection indicate that the user with the given ID is an admin.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the admin."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/exam_types/{examTypeId}",
+        "definition": {
+          "entityName": "ExamType",
+          "schema": {
+            "$ref": "#/backend/entities/ExamType"
+          },
+          "description": "Stores exam type definitions (e.g., IIT-JEE, NEET). Teachers can manage.",
+          "params": [
+            {
+              "name": "examTypeId",
+              "description": "The unique identifier for the exam type."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/classes/{classId}",
+        "definition": {
+          "entityName": "Class",
+          "schema": {
+            "$ref": "#/backend/entities/Class"
+          },
+          "description": "Stores class definitions (e.g., Class 11, CBSE Class 10). Teachers can create, update, and delete classes.",
+          "params": [
+            {
+              "name": "classId",
+              "description": "The unique identifier for the class."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/subjects/{subjectId}",
+        "definition": {
+          "entityName": "Subject",
+          "schema": {
+            "$ref": "#/backend/entities/Subject"
+          },
+          "description": "Stores subject definitions. Belongs to a class. Teachers can manage subjects.",
+          "params": [
+            {
+              "name": "subjectId",
+              "description": "The unique identifier for the subject."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/content/{contentId}",
+        "definition": {
+          "entityName": "Content",
+          "schema": {
+            "$ref": "#/backend/entities/Content"
+          },
+          "description": "Stores learning content, such as video lectures and study materials.",
+          "params": [
+            {
+              "name": "contentId",
+              "description": "The unique identifier for the content."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/topics/{topicId}",
+        "definition": {
+          "entityName": "Topic",
+          "schema": {
+            "$ref": "#/backend/entities/Topic"
+          },
+          "description": "Stores topics within the IIT JEE curriculum. Teachers can create, update, and delete topics from the Curriculum page.",
+          "params": [
+            {
+              "name": "topicId",
+              "description": "The unique identifier for the topic."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/live_classes/{liveClassId}",
+        "definition": {
+          "entityName": "LiveClass",
+          "schema": {
+            "$ref": "#/backend/entities/LiveClass"
+          },
+          "description": "Stores live class information. Includes denormalized teacherId for authorization independence.",
+          "params": [
+            {
+              "name": "liveClassId",
+              "description": "The unique identifier for the live class."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/practice_questions/{practiceQuestionId}",
+        "definition": {
+          "entityName": "PracticeQuestion",
+          "schema": {
+            "$ref": "#/backend/entities/PracticeQuestion"
+          },
+          "description": "Stores practice questions.",
+          "params": [
+            {
+              "name": "practiceQuestionId",
+              "description": "The unique identifier for the practice question."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/mock_tests/{mockTestId}",
+        "definition": {
+          "entityName": "MockTest",
+          "schema": {
+            "$ref": "#/backend/entities/MockTest"
+          },
+          "description": "Stores mock test information.",
+          "params": [
+            {
+              "name": "mockTestId",
+              "description": "The unique identifier for the mock test."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_teacher/{userId}",
+        "definition": {
+          "entityName": "teacher",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Documents in this collection indicate that the user with the given ID is a teacher.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the teacher."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/subscription_plans/{planId}",
+        "definition": {
+          "entityName": "SubscriptionPlan",
+          "schema": {
+            "$ref": "#/backend/entities/SubscriptionPlan"
+          },
+          "description": "Stores all available subscription plans. Readable by all users, writable by teachers.",
+          "params": [
+            {
+              "name": "planId",
+              "description": "The unique identifier for the subscription plan."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/doubts/{doubtId}",
+        "definition": {
+          "entityName": "Doubt",
+          "schema": {
+            "$ref": "#/backend/entities/Doubt"
+          },
+          "description": "Stores student doubts. Students can create, teachers can answer.",
+          "params": [
+            { "name": "doubtId", "description": "The unique ID for the doubt." }
+          ]
+        }
+      },
+      {
+        "path": "/group_chat_messages/{messageId}",
+        "definition": {
+          "entityName": "ChatMessage",
+          "schema": {
+            "$ref": "#/backend/entities/ChatMessage"
+          },
+          "description": "Stores all messages for the public group chat.",
+          "params": [
+            { "name": "messageId", "description": "The unique ID for the chat message." }
+          ]
+        }
+      },
+      {
+        "path": "/direct_messages/{chatId}/messages/{messageId}",
+        "definition": {
+          "entityName": "ChatMessage",
+          "schema": {
+            "$ref": "#/backend/entities/ChatMessage"
+          },
+          "description": "Stores messages for a private 1-on-1 chat. The {chatId} is a composite key of the two participant UIDs, sorted alphabetically and joined by an underscore.",
+          "params": [
+            { "name": "chatId", "description": "The composite ID for the chat room." },
+            { "name": "messageId", "description": "The unique ID for the chat message." }
+          ]
+        }
+      },
+      {
+        "path": "/notifications/{notificationId}",
+        "definition": {
+          "entityName": "Notification",
+          "schema": {
+            "$ref": "#/backend/entities/Notification"
+          },
+          "description": "Stores global notifications for events like new live classes. Readable by all, writable only by teachers.",
+          "params": [
+            {
+              "name": "notificationId",
+              "description": "The unique ID for the notification."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/test_analytics/{testId}",
+        "definition": {
+          "entityName": "TestAnalytics",
+          "schema": {
+            "$ref": "#/backend/entities/TestAnalytics"
+          },
+          "description": "Stores aggregated analytics for mock tests. Any authenticated user can read this to see comparisons. Writes are handled transactionally on test submission.",
+          "params": [
+            {
+              "name": "testId",
+              "description": "The unique ID for the mock test."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/dashboard_links/{linkId}",
+        "definition": {
+          "entityName": "DashboardLink",
+          "schema": {
+            "$ref": "#/backend/entities/DashboardLink"
+          },
+          "description": "Stores the configuration for the quick access links on the dashboard. Manageable by teachers.",
+          "params": [
+            {
+              "name": "linkId",
+              "description": "The unique ID for the dashboard link."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/blocked_emails/{email}",
+        "definition": {
+          "entityName": "BlockedEmail",
+          "schema": {
+            "$ref": "#/backend/entities/BlockedEmail"
+          },
+          "description": "Stores email addresses that are blocked from creating new user accounts. The document ID is the email address itself for efficient lookups.",
+          "params": [
+            {
+              "name": "email",
+              "description": "The email address to block."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support the core features of the DCAM Classes application, focusing on content delivery, live classes, practice questions, mock tests, doubt resolution, personalized learning paths, and progress tracking. The structure prioritizes authorization independence, clarity, and scalability. To achieve Authorization Independence we denormalize data where necessary. For example, teacher information relevant to a LiveClass is accessible without requiring a separate read. Segregation is used extensively to ensure data with different security requirements are stored in different collections, which simplifies the security rules. Path-based ownership is used for user-specific data to easily control access. The use of membership maps are used to support collaborative data access where needed, although in this specific case collaborative data is not explicitly mentioned in the requirements."
+  }
+}

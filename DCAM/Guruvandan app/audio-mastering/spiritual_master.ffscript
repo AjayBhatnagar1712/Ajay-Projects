@@ -1,0 +1,4 @@
+[0:a]highpass=f=72,lowpass=f=14500,afftdn=nf=-28:tn=1,equalizer=f=180:t=q:w=1.1:g=1.5,equalizer=f=420:t=q:w=1.2:g=-1.6,equalizer=f=2900:t=q:w=1.0:g=2.2,equalizer=f=7200:t=q:w=1.2:g=1.0,acompressor=threshold=0.075:ratio=2.4:attack=18:release=180:makeup=1.8,asplit=3[dry][room_a][room_b];
+[room_a]adelay=58|74,volume=0.16,aecho=0.78:0.36:115|230|390:0.24|0.14|0.08[early];
+[room_b]adelay=125|151,lowpass=f=6800,volume=0.10,aecho=0.8:0.28:310|560:0.15|0.07[tail];
+[dry][early][tail]amix=inputs=3:weights='1 0.75 0.55':normalize=0,alimiter=limit=0.90:attack=5:release=80,loudnorm=I=-16:LRA=8:TP=-1.2,volume=1.8dB,afade=t=in:st=0:d=0.35,afade=t=out:st=15.75:d=0.60,atrim=end=16.35[out]

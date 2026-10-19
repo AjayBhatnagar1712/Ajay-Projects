@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b36273c1-4ef4-4512-af33-2d1accf69bf8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Program_to_calculate_percentage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Taking_User_input2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Taking_user_input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/increment_decrement_operator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/literals.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops_boolean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/operator_precedence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practice_questions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_input.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2dzvs2e3NwBPZTKvQ4UgjYkn81Z" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.loops_boolean.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/work/JAVA/Full course/Chapter 5/loops"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="loops_boolean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="loops_boolean" />
+      <module name="HandsONPrograms" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.loops_boolean" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b36273c1-4ef4-4512-af33-2d1accf69bf8" name="Changes" comment="" />
+      <created>1711023924395</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711023924395</updated>
+    </task>
+    <servers />
+  </component>
+</project>

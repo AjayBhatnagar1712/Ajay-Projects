@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0c1415" />
+    <title>Guru Vandan — Cinematic Study</title>
+    <link rel="icon" href="/assets/assets/images/chakra_logo.png" />
+    <link rel="preload" as="image" href="/cinema/art/seeker.png" />
+    <link rel="stylesheet" href="/cinema/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#download">Skip the journey</a>
+    <header class="cinema-header">
+      <a class="brand" href="/" aria-label="Guru Vandan home">
+        <img src="/assets/assets/images/chakra_logo.png" alt="" width="26" height="44" />
+        <span>Guru Vandan<small>A JOURNEY INWARD</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="https://play.google.com/store/apps/details?id=com.ivar.guruvandan" rel="noopener">Play Store <span aria-hidden="true">↗</span></a>
+        <a href="https://apps.apple.com/app/id6807657972" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
+        <a href="/shop.html">Shop <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main>
+      <h1 class="visually-hidden">Shanti. A journey inward with Guru Vandan.</h1>
+      <section id="cinema-journey" aria-label="The journey of a seeker">
+        <div class="cinema-stage" aria-busy="true">
+          <img class="opening-poster" src="/cinema/art/seeker.png" alt="A young seeker under a banyan tree at dawn" fetchpriority="high" />
+          <canvas id="cinema-canvas" role="img" aria-label="A young seeker under a banyan tree at dawn"></canvas>
+          <div class="cinema-shade" aria-hidden="true"></div>
+          <p class="scroll-invitation"><span class="scroll-line" aria-hidden="true"></span>SCROLL INTO STILLNESS<span aria-hidden="true">↓</span></p>
+          <div class="cinema-controls">
+            <div class="control-heading"><span id="cinema-chapter">The restless seeker</span><span id="cinema-position">01 / 06</span></div>
+            <label class="visually-hidden" for="cinema-scrubber">Journey position</label>
+            <input id="cinema-scrubber" type="range" min="0" max="12000" step="1" value="0" />
+            <nav class="chapter-nav" aria-label="Journey scenes">
+              <button type="button" data-chapter="0" aria-label="The restless seeker" aria-current="step">01</button>
+              <button type="button" data-chapter="1" aria-label="The inner door">02</button>
+              <button type="button" data-chapter="2" aria-label="Into the stillness">03</button>
+              <button type="button" data-chapter="3" aria-label="The science of the spirit">04</button>
+              <button type="button" data-chapter="4" aria-label="A river of seekers">05</button>
+              <button type="button" data-chapter="5" aria-label="The light remains">06</button>
+            </nav>
+          </div>
+          <a class="skip-film" href="#download">Continue to the app <span aria-hidden="true">↗</span></a>
+          <p id="cinema-status" role="status"></p>
+        </div>
+      </section>
+      <noscript><p class="no-script">The journey needs JavaScript. You can still discover Guru Vandan and download the app below.</p></noscript>
+      <section class="app-ending" id="download">
+        <img class="ending-logo" src="/assets/assets/images/chakra_logo.png" alt="Guru Vandan logo" width="48" height="78" loading="lazy" />
+        <p class="eyebrow">THE JOURNEY CONTINUES WITH YOU</p>
+        <h2>The light within.<br /><em>Closer, every day.</em></h2>
+        <p class="app-description">Satsang, meditation, aarti and Guru Vani.<br />Carry the teachings of Gurudev into your everyday life.</p>
+        <div class="downloads">
+          <a href="https://play.google.com/store/apps/details?id=com.ivar.guruvandan" rel="noopener"><span class="play-mark" aria-hidden="true">▷</span><span><small>GET IT ON</small>Google Play</span><span aria-hidden="true">↗</span></a>
+          <a href="https://apps.apple.com/app/id6807657972" rel="noopener"><span class="store-mark" aria-hidden="true">A</span><span><small>DOWNLOAD ON THE</small>App Store</span><span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="gurudev-name" lang="hi">सद्गुरु महर्षि मेँहीँ परमहंस जी महाराज</p>
+        <button type="button" id="cinema-restart">Return to the beginning <span aria-hidden="true">↑</span></button>
+      </section>
+    </main>
+    <footer><a href="/">Guru Vandan</a><nav aria-label="Footer"><a href="/shop.html">Shop</a><a href="/privacy-policy.html">Privacy</a><a href="/support.html">Support</a></nav><small>© 2026 Guru Vandan</small></footer>
+    <script type="module" src="/cinema/player.mjs"></script>
+  </body>
+</html>

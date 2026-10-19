@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    branches: [main, staging]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+
+      - name: Validate pnpm lockfile is up-to-date
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck (libs, Vercel /api routes, artifacts)
+        run: pnpm run typecheck:deploy
+
+      - name: Build workspace libs
+        run: |
+          pnpm --filter @workspace/broker-tenant-onboarding run build
+          pnpm --filter @workspace/tenant-document-upload run build
+          pnpm --filter @workspace/tenant-workflow run build
+          pnpm --filter @workspace/lease-agreement run build
+
+      - name: Test (trustkeyper)
+        # Placeholder Supabase env — satisfies createClient() at import time in vitest
+        env:
+          VITE_SUPABASE_URL: https://placeholder.supabase.co
+          VITE_SUPABASE_ANON_KEY: placeholder-anon-key-for-ci-tests-only
+        run: pnpm --filter @workspace/trustkeyper run test:run
+
+      - name: Install Playwright Chromium (marketing website)
+        run: pnpm --filter @workspace/website exec playwright install chromium --with-deps
+
+      - name: Test (marketing website)
+        env:
+          VITE_SUPABASE_URL: https://placeholder.supabase.co
+          VITE_SUPABASE_ANON_KEY: placeholder-anon-key-for-ci-tests-only
+        run: pnpm --filter @workspace/website run test:run
+
+      - name: Test (Vercel /api routes)
+        run: pnpm run test:api
+
+      - name: Production build (same as Vercel buildCommand)
+        run: pnpm run build:deploy
+
+      - name: Build marketing website
+        run: pnpm run build:website
+
+      - name: Assert build artifacts exist
+        run: |
+          test -f lib/broker-tenant-onboarding/dist/index.js || (echo "broker-tenant-onboarding dist missing" && exit 1)
+          test -f lib/lease-agreement/dist/index.js           || (echo "lease-agreement dist missing" && exit 1)
+          test -f artifacts/trustkeyper/dist/index.html      || (echo "SPA index.html missing" && exit 1)
+          test -f artifacts/api-server/dist/index.mjs          || (echo "API server bundle missing" && exit 1)
+          test -f artifacts/website/dist/index.html          || (echo "marketing website index.html missing" && exit 1)
+          echo "Build artifacts verified."

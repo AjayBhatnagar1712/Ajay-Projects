@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Market Capturing{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="app-header">
+        <a class="brand" href="{{ url_for('main.home') }}">Market Capturing</a>
+        <nav class="top-nav" aria-label="Tools">
+            <a href="{{ url_for('main.business_contact_finder') }}">Business Contacts</a>
+            <a href="{{ url_for('main.website_gap_finder') }}">Website Gap Finder</a>
+        </nav>
+    </header>
+    <main class="shell">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

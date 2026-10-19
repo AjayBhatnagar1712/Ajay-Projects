@@ -1,0 +1,44 @@
+.cinema-footer { color:#c5c9bc; }
+.cinema-footer nav { flex-wrap:wrap; }
+.cinema-brand { font-weight:400; }
+.quote-route { color-scheme:dark; --paper:#f3eddd; --ink:#101714; --gold:#d5b482; --gold-light:#e1c89f; --muted:#c5c9bc; --maroon:#d5b482; --maroon-soft:#d5b482; --line:#d5b48233; background:#101714; }
+.quote-route body { background:radial-gradient(ellipse at 50% 0,#2a392b80,transparent 900px),#101714; color:var(--paper); font-family:'Segoe UI',Arial,sans-serif; }
+.quote-route body::before { display:none; }
+.quote-route .site-header { position:fixed; inset:0 0 auto; width:100%; margin:0; padding:22px 4%; border:0; border-bottom:1px solid #d5b48222; border-radius:0; box-shadow:none; background:#101714f5; gap:24px; }
+.quote-route .site-header nav { gap:24px; color:var(--paper); font-size:11px; font-weight:400; }
+.quote-route .site-header nav a { white-space:nowrap; }
+.quote-route .nav-shop-link { padding:10px 0; background:none; color:var(--paper); border:0; }
+.quote-route .nav-store-link { border:1px solid #d5b48266; border-radius:30px; padding:10px 16px; color:var(--paper); background:transparent; }
+.quote-route .nav-store-link-light { border-color:#d5b48244; }
+.quote-route .quote-page { padding:165px 0 90px; }
+.quote-route .quote-intro > img, .quote-route .quote-divider img { background:#f3eddd; border-radius:40px; padding:7px; box-sizing:content-box; }
+.quote-route .quote-intro h1 { font-weight:400; color:var(--paper); }
+.quote-route .bilingual-quote-card { background:linear-gradient(130deg,#243329,#141e18); border:1px solid var(--line); border-radius:8px; box-shadow:none; }
+.quote-route .bilingual-quote-card::before, .quote-route .bilingual-quote-card::after { border-color:#d5b48222; }
+.quote-route .language-label { background:#d5b48215; color:var(--gold); border:1px solid #d5b48233; font-weight:500; }
+.quote-route .quote-language-block blockquote { color:var(--paper); font-weight:400; line-height:1.35; }
+.quote-route .quote-author { color:var(--gold); font-weight:400; }
+.quote-route .quote-divider span { background:#d5b48244; }
+.quote-route .quote-app-invitation { background:#18261d; border:1px solid var(--line); border-radius:8px; box-shadow:none; }
+.quote-route .quote-app-invitation h2 { font-weight:400; }
+.quote-route .quote-app-invitation .store-actions { max-width:none; }
+.quote-route .quote-app-invitation .store-button.store-badge { width:auto; min-width:0; height:48px; padding:0; border:0; border-radius:0; background:transparent; color:inherit; box-shadow:none; }
+.quote-route .quote-app-invitation .store-button.store-badge + .store-button.store-badge { background:transparent; }
+.quote-route footer { display:flex; justify-content:space-between; flex-wrap:wrap; max-width:none; width:100%; margin:0; padding:34px 4%; border-top:1px solid var(--line); background:#101714; color:#c5c9bc; font-size:11px; }
+.quote-route footer a:hover { color:var(--gold); }
+.quote-route :focus-visible { outline:2px solid var(--gold); outline-offset:5px; }
+@media(max-width:950px) {
+  .quote-route .site-header { flex-direction:column; align-items:flex-start; gap:16px; }
+  .quote-route .site-header nav { width:100%; flex-wrap:wrap; gap:10px 18px; }
+  .quote-route .quote-page { padding-top:190px; }
+}
+@media(max-width:560px) {
+  .quote-route .site-header { padding:16px 5%; gap:10px; }
+  .quote-route .site-header .cinema-brand { font-size:22px; }
+  .quote-route .site-header nav { gap:8px 12px; font-size:10px; }
+  .quote-route .site-header nav a { padding:8px; font-size:10px; }
+  .quote-route .site-header nav a:first-child { padding-left:0; }
+  .quote-route .quote-page { width:calc(100% - 36px); padding-top:205px; }
+  .quote-route .bilingual-quote-card { padding:26px; }
+  .quote-route .quote-intro h1 { font-size:42px; }
+}

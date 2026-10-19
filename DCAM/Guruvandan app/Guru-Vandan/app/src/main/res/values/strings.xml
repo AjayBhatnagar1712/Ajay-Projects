@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Guru Vandan</string>
+    <string name="email_or_phone_number_hint">Email or Phone Number</string>
+    <string name="jai_guru">जय गुरु</string>
+    <string name="welcome_message">सद्गुरु महाराज के पावन आशीर्वाद से, हम आपका इस आध्यात्मिक यात्रा में हार्दिक स्वागत करते हैं।</string>
+    <string name="double_inverted_comma">\"</string>
+    
+    <!-- Dialog Strings -->
+    <string name="ready_for_meditation_instructions">Please put your phone on <b>Silent mode</b> so that notifications do not disturb your meditations.\n\nWhen you are ready press Start</string>
+
+    <!-- Home Fragment Strings -->
+    <string name="app_name_hindi">गुरु वन्दन</string>
+    <string name="guru_ji_name_english">Sadguru Maharshi Mehi Paramhans</string>
+    <string name="guru_ji_name_hindi">सद्गुरु महाराज</string>
+    <string name="share_this_app">Share this App</string>
+
+    <!-- About Cards -->
+    <string name="about_guru_maharaj_title">ABOUT GURU MAHARAJ</string>
+    <string name="about_guru_maharaj_desc">Sadguru Maharshi Mehi Paramhans was one of the most respected saints and spiritual masters of the Sant Mat tradition in India. Born in Bihar, he dedicated his life to spreading the message of inner meditation, self-realization, universal love, and peace. He emphasized the practice of Surat Shabd Yoga and taught that true spirituality lies beyond caste, religion, and social divisions.\n\nThrough his profound writings, discourses, and compassionate guidance, he inspired millions of devotees to walk the path of devotion, simplicity, morality, and spiritual awakening. His teachings continue to guide seekers toward inner harmony and realization of the Divine within every soul.</string>
+
+    <string name="about_guru_vandan_title">ABOUT GURU VANDAN</string>
+    <string name="about_guru_vandan_desc">A sacred space for daily spiritual practice — satsang, meditation, Sadguru\'s wisdom and community of devotees, all in one place. Jai Guru.</string>
+    <string name="guidance_for_meditation_desc">Sit comfortably with your spine upright. Close your eyes and bring your attention to your breath. When the mind wanders, gently return it to the present moment. The bell will sound when your session is complete.</string>
+</resources>

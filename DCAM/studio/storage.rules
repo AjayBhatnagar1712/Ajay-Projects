@@ -1,0 +1,122 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function isDocument() {
+      return request.resource.contentType.matches('application/pdf')
+        || request.resource.contentType.matches('application/msword')
+        || request.resource.contentType.matches('application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    }
+
+    function isSafeAttachment() {
+      return request.resource.size <= 10 * 1024 * 1024
+        && (
+          isImage()
+          || isDocument()
+          || request.resource.contentType.matches('text/plain')
+        );
+    }
+
+    // Public enquiry attachments can be created by website visitors in the pending area only.
+    match /enquiry_attachments/{enquiryType}/pending/{allPaths=**} {
+      allow read: if false;
+      allow create: if resource == null
+                    && (enquiryType == 'student' || enquiryType == 'teacher')
+                    && isSafeAttachment();
+      allow update, delete: if false;
+    }
+
+    // Chat files are readable/writable by authenticated users with bounded attachment types.
+    match /chat_files/{messageId}/{fileName} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isSafeAttachment();
+      allow update, delete: if false;
+    }
+
+    // Doubt attachments can be written by any authenticated user (students asking, teachers answering)
+    // and are readable by authenticated users.
+    match /doubt_attachments/{allPaths=**} {
+        allow read: if isSignedIn();
+        allow create: if isSignedIn() && isSafeAttachment();
+        allow update, delete: if false;
+    }
+
+    // Profile pictures are private-write by owner and readable by authenticated users.
+    match /profile_pictures/{userId}/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == userId
+                            && request.resource.size <= 5 * 1024 * 1024
+                            && isImage();
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Question-bank media uploaded during the OCR/image crop flow.
+    match /content_files/{ownerId}/practice_questions/{kind}/{fileName} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == ownerId
+                            && request.resource.size <= 10 * 1024 * 1024
+                            && (kind == 'question' || kind == 'solution')
+                            && isImage();
+      allow delete: if isSignedIn() && request.auth.uid == ownerId;
+    }
+
+    // Content files (PDFs, etc.) uploaded by teachers/admins.
+    match /content_files/{ownerId}/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == ownerId
+                            && request.resource.size <= 25 * 1024 * 1024
+                            && isDocument();
+      allow delete: if isSignedIn() && request.auth.uid == ownerId;
+    }
+
+    // Course thumbnails uploaded by teachers.
+    match /course_thumbnails/{ownerId}/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == ownerId
+                            && request.resource.size <= 5 * 1024 * 1024
+                            && isImage();
+      allow delete: if isSignedIn() && request.auth.uid == ownerId;
+    }
+
+    // Live batch thumbnails uploaded by teachers.
+    match /live_batch_thumbnails/{ownerId}/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == ownerId
+                            && request.resource.size <= 5 * 1024 * 1024
+                            && isImage();
+      allow delete: if isSignedIn() && request.auth.uid == ownerId;
+    }
+
+    // Previous-session notes uploaded by teachers for live batches.
+    match /live_batch_session_notes/{ownerId}/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == ownerId
+                            && request.resource.size <= 25 * 1024 * 1024
+                            && isDocument();
+      allow delete: if isSignedIn() && request.auth.uid == ownerId;
+    }
+
+    // Course module files (PDF/Word) uploaded by teachers.
+    match /course_module_files/{ownerId}/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn()
+                            && request.auth.uid == ownerId
+                            && request.resource.size <= 25 * 1024 * 1024
+                            && isDocument();
+      allow delete: if isSignedIn() && request.auth.uid == ownerId;
+    }
+  }
+}

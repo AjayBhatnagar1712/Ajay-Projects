@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "540841544767",
+    "firebase_url": "https://guru-vandan-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "guru-vandan",
+    "storage_bucket": "guru-vandan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540841544767:android:6f5d1b40aba4f0c3cebc8a",
+        "android_client_info": {
+          "package_name": "com.ivar.guruvandan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540841544767-3j14dso0veq0iqalsma4muuo8cl3andn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivar.guruvandan",
+            "certificate_hash": "37f868674273e98c04c50b2cdad8ca2f2a8eb248"
+          }
+        },
+        {
+          "client_id": "540841544767-5a9klaagrdhpfhsdmd057e7t8ulk3fo5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivar.guruvandan",
+            "certificate_hash": "026d35f92d3950b325e70f5540a330f386b19416"
+          }
+        },
+        {
+          "client_id": "540841544767-bmuqak2h7fab0lmhqssr6ppq77rk49gq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivar.guruvandan",
+            "certificate_hash": "266cfd5d7dc43eb64a42ed6a80e8d76b71fae463"
+          }
+        },
+        {
+          "client_id": "540841544767-ndqj6otr7vlr7lvaoph7q2bcsmf9r887.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivar.guruvandan",
+            "certificate_hash": "4f272bb28fa6a37eb9c5423ab488cf6db7889e9f"
+          }
+        },
+        {
+          "client_id": "540841544767-vc4ksisj4fkbbqvm94e8f62753kolkfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivar.guruvandan",
+            "certificate_hash": "82b65b2ce6ba425abb3b6f3b879053b2df9f57c2"
+          }
+        },
+        {
+          "client_id": "540841544767-tlaebghbususiucprk4g2i2t1n2m5fmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDnC1IE0BImeYue5vaOicS4_Miw0Vd2xE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540841544767-tlaebghbususiucprk4g2i2t1n2m5fmk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "540841544767-qt1h14f37kh1vrv3cm0oko6gli8a158r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ivar.guruvandan"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

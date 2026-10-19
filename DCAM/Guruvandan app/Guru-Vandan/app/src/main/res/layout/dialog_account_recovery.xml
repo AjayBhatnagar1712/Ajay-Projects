@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="@color/bg_cream"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            style="@style/Widget.GuruVandan.TextViewH4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Reclaim Your Space"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dialog_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:lineSpacingExtra="4dp"
+            android:text="Locked out or didn't create this account? No worries. We can send a secure link to your inbox so you can claim your space and reset the password."
+            android:textColor="@color/text_taupe"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="0dp"
+                style="@style/Widget.GuruVandan.ButtonSecondary"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Cancel"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/button_send_link"
+                style="@style/Widget.GuruVandan.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:layout_marginStart="8dp"
+                android:text="Send Link"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1657a50d-3160-4dbf-ae0b-adda9b8bcf41" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/loops/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/loops.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/src/for_loop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/src/patter2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/src/pattern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/src/pattern3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loops/src/while_loop.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/loops" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2ddiroTVy8JgicUpSWDCG4vSsNX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.for_loop.executor": "Run",
+    "Application.patter2.executor": "Run",
+    "Application.pattern.executor": "Run",
+    "Application.pattern3.executor": "Run",
+    "Application.questions.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/work/JAVA/Full course/Chapter 3/programs on strings"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.pattern3">
+    <configuration name="for_loop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="for_loop" />
+      <module name="Chapter 5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="patter2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="patter2" />
+      <module name="Chapter 5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="pattern" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pattern" />
+      <module name="Chapter 5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="pattern3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pattern3" />
+      <module name="Chapter 5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="questions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="questions" />
+      <module name="Chapter 5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.pattern3" />
+        <item itemvalue="Application.patter2" />
+        <item itemvalue="Application.pattern" />
+        <item itemvalue="Application.questions" />
+        <item itemvalue="Application.for_loop" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1657a50d-3160-4dbf-ae0b-adda9b8bcf41" name="Changes" comment="" />
+      <created>1710344557891</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710344557891</updated>
+    </task>
+    <servers />
+  </component>
+</project>

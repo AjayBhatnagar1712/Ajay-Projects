@@ -1,0 +1,20 @@
+[
+  {"id":"horizon","source":"optional.mp4","start":0.25,"end":8.75,"act":0,"title":"A journey inward","line":"Some journeys lead us back to ourselves.","focus":0.47},
+  {"id":"prayer","source":"1st.mp4","start":0.25,"end":9.25,"act":1,"title":"The first prayer","line":"Before the answers, there was a quiet calling.","focus":0.45},
+  {"id":"examination","source":"2nd.mp4","start":1,"end":8.5,"act":1,"title":"The pen falls silent","line":"A question no examination could answer.","focus":0.5},
+  {"id":"departure","source":"3rd.mp4","start":0.25,"end":9.5,"act":1,"title":"Beyond the familiar","line":"He steps beyond the familiar, into the search.","focus":0.56},
+  {"id":"road","source":"4th.mp4","start":0.25,"end":9.25,"act":2,"title":"The long search","line":"The road unfolds. The longing deepens.","focus":0.52},
+  {"id":"blessing","source":"5th and 6th.mp4","start":0.25,"end":10,"act":2,"title":"At the Guru’s feet","line":"In humility, a new door opens.","focus":0.59},
+  {"id":"inner-door","source":"5th and 6th.mp4","start":10,"end":19.75,"act":2,"title":"The inner door","line":"The light he sought was never far away.","focus":0.63},
+  {"id":"cave","source":"7th.mp4","start":0.25,"end":9.5,"act":3,"title":"Beside the Ganga","line":"The world grows quiet. The inward journey begins.","focus":0.5},
+  {"id":"stillness","source":"8th.mp4","start":0.25,"end":9.25,"act":3,"title":"The practice of stillness","line":"Not an escape from life. A deeper way of seeing it.","focus":0.5},
+  {"id":"light","source":"9th.mp4","start":0.25,"end":9.25,"act":3,"title":"Beyond the visible","line":"From darkness, toward light. From sound, toward silence.","focus":0.5},
+  {"id":"return","source":"10th.mp4","start":0.25,"end":9.5,"act":3,"title":"A new dawn","line":"What is found within becomes a gift to the world.","focus":0.5},
+  {"id":"writing","source":"11th.mp4","start":0.25,"end":7.25,"act":4,"title":"Wisdom takes form","line":"The inward path, offered in words.","focus":0.55},
+  {"id":"wisdom","source":"12th.mp4","start":0.25,"end":9.5,"act":4,"title":"A path for every seeker","line":"A teaching that points beyond the page.","focus":0.5},
+  {"id":"books","source":"14th.mp4","start":7.8,"end":9.85,"act":4,"title":"A living legacy","line":"To be read. To be contemplated. To be lived.","focus":0.5},
+  {"id":"satsang","source":"15th.mp4","start":0.25,"end":9.5,"act":5,"title":"A river of seekers","line":"One light. Countless hearts.","focus":0.5},
+  {"id":"kuppaghat","source":"16th.mp4","start":0.25,"end":8.75,"act":5,"title":"Kuppaghat","line":"A place of remembrance. A legacy that continues.","focus":0.56},
+  {"id":"disciple","source":"17th.mp4","start":0.25,"end":9.5,"act":6,"title":"The journey reaches you","line":"A moment of wisdom. Then a moment to turn inward.","focus":0.47},
+  {"id":"lamp","source":"18th.mp4","start":0.25,"end":9.5,"act":6,"title":"The light remains","line":"Carry the teaching into your every day.","focus":0.5}
+]

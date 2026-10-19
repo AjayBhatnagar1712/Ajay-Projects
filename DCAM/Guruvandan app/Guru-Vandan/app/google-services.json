@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "540841544767",
+    "project_id": "guru-vandan",
+    "storage_bucket": "guru-vandan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540841544767:android:6f5d1b40aba4f0c3cebc8a",
+        "android_client_info": {
+          "package_name": "com.ivar.guruvandan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDnC1IE0BImeYue5vaOicS4_Miw0Vd2xE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

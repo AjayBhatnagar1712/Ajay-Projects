@@ -1,0 +1,17 @@
+﻿{
+  "name": "Aikon Automations",
+  "short_name": "Aikon",
+  "description": "AI automation, websites, apps, cloud services and marketing systems for modern businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eef3f4",
+  "theme_color": "#071218",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

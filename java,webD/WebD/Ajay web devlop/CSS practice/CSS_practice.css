@@ -1,0 +1,18 @@
+h2 {
+    color: indigo;
+    background-color: aquamarine;
+}
+
+button {
+    color: red;
+    background-color: rgb(255, 200, 200);
+}
+
+p {
+    color: blueviolet;
+    background-color: #ff9824;
+}
+
+body {
+    background-color: #000000;
+}

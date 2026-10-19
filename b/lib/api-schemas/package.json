@@ -1,0 +1,16 @@
+{
+  "name": "@workspace/api-schemas",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./brokerProfile": "./src/brokerProfile.ts",
+    "./leaseAgreement": "./src/leaseAgreement.ts",
+    "./partyPhone": "./src/partyPhone.ts"
+  },
+  "dependencies": {
+    "libphonenumber-js": "^1.13.10",
+    "zod": "catalog:"
+  }
+}

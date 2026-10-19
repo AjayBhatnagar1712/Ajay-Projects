@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/nav_home_icon"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_satsang"
+        android:icon="@drawable/nav_satsang_icon"
+        android:title="Satsang" />
+
+    <!-- This invisible placeholder pushes the other icons to the sides for the FAB -->
+    <item
+        android:id="@+id/nav_meditate"
+        android:icon="@drawable/nav_meditation_icon"
+        android:title="Meditate" />
+
+    <item
+        android:id="@+id/nav_wisdom"
+        android:icon="@drawable/nav_wisdom_icon"
+        android:title="Wisdom" />
+
+    <item
+        android:id="@+id/nav_more"
+        android:icon="@drawable/nav_more_icon"
+        android:title="More" />
+</menu>

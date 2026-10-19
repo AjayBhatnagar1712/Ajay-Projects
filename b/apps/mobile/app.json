@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "TrustKeyper Staging",
+    "slug": "trustkeyper-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "trustkeyper",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.trustkeyper.mobile.staging",
+      "icon": "./assets/icon.png",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.trustkeyper.mobile.staging",
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3965328b-ac6b-4cc6-84f8-5dd6e5b246fa"
+      }
+    }
+  }
+}

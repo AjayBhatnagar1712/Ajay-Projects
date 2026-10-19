@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Google Sheet Export{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Google Sheet Export</p>
+    <h1>{% if success %}Export completed{% else %}Export needs attention{% endif %}</h1>
+    <p class="page-copy">{{ message }}</p>
+</section>
+
+<section class="panel">
+    <a class="download-link" href="{{ url_for('main.business_contact_finder') }}">Back to Business Contact Finder</a>
+</section>
+{% endblock %}

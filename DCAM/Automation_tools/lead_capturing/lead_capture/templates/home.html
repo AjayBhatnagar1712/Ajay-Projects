@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Market Capturing Tools{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Workspace</p>
+    <h1>Market Capturing Tools</h1>
+    <p class="page-copy">Choose the tool you want to run for prospecting and outreach data collection.</p>
+</section>
+
+<section class="tool-grid" aria-label="Available tools">
+    <a class="tool-card primary-card" href="{{ url_for('main.business_contact_finder') }}">
+        <span class="tool-kicker">New Tool</span>
+        <strong>Business Contact Finder</strong>
+        <span>Find businesses by type and area, then collect available phone numbers, email addresses, addresses, website links, and Maps links.</span>
+    </a>
+    <a class="tool-card" href="{{ url_for('main.website_gap_finder') }}">
+        <span class="tool-kicker">Existing Tool</span>
+        <strong>Website Gap Finder</strong>
+        <span>Find businesses with missing, broken, parked, suspended, or suspicious websites so you can contact them first.</span>
+    </a>
+</section>
+{% endblock %}

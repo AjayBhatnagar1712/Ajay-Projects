@@ -1,0 +1,87 @@
+
+> nextn@0.1.0 dev
+> next dev --port 3000
+
+   ▲ Next.js 15.5.9
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.6:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 9.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 41.2s (1197 modules)
+ GET / 200 in 15633ms
+ ✓ Compiled in 8.9s (453 modules)
+ GET / 200 in 51231ms
+ GET / 200 in 2804ms
+ GET / 200 in 2644ms
+ ○ Compiling /signup ...
+ ✓ Compiled /signup in 3.6s (1161 modules)
+ GET /signup 200 in 6914ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 23.1s (2480 modules)
+ GET /login 200 in 27998ms
+ GET / 200 in 4584ms
+ GET /signup 200 in 695ms
+ GET /login 200 in 752ms
+ ○ Compiling /exam-bulletin ...
+ ✓ Compiled /exam-bulletin in 7.3s (2624 modules)
+ GET /exam-bulletin 200 in 8950ms
+ ○ Compiling /exam-preparation ...
+ ✓ Compiled /exam-preparation in 3.4s (2631 modules)
+ GET /exam-preparation 200 in 5143ms
+ ○ Compiling /mock-test-series ...
+ ✓ Compiled /mock-test-series in 2.9s (2633 modules)
+ GET /mock-test-series 200 in 4386ms
+ ○ Compiling /student-enquiry ...
+ ✓ Compiled /student-enquiry in 3.7s (2679 modules)
+ GET /student-enquiry 200 in 5013ms
+ ○ Compiling /teacher-enquiry ...
+ ✓ Compiled /teacher-enquiry in 2.7s (2681 modules)
+ GET /teacher-enquiry 200 in 3892ms
+ GET / 200 in 2742ms
+ GET /signup 200 in 1592ms
+ GET /login 200 in 1521ms
+ GET /exam-bulletin 200 in 1125ms
+ GET /exam-preparation 200 in 1461ms
+ GET /mock-test-series 200 in 1932ms
+ GET /student-enquiry 200 in 990ms
+ GET /teacher-enquiry 200 in 1073ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 5.6s (2805 modules)
+ GET /dashboard 200 in 7194ms
+ GET / 200 in 1702ms
+ GET /dashboard 200 in 781ms
+ GET / 200 in 920ms
+ ✓ Compiled in 30.3s (2742 modules)
+ GET / 200 in 2116ms
+ ✓ Compiled in 6.5s (2742 modules)
+ GET / 200 in 1566ms
+ ✓ Compiled in 7.2s (2742 modules)
+ GET / 200 in 1499ms
+ ✓ Compiled in 7.5s (2742 modules)
+ ✓ Compiled in 13.5s (2742 modules)
+ GET / 200 in 15521ms
+ GET / 200 in 765ms
+ ✓ Compiled in 4s (640 modules)
+ GET / 200 in 2138ms
+ ✓ Compiled in 3.2s (640 modules)
+ GET / 200 in 1304ms
+ ✓ Compiled in 4s (640 modules)
+ GET / 200 in 1223ms
+ ✓ Compiled in 4.7s (640 modules)
+ GET / 200 in 1055ms
+ ✓ Compiled in 4.4s (640 modules)
+ ✓ Compiled in 1058ms (564 modules)
+ GET / 200 in 2196ms
+   ▲ Next.js 15.5.9
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.6:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 17.5s
+ ○ Compiling / ...
+ ✓ Compiled / in 48s (1389 modules)
+ ✓ Compiled in 7s (544 modules)

@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./lib/db"
+    },
+    {
+      "path": "./lib/auth-server"
+    },
+    {
+      "path": "./lib/api-client-react"
+    },
+    {
+      "path": "./lib/api-zod"
+    },
+    {
+      "path": "./lib/sync-store"
+    },
+    {
+      "path": "./lib/invitations-store"
+    },
+    {
+      "path": "./lib/broker-tenant-onboarding"
+    },
+    {
+      "path": "./lib/tenant-document-upload"
+    },
+    {
+      "path": "./lib/tenant-workflow"
+    },
+    {
+      "path": "./lib/lease-agreement"
+    }
+  ]
+}

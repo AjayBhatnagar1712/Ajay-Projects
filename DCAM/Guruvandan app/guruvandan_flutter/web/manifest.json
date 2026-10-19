@@ -1,0 +1,30 @@
+{
+  "name": "Guru Vandan",
+  "short_name": "Guru Vandan",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F9F5F0",
+  "theme_color": "#8B1A1A",
+  "description": "Satsang, meditation, Maharshi Mehi Paramhans wisdom, and spiritual practice.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.ivar.guruvandan",
+      "url": "https://play.google.com/store/apps/details?id=com.ivar.guruvandan"
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/Icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

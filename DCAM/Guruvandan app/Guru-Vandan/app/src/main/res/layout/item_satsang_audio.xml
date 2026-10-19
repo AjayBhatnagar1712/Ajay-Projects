@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@color/surface_white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/border_taupe">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/text_audio_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textColor="@color/accent_gold"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="MORNING SATSANG" />
+
+        <TextView
+            android:id="@+id/text_audio_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Morning Satsang" />
+
+        <TextView
+            android:id="@+id/text_audio_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/text_taupe_light"
+            android:textSize="14sp"
+            tools:text="Sacred morning gathering with devotional hymns and teachings" />
+
+        <TextView
+            android:id="@+id/text_audio_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/text_taupe_light"
+            android:textSize="14sp"
+            tools:text="Duration: 30:00" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_play_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Play Audio"
+                android:drawableStart="@android:drawable/ic_media_play"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/primary_maroon"
+                app:cardCornerRadius="100dp"
+                app:backgroundTint="@color/primary_maroon"
+                app:elevation="0dp"
+                app:fabCustomSize="48dp"
+                app:srcCompat="@android:drawable/ic_media_play"
+                app:tint="@color/text_white"
+                app:rippleColor="#4DFFFFFF">
+                <ImageView
+                    android:id="@+id/button_play_pause_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/play"
+                    android:contentDescription="Play Audio"
+                    android:layout_margin="20dp"
+                    app:tint="@color/text_white"
+                    tools:ignore="HardcodedText" />
+            </androidx.cardview.widget.CardView>
+
+            <SeekBar
+                android:id="@+id/seekbar_audio_progress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:progressTint="@color/primary_maroon"
+                android:thumbTint="@color/primary_maroon"
+                tools:progress="20" />
+            <TextView
+                android:id="@+id/text_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="12sp"
+                android:textColor="@color/text_taupe_light"
+                tools:text="00:00 / 30:00" />
+
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,13 @@
+import {cpSync,readFileSync,writeFileSync} from 'node:fs';
+import {join} from 'node:path';
+import {createHash} from 'node:crypto';
+const root = new URL('../',import.meta.url);
+const previous = JSON.parse(readFileSync(new URL('build/website-release-latest.json',root),'utf8'));
+const release = join(previous.release,'..',new Date().toISOString().replace(/[:.]/g,'-'));
+cpSync(join(previous.release,'public'),join(release,'public'),{recursive:true});
+cpSync(join(previous.release,'firebase.json'),join(release,'firebase.json'));
+for (const path of ['cinema/film.mjs']) cpSync(new URL(`web/${path}`,root),join(release,'public',path));
+const homepageHash = createHash('sha256').update(readFileSync(join(release,'public/index.html'))).digest('hex');
+const config = join(release,'firebase.json');
+writeFileSync(new URL('build/website-release-latest.json',root),JSON.stringify({release,config,homepageHash},null,2));
+console.log(config);

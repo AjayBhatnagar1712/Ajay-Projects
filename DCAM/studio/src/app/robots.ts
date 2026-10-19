@@ -1,0 +1,63 @@
+import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/site-metadata';
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: [
+          '/',
+          '/exam-preparation',
+          '/jee-main-online-coaching',
+          '/neet-online-coaching',
+          '/mock-test-series',
+          '/online-coaching-platform',
+          '/engineering-and-medical-entrance-exam-preparation',
+          '/jee-neet-coaching-guide',
+          '/exam-bulletin',
+          '/student-enquiry',
+          '/teacher-enquiry',
+          '/login',
+          '/signup',
+        ],
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/chat/',
+          '/checkout/',
+          '/content/',
+          '/courses/',
+          '/dashboard',
+          '/doubts',
+          '/exams',
+          '/find-teachers',
+          '/forgot-password',
+          '/live-batches',
+          '/live-classes',
+          '/mock-tests',
+          '/my-batch',
+          '/my-learning',
+          '/my-practice',
+          '/notice-board',
+          '/offers',
+          '/practice',
+          '/premium-mock-test',
+          '/profile',
+          '/start-practice-session',
+          '/student-registration',
+          '/study-requirements',
+          '/subscription',
+          '/teacher',
+          '/teacher-registration',
+          '/teacher-marketplace',
+          '/teachers/',
+          '/test/',
+          '/wallet',
+        ],
+      },
+    ],
+    sitemap: `${siteConfig.url}/sitemap.xml`,
+    host: siteConfig.url,
+  };
+}

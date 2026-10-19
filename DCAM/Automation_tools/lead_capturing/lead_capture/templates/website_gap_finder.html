@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Website Gap Finder{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Website Gap Finder</p>
+    <h1>Find businesses that need a better website presence.</h1>
+    <p class="page-copy">
+        Search by business type and area, then review businesses with no website or websites that look broken.
+    </p>
+</section>
+
+<section class="panel search-panel">
+    <form method="post" class="search-form">
+        <label>
+            <span>Business Type</span>
+            <input type="text" name="business_type" placeholder="Law firms" value="{{ form_data.business_type }}" required>
+        </label>
+        <label>
+            <span>Area</span>
+            <input type="text" name="area" placeholder="Mumbai" value="{{ form_data.area }}" required>
+        </label>
+        <button type="submit">Find Website Gaps</button>
+    </form>
+
+    {% if error_message %}
+    <div class="message error">{{ error_message }}</div>
+    {% endif %}
+</section>
+
+{% if search_performed and not error_message %}
+<section class="summary-grid">
+    <article class="summary-card">
+        <span>Total Businesses</span>
+        <strong>{{ summary.total_results }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>Flagged Leads</span>
+        <strong>{{ summary.flagged_results }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>No Website</span>
+        <strong>{{ summary.no_website_count }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>Website Issues</span>
+        <strong>{{ summary.website_issue_count }}</strong>
+    </article>
+    <article class="summary-card">
+        <span>Emails Found</span>
+        <strong>{{ summary.email_found_count }}</strong>
+    </article>
+</section>
+
+<section class="panel">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Priority Leads</p>
+            <h2>Businesses to contact first</h2>
+        </div>
+        {% if flagged_csv %}
+        <a class="download-link" href="data:text/csv;base64,{{ flagged_csv }}" download="flagged-leads.csv">Download CSV</a>
+        {% endif %}
+    </div>
+
+    {% if flagged_results %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Business</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Website</th>
+                    <th>Lead Reason</th>
+                    <th>Maps</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in flagged_results %}
+                <tr>
+                    <td>{{ lead.name }}</td>
+                    <td>{{ lead.address }}</td>
+                    <td>
+                        {% if lead.phone_number %}
+                        <a href="tel:{{ lead.phone_number }}">{{ lead.phone_number }}</a>
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if lead.email_addresses %}
+                        {% for email in lead.email_addresses %}
+                        <a href="mailto:{{ email }}">{{ email }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if lead.website %}
+                        <a href="{{ lead.website }}" target="_blank" rel="noreferrer">{{ lead.website }}</a>
+                        {% else %}
+                        Not listed
+                        {% endif %}
+                    </td>
+                    <td>{{ lead.lead_reason }}</td>
+                    <td>
+                        {% if lead.maps_url %}
+                        <a href="{{ lead.maps_url }}" target="_blank" rel="noreferrer">Open</a>
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="empty-state">No missing or broken websites were found in this search.</p>
+    {% endif %}
+</section>
+
+<section class="panel">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Reference List</p>
+            <h2>All businesses returned</h2>
+        </div>
+        {% if all_csv %}
+        <a class="download-link secondary" href="data:text/csv;base64,{{ all_csv }}" download="all-businesses.csv">Download All CSV</a>
+        {% endif %}
+    </div>
+
+    {% if all_results %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Business</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Website Status</th>
+                    <th>Website</th>
+                    <th>Maps</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in all_results %}
+                <tr>
+                    <td>{{ lead.name }}</td>
+                    <td>{{ lead.phone_display }}</td>
+                    <td>{{ lead.email_display }}</td>
+                    <td>{{ lead.website_status }}</td>
+                    <td>{{ lead.website_display }}</td>
+                    <td>
+                        {% if lead.maps_url %}
+                        <a href="{{ lead.maps_url }}" target="_blank" rel="noreferrer">Open</a>
+                        {% else %}
+                        Not found
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+{% endblock %}

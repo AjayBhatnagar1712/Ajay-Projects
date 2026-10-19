@@ -1,0 +1,110 @@
+[
+  {
+    "id": "01",
+    "slug": "01-horizon",
+    "title": "The open horizon",
+    "subtitle": "Untied hair. An unhurried path.",
+    "chapter": "PROLOGUE · THE CALLING",
+    "image": "01-horizon-corrected.png",
+    "output": "01-horizon-fixed.mp4",
+    "checks": [
+      "Fully loose silver hair",
+      "Strictly rear-facing",
+      "Grounded, natural steps"
+    ],
+    "description": "The same mountain opening, now with silver hair falling freely from crown to shoulders—no knot, band or half-up tie.",
+    "motion": "The elder takes two or three slow, grounded steps away along the rocky path, placing his wooden staff before transferring weight. The camera follows gently from behind with only a slight rightward drift, revealing mountain depth while never passing his shoulders. Loose silver hair and saffron cloth respond subtly to the same light breeze; valley mist drifts slowly. All hair stays completely OPEN and UNTIED from crown to tips: no bun, knot, braid, ponytail, band or half-up section appears at any point. Maintain a strict rear view; no face, profile, eyes or nose. Preserve the sunrise and trail layout; do not grow new terrain or slide his feet.",
+    "review": "Watch the crown of his head throughout: loose hair must not reform into a knot. Reject sliding feet, floating staff or a sideways face reveal.",
+    "continuity": "This is website scene 01, the mountain prologue—not the old child-prayer scene 01. Keep the final gaze toward the valley.",
+    "references": [],
+    "prompt": "Animate the uploaded corrected image into one continuous 10-second photorealistic landscape 16:9 shot, or use your supported 8-second duration if 10 seconds is unavailable. Use this image as the first-frame composition, not an inspiration for a different scene. Preserve its people, clothing, architecture, natural light and photographic texture. The elder takes two or three slow, grounded steps away along the rocky path, placing his wooden staff before transferring weight. The camera follows gently from behind with only a slight rightward drift, revealing mountain depth while never passing his shoulders. Loose silver hair and saffron cloth respond subtly to the same light breeze; valley mist drifts slowly. All hair stays completely OPEN and UNTIED from crown to tips: no bun, knot, braid, ponytail, band or half-up section appears at any point. Maintain a strict rear view; no face, profile, eyes or nose. Preserve the sunrise and trail layout; do not grow new terrain or slide his feet. Keep movement slow and even with sharp usable intermediate frames and believable anatomy, weight and cloth. Allow a brief calm beginning and ending. No cuts, fades, black frames, time-lapse, speed ramps, rapid zoom, camera orbit, morphing, extra people, captions, logos, generated interface, narration or music. Do not depict a browser, cursor or scrolling inside the video. The website will control playback separately. Quiet natural ambience only."
+  },
+  {
+    "id": "06",
+    "slug": "06-blessing",
+    "title": "At the Guru’s feet",
+    "subtitle": "A blessing told through hands.",
+    "chapter": "ACT II · THE INNER DOOR",
+    "image": "06-blessing-corrected.png",
+    "output": "06-blessing-fixed.mp4",
+    "checks": [
+      "Teacher in black",
+      "Teacher’s face cropped out",
+      "Disciple stays bowed"
+    ],
+    "description": "The teacher’s dark clothing takes inspiration from Baba Devi Sahab. The low framing keeps both faces out of the shot.",
+    "motion": "Use a LOCKED camera at this exact low rear-oblique framing. The elderly teacher wears the same plain black long-sleeved kurta and black lower garment. His relaxed aged hand rests gently on the bowed disciple's loose dark hair; fingers make only a small natural settling movement. The disciple remains bowed, with subtle breathing in his shoulders. The oil-lamp flame moves gently. CRITICAL: the teacher's entire face remains physically ABOVE the top edge from first to last frame; only the existing lower beard tip may appear. Do not pan or tilt upward, widen out, show his eyes/nose/mouth, or add a face in reflections. The disciple's face remains fully hidden by his bowed head and hair. No teacher in saffron and no outfit changes. Keep the hand anatomy stable and the gesture restrained.",
+    "review": "Check every frame, especially the end. A face hidden by darkness or blur is not enough—it must remain outside the framing. No camera lift.",
+    "continuity": "Generate 06 before 07. Keep this conversation for the next shot so the black clothing, disciple and amber room stay consistent. Shot 07 has its own first frame.",
+    "references": [
+      "teacher-baba-devi-sahab-1.jpg",
+      "teacher-baba-devi-sahab-2.jpg"
+    ],
+    "prompt": "Animate the uploaded corrected image into one continuous 10-second photorealistic landscape 16:9 shot, or use your supported 8-second duration if 10 seconds is unavailable. Use this image as the first-frame composition, not an inspiration for a different scene. Preserve its people, clothing, architecture, natural light and photographic texture. Use a LOCKED camera at this exact low rear-oblique framing. The elderly teacher wears the same plain black long-sleeved kurta and black lower garment. His relaxed aged hand rests gently on the bowed disciple's loose dark hair; fingers make only a small natural settling movement. The disciple remains bowed, with subtle breathing in his shoulders. The oil-lamp flame moves gently. CRITICAL: the teacher's entire face remains physically ABOVE the top edge from first to last frame; only the existing lower beard tip may appear. Do not pan or tilt upward, widen out, show his eyes/nose/mouth, or add a face in reflections. The disciple's face remains fully hidden by his bowed head and hair. No teacher in saffron and no outfit changes. Keep the hand anatomy stable and the gesture restrained. Keep movement slow and even with sharp usable intermediate frames and believable anatomy, weight and cloth. Allow a brief calm beginning and ending. No cuts, fades, black frames, time-lapse, speed ramps, rapid zoom, camera orbit, morphing, extra people, captions, logos, generated interface, narration or music. Do not depict a browser, cursor or scrolling inside the video. The website will control playback separately. Quiet natural ambience only."
+  },
+  {
+    "id": "07",
+    "slug": "07-inner-door",
+    "title": "The inner door",
+    "subtitle": "Guidance, seen from behind.",
+    "chapter": "ACT II · THE INNER DOOR",
+    "image": "07-inner-door-corrected.png",
+    "output": "07-inner-door-fixed.mp4",
+    "checks": [
+      "Both heads face forward",
+      "Same black-clothed teacher",
+      "One small guiding gesture"
+    ],
+    "description": "A rear two-shot replaces the face-revealing angle. The teacher and disciple look toward the quiet meditation room.",
+    "motion": "The elderly teacher at left wears the same black long-sleeved kurta and black lower garment, with a bald crown and short white hair at the back and sides. The saffron-clad younger disciple at right has fully loose dark shoulder-length hair. Starting with the teacher's hand already raised as in the image, he slowly completes one small guiding gesture toward the interior doorway, then lowers that hand gently to his lap. The disciple listens with only a small forward inclination, never turning his head. The camera makes a very gentle straight forward push from directly behind BOTH people without rising, orbiting or crossing either shoulder. BOTH heads remain pointed away throughout: no eyes, noses, mouths or facial profiles ever enter view. Preserve the same room and ordinary warm lamplight; no glowing portal, vision, new person or supernatural effect.",
+    "review": "Keep both faces invisible for the entire clip. Reject either person turning toward the other, an orbiting camera or black clothes changing to saffron.",
+    "continuity": "Use this new corrected image as the first frame. Make 06 and 07 separately; do not ask Gemini to morph the blessing composition into this one.",
+    "references": [
+      "teacher-baba-devi-sahab-1.jpg",
+      "teacher-baba-devi-sahab-2.jpg"
+    ],
+    "prompt": "Animate the uploaded corrected image into one continuous 10-second photorealistic landscape 16:9 shot, or use your supported 8-second duration if 10 seconds is unavailable. Use this image as the first-frame composition, not an inspiration for a different scene. Preserve its people, clothing, architecture, natural light and photographic texture. The elderly teacher at left wears the same black long-sleeved kurta and black lower garment, with a bald crown and short white hair at the back and sides. The saffron-clad younger disciple at right has fully loose dark shoulder-length hair. Starting with the teacher's hand already raised as in the image, he slowly completes one small guiding gesture toward the interior doorway, then lowers that hand gently to his lap. The disciple listens with only a small forward inclination, never turning his head. The camera makes a very gentle straight forward push from directly behind BOTH people without rising, orbiting or crossing either shoulder. BOTH heads remain pointed away throughout: no eyes, noses, mouths or facial profiles ever enter view. Preserve the same room and ordinary warm lamplight; no glowing portal, vision, new person or supernatural effect. Keep movement slow and even with sharp usable intermediate frames and believable anatomy, weight and cloth. Allow a brief calm beginning and ending. No cuts, fades, black frames, time-lapse, speed ramps, rapid zoom, camera orbit, morphing, extra people, captions, logos, generated interface, narration or music. Do not depict a browser, cursor or scrolling inside the video. The website will control playback separately. Quiet natural ambience only."
+  },
+  {
+    "id": "15",
+    "slug": "15-satsang",
+    "title": "A river of seekers",
+    "subtitle": "Every listener turns toward the teaching.",
+    "chapter": "ACT V · A RIVER OF SEEKERS",
+    "image": "15-satsang-corrected.png",
+    "output": "15-satsang-fixed.mp4",
+    "checks": [
+      "Audience faces the teacher",
+      "Teacher stays back-facing",
+      "No crowd rotation"
+    ],
+    "description": "The gathering now faces the seated teacher from the very first frame. The teacher’s face remains hidden from us.",
+    "motion": "The elder teacher in the near foreground remains seated with his back to the camera, long silver-white hair fully loose, in the same saffron drape. He gives one small, slow right-hand teaching gesture without turning his head. EVERY listener is already oriented toward him in the opening image and stays seated facing him for the whole take. Preserve the semicircle and rows of attentive FRONT-facing torsos, knees and faces beyond his platform. Audience faces may be visible; the TEACHER'S face must never be visible. Add only subtle independent blinking, breathing and a few gentle nods, not synchronized crowd motion. A very slow short camera rise from directly behind him reveals a little more river and gathering, never high enough to look down at his face and never orbiting. Banyan leaves, lamp flames and water move softly. No audience rotation, backs replacing faces, standing crowds, duplicated people or sliding bodies.",
+    "review": "Audience faces must look toward the foreground teacher from start to finish. Reject crowd spinning, people multiplying, or the teacher revealing his face.",
+    "continuity": "Keep the sunset color steady. The supplied corrected crowd arrangement is the starting point—not a transformation to perform during the video.",
+    "references": [],
+    "prompt": "Animate the uploaded corrected image into one continuous 10-second photorealistic landscape 16:9 shot, or use your supported 8-second duration if 10 seconds is unavailable. Use this image as the first-frame composition, not an inspiration for a different scene. Preserve its people, clothing, architecture, natural light and photographic texture. The elder teacher in the near foreground remains seated with his back to the camera, long silver-white hair fully loose, in the same saffron drape. He gives one small, slow right-hand teaching gesture without turning his head. EVERY listener is already oriented toward him in the opening image and stays seated facing him for the whole take. Preserve the semicircle and rows of attentive FRONT-facing torsos, knees and faces beyond his platform. Audience faces may be visible; the TEACHER'S face must never be visible. Add only subtle independent blinking, breathing and a few gentle nods, not synchronized crowd motion. A very slow short camera rise from directly behind him reveals a little more river and gathering, never high enough to look down at his face and never orbiting. Banyan leaves, lamp flames and water move softly. No audience rotation, backs replacing faces, standing crowds, duplicated people or sliding bodies. Keep movement slow and even with sharp usable intermediate frames and believable anatomy, weight and cloth. Allow a brief calm beginning and ending. No cuts, fades, black frames, time-lapse, speed ramps, rapid zoom, camera orbit, morphing, extra people, captions, logos, generated interface, narration or music. Do not depict a browser, cursor or scrolling inside the video. The website will control playback separately. Quiet natural ambience only."
+  },
+  {
+    "id": "17",
+    "slug": "17-disciple",
+    "title": "The journey reaches you",
+    "subtitle": "A quiet room. Gurudev’s presence.",
+    "chapter": "GURU VANDAN · THE JOURNEY IS YOURS",
+    "image": "17-disciple-corrected.png",
+    "output": "17-disciple-fixed.mp4",
+    "checks": [
+      "Gurudev’s framed portrait",
+      "No diya stand or idols",
+      "Dark, unbranded phone"
+    ],
+    "description": "The tall diya stand and shelf idols are removed. Gurudev’s supplied photograph now sits in a simple wooden frame.",
+    "motion": "The young devotee stays completely back-facing in his white cotton kurta. He makes one small natural thumb tap on the phone, pauses, then gently lowers it a few centimetres while remaining seated. Keep the screen dark and blank: do not invent an app interface, logo, quotation or light projection. The camera makes only a very slow, shallow rightward slide from behind him; preserve the upper-left shelf and framed photo in view and never reveal the devotee's face. The framed Maharshi Mehi photograph must remain a STILL unchanged photograph with the same actual face, white hair, beard and saffron clothing; it must not blink, move, transform or be replaced by another guru. The photograph is the only intentional visible Gurudev face in this shot. Keep the floor by the window empty of the removed tall brass diya stand and keep all shelves free of deity idols and other deity pictures. Preserve books, trailing plant, woven mat, wooden table and warm morning light.",
+    "review": "Look closely at the framed portrait: it must stay faithful and completely still. Reject returning statues/diya stands, invented phone screens or a face reveal.",
+    "continuity": "Upload only the corrected scene image first. The original Gurudev portrait below is an optional additional identity reference if your Gemini interface supports multiple images.",
+    "references": [
+      "gurudev-mehi-portrait.jpg"
+    ],
+    "prompt": "Animate the uploaded corrected image into one continuous 10-second photorealistic landscape 16:9 shot, or use your supported 8-second duration if 10 seconds is unavailable. Use this image as the first-frame composition, not an inspiration for a different scene. Preserve its people, clothing, architecture, natural light and photographic texture. The young devotee stays completely back-facing in his white cotton kurta. He makes one small natural thumb tap on the phone, pauses, then gently lowers it a few centimetres while remaining seated. Keep the screen dark and blank: do not invent an app interface, logo, quotation or light projection. The camera makes only a very slow, shallow rightward slide from behind him; preserve the upper-left shelf and framed photo in view and never reveal the devotee's face. The framed Maharshi Mehi photograph must remain a STILL unchanged photograph with the same actual face, white hair, beard and saffron clothing; it must not blink, move, transform or be replaced by another guru. The photograph is the only intentional visible Gurudev face in this shot. Keep the floor by the window empty of the removed tall brass diya stand and keep all shelves free of deity idols and other deity pictures. Preserve books, trailing plant, woven mat, wooden table and warm morning light. Keep movement slow and even with sharp usable intermediate frames and believable anatomy, weight and cloth. Allow a brief calm beginning and ending. No cuts, fades, black frames, time-lapse, speed ramps, rapid zoom, camera orbit, morphing, extra people, captions, logos, generated interface, narration or music. Do not depict a browser, cursor or scrolling inside the video. The website will control playback separately. Quiet natural ambience only."
+  }
+]

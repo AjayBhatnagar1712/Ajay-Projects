@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream"
+    android:backgroundTint="@color/bg_cream"
+    tools:context=".ui.auth.EmailVerificationActivity">
+
+    <!-- Seamless Background Logo -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="ContentDescription" />
+
+    <!-- Centered Meditative Instructions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@id/bottom_action_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.40">
+
+        <!-- A soft, guiding icon (replace ic_email with your preferred icon) -->
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@android:drawable/ic_dialog_email"
+            app:tint="@color/primary_maroon"
+            android:layout_marginBottom="24dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/Widget.GuruVandan.TextViewH4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:gravity="center"
+            android:layout_marginBottom="12dp"
+            android:text="Confirm Your Path"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/text_instruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="A guiding link has been sent to your email. Please open it to unlock your space, then return here to continue."
+            android:textColor="@color/text_taupe"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <!-- We isolate the email address so it's bold and easy to read -->
+        <TextView
+            android:id="@+id/requesting_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/primary_maroon"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <!-- Anchored Action Area -->
+    <LinearLayout
+        android:id="@+id/bottom_action_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_verified"
+            style="@style/Widget.GuruVandan.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I Have Verified"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/button_resend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Resend Invitation"
+            android:textColor="@color/text_taupe"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Walking a different path?"
+                android:textColor="@color/text_taupe"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <!-- The actual clickable textual button -->
+            <TextView
+                android:id="@+id/button_return_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:text="Return to start"
+                android:textColor="@color/primary_maroon"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

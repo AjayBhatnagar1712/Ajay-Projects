@@ -1,0 +1,25 @@
+1. To style a html sheet create a new css page with .css ending
+2. To style all h1 or h2 of a html page use code h2{color:anycolor name;}
+3. To link a css page to a html page use a element called <link> in the <head> of the html page to define the path of the css page.To see the example of linking see the
+   file css_intro.html. 
+4. There are different ways to write styles:-a. Inline styles, b. Using style element in the head c. creating a css sheet.
+5. color changes the color of the written text written inside of the element where as the background-color changes the backgroumd color for example see the file 
+   CSS_intro1.css
+6. an another to pick a color by rgb method by this method for example RGB(123,231,132) the range of rgb color is limited to 255 which is rgb(255,255,255) this white
+   color.
+7. The another way to select color is hexadecimal way:-
+                  0,1,2,3,4,
+                  5,6,7,8,9,
+                 A,B,C,D,E,F
+   Here A,B,C,D,E,F are 10,11,12,13,14,15,16 but we show them as as alphabates.The order to write colors in hexadecimal way is for example:- #ff9812 here starting 
+   2 positions show red the 3rd and 4th positions show range of Green and then 5th andth positions show range of blue. For example see file css_into.html
+8. To allign the text use text attribute text-allign: and the specify where you want to allign , attribute font-weight is used to set bolddness of the font, the 
+   attrubute text-decoration is used to set designinings like underlining , ovelining you can also change the color of the line which is been used.To change the 
+   distance between the lines use attribut line-height. We can space distance between the letters of words by using attribut letter-spacing. to see the use of 
+   these elements see the file practice2.css .
+9. To set the font size use attribute font-size:amount of size.To see the practical see file:- practice2.css . & to learn more about font size unit see the 
+   website MDN
+10.To set the type of font use attribute font-family: and then put the desired font name. To put a backup font name put a comma after the first preference font 
+   name then write the name of the font to see the practical use of this attribute see th file:-  prractice2.css .But always priorly use full font family name
+11.   
+   

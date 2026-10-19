@@ -1,0 +1,73 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "supportMessages": {
+      ".read": "auth != null && auth.token.email == 'guruvandan11@gmail.com'",
+      ".indexOn": [
+        "createdAt"
+      ],
+      "$messageId": {
+        ".write": "(!data.exists() && newData.exists()) || (data.exists() && auth != null && auth.token.email == 'guruvandan11@gmail.com')",
+        ".validate": "$messageId.matches(/^[a-f0-9-]{36}$/) && newData.hasChildren(['name','email','topic','message','device','appVersion','createdAt','language','source','status','consent'])",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 80 && newData.val().replace(' ', '').replace('\\t', '').replace('\\r', '').replace('\\n', '').length > 0 && (!data.exists() || newData.val() == data.val())"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().length <= 254 && newData.val().matches(/^[^ @]+@[^ @]+\\.[^ @]+$/) && !newData.val().contains('\\t') && !newData.val().contains('\\r') && !newData.val().contains('\\n') && (!data.exists() || newData.val() == data.val())"
+        },
+        "topic": {
+          ".validate": "newData.isString() && (newData.val() == 'sign-in' || newData.val() == 'audio' || newData.val() == 'meditation' || newData.val() == 'quotes' || newData.val() == 'account' || newData.val() == 'other') && (!data.exists() || newData.val() == data.val())"
+        },
+        "message": {
+          ".validate": "newData.isString() && newData.val().length >= 10 && newData.val().length <= 4000 && newData.val().replace(' ', '').replace('\\t', '').replace('\\r', '').replace('\\n', '').length > 0 && (!data.exists() || newData.val() == data.val())"
+        },
+        "device": {
+          ".validate": "newData.isString() && newData.val().length <= 160 && (!data.exists() || newData.val() == data.val())"
+        },
+        "appVersion": {
+          ".validate": "newData.isString() && newData.val().length <= 40 && (!data.exists() || newData.val() == data.val())"
+        },
+        "createdAt": {
+          ".validate": "newData.isNumber() && ((!data.exists() && newData.val() == now) || (data.exists() && newData.val() == data.val()))"
+        },
+        "language": {
+          ".validate": "(newData.val() == 'en' || newData.val() == 'hi') && (!data.exists() || newData.val() == data.val())"
+        },
+        "consent": {
+          ".validate": "newData.val() == true"
+        },
+        "source": {
+          ".validate": "newData.val() == 'website'"
+        },
+        "status": {
+          ".validate": "newData.val() == 'new' || (data.exists() && (newData.val() == 'read' || newData.val() == 'resolved'))"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "satsangs": {
+      ".read": true,
+      ".write": "auth != null && auth.token.email == 'guruvandan11@gmail.com'"
+    },
+    "quotes": {
+      ".read": true,
+      ".write": "auth != null && auth.token.email == 'guruvandan11@gmail.com'"
+    },
+    "users": {
+      ".read": "auth != null && auth.token.email == 'guruvandan11@gmail.com'",
+      "$uid": {
+        ".read": "auth != null && $uid == auth.uid",
+        ".write": "auth != null && ($uid == auth.uid || auth.token.email == 'guruvandan11@gmail.com')"
+      }
+    },
+    "admins": {
+      "$uid": {
+        ".read": "auth != null && auth.token.email == 'guruvandan11@gmail.com'",
+        ".write": false
+      }
+    }
+  }
+}

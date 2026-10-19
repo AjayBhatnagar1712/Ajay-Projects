@@ -1,0 +1,42 @@
+{
+  "name": "@workspace/api-server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm run build && node --enable-source-maps ./dist/index.mjs",
+    "prebuild": "pnpm --filter @workspace/broker-tenant-onboarding run build && pnpm --filter @workspace/tenant-workflow run build",
+    "build": "node ./build.mjs",
+    "start": "node --enable-source-maps ./dist/index.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "@sentry/node": "10.69.0",
+    "@vercel/node": "^5.3.0",
+    "@workspace/api-zod": "workspace:*",
+    "@workspace/auth-server": "workspace:*",
+    "@workspace/broker-tenant-onboarding": "workspace:*",
+    "@workspace/db": "workspace:*",
+    "@workspace/invitations-store": "workspace:*",
+    "@workspace/sync-store": "workspace:*",
+    "@workspace/tenant-document-upload": "workspace:*",
+    "@workspace/tenant-workflow": "workspace:*",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2",
+    "express": "^5",
+    "pino": "^9",
+    "pino-http": "^10"
+  },
+  "devDependencies": {
+    "@sentry/esbuild-plugin": "5.4.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "catalog:",
+    "esbuild": "^0.27.3",
+    "esbuild-plugin-pino": "^2.3.3",
+    "pino-pretty": "^13",
+    "thread-stream": "3.1.0"
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejistration form</title>
+</head>
+
+<body>
+    <form action="jg">
+        <h1>Race Rejistration</h1>
+        <p>
+            <label for="first">First Name:</label>
+            <input type="text" name="first name" id="first" required>
+            <label for="last">Last name:</label>
+            <input type="text" name="last name" id="last" required>
+        </p>
+        <p>Select a race:</p>
+        <div>
+            <label for="fun">Fun run 5k</label>
+            <input type="radio" name="race" id="fun" value="Fun Race 5k">
+        </div>
+        <div>
+            <label for="half">Half marathon</label>
+            <input type="radio" name="race" id="half" value="Half marathon">
+        </div>
+        <div>
+            <label for="full">Full marathon</label>
+            <input type="radio" name="race" id="full" value="full marathon">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="age">Select a age group:</label>
+            <select name="age" id="age">
+                <option value="under 18">Under 18</option>
+                <option value="18-30" selected>18-30</option>
+                <option value="30-50">30-50</option>
+                <option value="50+">50+</option>
+            </select>
+        </div>
+        <button type="submit">Rejister!</button>
+    </form>
+</body>
+
+</html>

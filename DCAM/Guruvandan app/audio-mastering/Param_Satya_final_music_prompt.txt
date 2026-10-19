@@ -1,0 +1,32 @@
+TITLE: परम सत्य — Guru Vandan Devotional
+
+Create a deeply spiritual Hindi devotional song that feels natural, intimate, and divinely luminous. Every word must be SUNG melodically; there must be no spoken narration, recitation, chanting speech, or audiobook delivery.
+
+VOCAL CHARACTER
+Warm mature Indian male lead vocal, calm and devotional, centered in the same comfortable mid register as the reference recording (approximately 175–180 Hz). Preserve the feeling of a sincere home-recorded prayer: natural breath, clear Hindi/Sanskrit diction, gentle meend, restrained classical ornamentation, and human emotional warmth. Do not make it theatrical, operatic, filmi, synthetic, or heavily processed.
+
+PHRASING — CRITICAL
+Begin with the opening devotional phrase from the reference recording, sung in its original melodic character. It must sound like the first invocation of the composition, not like a sample pasted onto another song.
+
+After the opening, sing the supplied philosophical lyrics as one connected, continuously unfolding statement. Do not turn every comma or descriptive word into a separate verse. Do not insert hard stops between the qualities of the परम तत्त्व. Use only natural micro-breaths. Let the melody stretch and slow briefly at the meaningful resting points described below, then continue in the same musical flow.
+
+First long arc: flow continuously from “जो परम तत्त्व” through “मानना चाहिए”. Take a gentle breath after “अगोचर”; broaden slightly at “सर्वव्यापकता के भी परे है”; then make the first true musical repose after “सर्वेश्वर सर्वाधार मानना चाहिए”.
+
+Second long arc: begin “तथा अपरा…” without resetting the song. Keep “अपरा — जड़ — और परा — चेतन” connected. Continue the entire enumeration in one rising meditative arc. Use soft micro-breaths after “अगुण और सगुण पर”, “अपरम्पार शक्तियुक्त”, and “नाम-रूपातीत”, but do not stop the pulse. Slow more noticeably from “मन-बुद्धि और इन्द्रियों के परे”. Build gentle spiritual intensity through “यह सारा प्रकृति-मण्डल एक महान् यन्त्र की नाईं परिचालित होता रहता है”. Resolve very slowly, clearly, and reverently on “वही परम सत्य है”, sustaining “सत्य” before the instruments fade.
+
+MUSIC
+Slow 58–64 BPM, free alap-like opening moving into a gentle meditative pulse, inspired by morning raga Bhairav. Continuous warm tanpura drone, soft harmonium supporting the vocal melody, sparse bansuri responses, delicate sarangi sustains, gentle pakhawaj and tabla entering gradually, very subtle manjira, and one distant temple bell only at major transitions. Real acoustic texture and spacious temple ambience. No EDM, no synthetic pads, no pop drums, no aggressive percussion, no excessive choir, and no vocal distortion.
+
+STRUCTURE
+1. Short tanpura and bansuri invocation.
+2. Opening phrase from the reference recording, fully sung in its original melodic spirit.
+3. The first continuous lyrical arc through “मानना चाहिए”.
+4. A brief two-bar bansuri/sarangi breath, not a full break.
+5. The second continuous lyrical arc, gradually deepening.
+6. Long devotional cadence on “वही परम सत्य है”, followed by tanpura and temple reverb fading naturally.
+
+EXACT LYRICS — DO NOT OMIT, PARAPHRASE, TRANSLATE, REORDER, OR ADD WORDS
+
+जो परम तत्त्व आदि-अन्त-रहित, असीम, अजन्मा, अगोचर, सर्वव्यापक और सर्वव्यापकता के भी परे है, उसे ही सर्वेश्वर सर्वाधार मानना चाहिए।
+
+तथा अपरा (जड़) और परा (चेतन); दोनों प्रकृतियों के पार में, अगुण और सगुण पर, अनादि-अनन्त-स्वरूपी, अपरम्पार शक्तियुक्त, देशकालातीत, शब्दातीत, नाम-रूपातीत, अद्वितीय, मन-बुद्धि और इन्द्रियों के परे जिस परम सत्ता पर यह सारा प्रकृति-मण्डल एक महान् यन्त्र की नाईं परिचालित होता रहता है, वही परम सत्य है।

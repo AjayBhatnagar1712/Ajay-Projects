@@ -1,0 +1,66 @@
+.language-switch,
+.cinema-header nav .language-switch {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-width:48px;
+  min-height:40px;
+  padding:6px 10px;
+  border:1px solid currentColor;
+  border-radius:24px;
+  background:transparent;
+  color:inherit;
+  font:600 12px/1.4 'Nirmala UI','Segoe UI',sans-serif;
+  cursor:pointer;
+  flex-shrink:0;
+}
+.language-switch:hover { background:#b08a4520; }
+.store-badge img { display:block; width:auto; }
+.store-badge-google img { height:58px; margin:-5px -8px; }
+.store-badge-apple img { height:48px; }
+.store-badge .badge-hi { display:none; }
+html[lang=hi] .store-badge .badge-en { display:none; }
+html[lang=hi] .store-badge .badge-hi { display:block; }
+#chapter-list strong { font-weight:400; }
+.language-switch:focus-visible { outline:2px solid #caa76c; outline-offset:4px; }
+.legal-language-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:20px; margin-bottom:24px; }
+html[lang=hi] body { font-family:'Nirmala UI','Mangal','Segoe UI',sans-serif; }
+html[lang=hi] .cinema-brand,
+html[lang=hi] h1,html[lang=hi] h2,html[lang=hi] h3,
+html[lang=hi] .intro-line,html[lang=hi] #chapter-list button {
+  font-family:'Nirmala UI','Mangal',serif;
+  letter-spacing:normal;
+  line-height:1.45;
+}
+html[lang=hi] .film-intro h1 { font-size:clamp(72px,11vw,158px); line-height:1.35; margin-left:0; }
+html[lang=hi] .film-intro h1 span { display:none; }
+html[lang=hi] .film-caption { max-width:620px; }
+html[lang=hi] .film-caption h2 { font-size:clamp(30px,3.7vw,54px); }
+html[lang=hi] #scene-number,html[lang=hi] .overline,
+html[lang=hi] .film-topline,html[lang=hi] .film-intro > p:first-child,
+html[lang=hi] .scroll-note,html[lang=hi] .cinema-brand small { letter-spacing:.03em; }
+html[lang=hi] .quote-language-block:not(.quote-language-hindi),
+html[lang=hi] .quote-divider { display:none; }
+.quote-route .site-header nav { flex-wrap:wrap; }
+@media(max-width:760px) {
+  .cinema-header nav { gap:14px; }
+  .cinema-header nav span { display:none; }
+  html[lang=hi] .film-caption h2 { font-size:31px; }
+  html[lang=hi] .film-intro h1 { font-size:clamp(64px,18vw,86px); }
+  html[lang=hi] .film-caption { bottom:24%; }
+  .quote-route .site-header { flex-direction:column; align-items:flex-start; }
+  .quote-route .site-header nav { justify-content:flex-start; width:100%; gap:10px; }
+  .quote-route .site-header nav a { font-size:12px; padding:9px; }
+}
+@media(max-width:560px) {
+  .cinema-header { flex-wrap:wrap; gap:10px; background:linear-gradient(#0b1314ed,#0b131488,transparent); }
+  .cinema-header .cinema-brand { font-size:22px; }
+  .cinema-header nav { width:100%; justify-content:space-between; gap:10px; }
+  .cinema-header nav .header-app { display:block; padding:8px 12px; }
+  .cinema-header nav a,.cinema-header nav button { font-size:11px; }
+  .film-topline { top:150px; }
+  .film-status { top:192px; }
+  .film-topline #film-act { max-width:62%; }
+  .language-switch,.cinema-header nav .language-switch { min-width:42px; min-height:36px; font-size:12px; padding:4px 9px; }
+  html[lang=hi] .film-caption h2 { font-size:29px; }
+}

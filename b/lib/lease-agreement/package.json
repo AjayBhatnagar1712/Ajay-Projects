@@ -1,0 +1,34 @@
+{
+  "name": "@workspace/lease-agreement",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "workspace": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./text": {
+      "workspace": "./src/text.ts",
+      "types": "./dist/text.d.ts",
+      "import": "./dist/text.js",
+      "default": "./dist/text.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "generate-samples": "tsx scripts/generate-samples.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "~5.9.2"
+  }
+}

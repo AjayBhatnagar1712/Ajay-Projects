@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".ui.dashboard.SatsangFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Satsang"
+        android:textColor="@color/primary_maroon"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Sacred gatherings — morning and evening"
+        android:textColor="@color/text_taupe_light"
+        android:textSize="16sp" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/session_toggle_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:cornerRadius="12dp"
+        app:checkedButton="@+id/btn_morning"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_morning"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="Morning"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="@color/selector_toggle_text"
+            app:backgroundTint="@color/selector_toggle_bg"
+            app:cornerRadius="12dp"
+            app:strokeWidth="0dp"
+            app:elevation="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_evening"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="Evening"
+            android:textAllCaps="false"
+            android:textColor="@color/selector_toggle_text"
+            app:backgroundTint="@color/selector_toggle_bg"
+            android:textSize="16sp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="0dp"
+            app:elevation="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_satsang_audio"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_satsang_audio" />
+
+</LinearLayout>
